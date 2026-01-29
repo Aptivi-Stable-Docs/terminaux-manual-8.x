@@ -59,6 +59,8 @@ Non-modal informational boxes can also be used as a pseudo-cyclic writer because
 If you provided increment as a ref variable, all the arguments that come after it will be required.
 {% endhint %}
 
+You can also erase them manually if you have an info box instance using the `Erase()` function. Non-modal informational boxes can also be erased manually, because the functions return the info box instance, which allows you to erase the infobox using the `Erase()` function. You'll need to print the result to the console, though, using the raw console writer.
+
 ## Modal informational boxes
 
 Informational box styles of this nature are modal. They require input from the end user in order to present information to the user with action. These boxes are common in interactive console applications where information is to be conveyed to the user. They are presented in a different style, based on how or what action the user needs to take, and their borders are customizable with the `BorderSettings` instance.

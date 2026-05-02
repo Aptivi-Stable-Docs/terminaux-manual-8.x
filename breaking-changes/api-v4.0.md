@@ -7,11 +7,15 @@ icon: up
 
 Here is a list of breaking changes that happened during the API v4.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 3.4.x to 4.0.x
+***
+
+## <mark style="color:$primary;">From 3.4.x to 4.0.x</mark>
 
 Between the 3.4.x and 4.0.x version range, we've made the following breaking changes:
 
-### Removed enclosed versions of color sequence properties
+<details>
+
+<summary>Removed enclosed versions of color sequence properties</summary>
 
 {% code title="Color.cs" lineNumbers="true" %}
 ```csharp
@@ -26,13 +30,17 @@ The plain sequences can already be enclosed in double quotes by escaping them in
 We advise you to manually enclose the `PlainSequence` and/or the `PlainSequenceTrueColor` properties with double quotes.
 {% endhint %}
 
-### Merged various VT sequence tools
+</details>
+
+<details>
+
+<summary>Merged various VT sequence tools</summary>
 
 {% code title="VtSequenceTools.cs" lineNumbers="true" %}
 ```csharp
-public static string FilterVTSequencesMultiple(string Text, string replace = "", VtSequenceType types = VtSequenceType.All)
-public static (VtSequenceType, Match[])[] MatchVTSequencesMultiple(string Text, VtSequenceType type = VtSequenceType.All)
-public static bool IsMatchVTSequencesMultiple(string Text, VtSequenceType type = VtSequenceType.All)
+public static string FilterVTSequencesMultiple(string Text, string replace = "", VtSequenceType types = VtSequenceType.All) { }
+public static (VtSequenceType, Match[])[] MatchVTSequencesMultiple(string Text, VtSequenceType type = VtSequenceType.All) { }
+public static bool IsMatchVTSequencesMultiple(string Text, VtSequenceType type = VtSequenceType.All) { }
 ```
 {% endcode %}
 
@@ -42,7 +50,11 @@ We've made a refactor of various VT sequence tools in order to be more effective
 We advise you to change how you return the values as appropriate. It's almost exactly the same as the `Multiple` versions, but without the `Multiple` prefix.
 {% endhint %}
 
-### Removed non-standalone console writer wrappers
+</details>
+
+<details>
+
+<summary>Removed non-standalone console writer wrappers</summary>
 
 {% code title="ConsoleWrapperTools.cs" lineNumbers="true" %}
 ```csharp
@@ -59,7 +71,11 @@ We've finally removed the `TermReader`-exclusive console writer console wrappers
 We advice you to stop overriding the above four wrappers. If you rely on these wrappers, you should change your application code to make better use of Terminaux's tools to avoid having to override the standard wrappers for the terminal reader.
 {% endhint %}
 
-### Presentation system overhauled
+</details>
+
+<details>
+
+<summary>Presentation system overhauled</summary>
 
 {% code title="IElement.cs" lineNumbers="true" %}
 ```csharp
@@ -79,16 +95,16 @@ public static int PresentationUpperInnerBorderTop
 public static int PresentationLowerInnerBorderLeft
 public static int PresentationLowerInnerBorderTop
 public static int PresentationInformationalTop
-public static bool PresentationContainsInput(Slideshow presentation)
+public static bool PresentationContainsInput(Slideshow presentation) { }
 ```
 {% endcode %}
 
 {% code title="Removed elements" lineNumbers="true" %}
 ```csharp
-public class ChoiceInputElement : IElement
-public class InputElement : IElement
-public class MaskedInputElement : IElement
-public class MultipleChoiceInputElement : IElement
+public class ChoiceInputElement : IElement { }
+public class InputElement : IElement { }
+public class MaskedInputElement : IElement { }
+public class MultipleChoiceInputElement : IElement { }
 ```
 {% endcode %}
 
@@ -98,7 +114,11 @@ We've overhauled the presentation system by changing how the input is processed.
 Follow the instructions on how to add input to your presentation using [this page](../usage/console-tools/presentation-system.md).
 {% endhint %}
 
-### Presentation system now uses the screen feature fully
+</details>
+
+<details>
+
+<summary>Presentation system now uses the screen feature fully</summary>
 
 {% code title="IElement.cs" lineNumbers="true" %}
 ```csharp
@@ -117,7 +137,11 @@ Additionally, the presentation system has finally earned the ability to be scrol
 You should change how you're implementing your element to return a string that represents the element output, as Terminaux now handles all the positioning and the wrapping.
 {% endhint %}
 
-### `ClearPresentation()` removed
+</details>
+
+<details>
+
+<summary><code>ClearPresentation()</code> removed</summary>
 
 {% code title="PresentationTools.cs" lineNumbers="true" %}
 ```csharp
@@ -131,14 +155,18 @@ Terminaux now handles clearing the presentation automatically, so your elements 
 We advice you to cease using this function. In case of demand, we might bring it back.
 {% endhint %}
 
-### Simplified the console color data
+</details>
+
+<details>
+
+<summary>Simplified the console color data</summary>
 
 {% code title="ConsoleColorData.cs" lineNumbers="true" %}
 ```csharp
 public Rgb? RGB
 public Hsl? HSL
-public class Rgb
-public class Hsl
+public class Rgb { }
+public class Hsl { }
 ```
 {% endcode %}
 
@@ -147,14 +175,18 @@ The `Hsl` property and the class have been removed because it's unnecessary, giv
 This is to simplify the console color data by removing extraneous entries from the color data JSON file itself that Terminaux uses to fetch the color data.
 
 {% hint style="info" %}
-If you want to access the HSL info of a console color, you should convert the RGB instance that the `RGB` property returns using the available conversion tools pinpointed in [this page](../usage/color-sequences/color-model-conversions.md).
+If you want to access the HSL info of a console color, you should convert the RGB instance that the `RGB` property returns using the available conversion tools.
 {% endhint %}
 
-### Simplified the color blindness formula
+</details>
+
+<details>
+
+<summary>Simplified the color blindness formula</summary>
 
 {% code title="TransformationMethod.cs" lineNumbers="true" %}
 ```csharp
-public enum TransformationMethod
+public enum TransformationMethod { }
 ```
 {% endcode %}
 
@@ -173,7 +205,11 @@ To continue using the Vienot formula, you must use one of the following formulas
 * `TritanVienot`
 {% endhint %}
 
-### Updated Textify to migrate the Figletize library
+</details>
+
+<details>
+
+<summary>Updated Textify to migrate the Figletize library</summary>
 
 We've merged the Figletize library with the Textify library so that Terminaux can provide more than 550+ Figlet fonts. As a result, we had to update Textify, which means that the Figletize library is no longer installed with Terminaux.
 
@@ -181,7 +217,11 @@ We've merged the Figletize library with the Textify library so that Terminaux ca
 You can consult the breaking change for Textify [here](https://app.gitbook.com/s/NaUWjRlaBR1k5rO42Zy8/breaking-changes#moved-figletize-to-textify.figlet).
 {% endhint %}
 
-### Removed unlimited input from the reader
+</details>
+
+<details>
+
+<summary>Removed unlimited input from the reader</summary>
 
 {% code title="TermReaderSettings.cs" lineNumbers="true" %}
 ```csharp
@@ -195,81 +235,85 @@ Unlimited input in the multi-line terminal reader was proven to be buggy, and we
 If you still want unlimited input, you can use the one-line wrapped reader, which allows unlimited amount of characters.
 {% endhint %}
 
-### Slider and progress bar width and height determination changes
+</details>
+
+<details>
+
+<summary>Slider and progress bar width and height determination changes</summary>
 
 {% code title="SliderColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteSliderPlain(int currPos, int maxPos, int Left, int Top, int WidthOffset, bool DrawBorder = true)
-public static void WriteSliderPlain(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static string RenderSliderPlain(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true)
-public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, bool DrawBorder = true)
-public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
+public static void WriteSliderPlain(int currPos, int maxPos, int Left, int Top, int WidthOffset, bool DrawBorder = true) { }
+public static void WriteSliderPlain(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int WidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static void WriteSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static string RenderSliderPlain(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true) { }
+public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, bool DrawBorder = true) { }
+public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static string RenderSlider(int currPos, int maxPos, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
 ```
 {% endcode %}
 
 {% code title="SliderVerticalColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int HeightOffset, bool DrawBorder = true)
-public static void WriteVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static string RenderVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, bool DrawBorder = true)
-public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true)
-public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
+public static void WriteVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int HeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int HeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static void WriteVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static string RenderVerticalSliderPlain(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, bool DrawBorder = true) { }
+public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, bool DrawBorder = true) { }
+public static string RenderVerticalSlider(int currPos, int maxPos, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color SliderColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
 ```
 {% endcode %}
 
 {% code title="ProgressBarColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteProgressPlain(double Progress, int Left, int Top, int WidthOffset, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgressPlain(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false)
-public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false)
-public static string RenderProgressPlain(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false)
-public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false)
-public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false)
-public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false)
+public static void WriteProgressPlain(double Progress, int Left, int Top, int WidthOffset, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgressPlain(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int WidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false) { }
+public static void WriteProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false) { }
+public static string RenderProgressPlain(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, bool DrawBorder = true, bool Targeted = false) { }
+public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, bool DrawBorder = true, bool Targeted = false) { }
+public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true, bool Targeted = false) { }
+public static string RenderProgress(double Progress, int Left, int Top, int LeftWidthOffset, int RightWidthOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true, bool Targeted = false) { }
 ```
 {% endcode %}
 
 {% code title="ProgressBarVerticalColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteVerticalProgressPlain(double Progress, int Left, int Top, int HeightOffset, bool DrawBorder = true)
-public static void WriteVerticalProgressPlain(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
-public static string RenderVerticalProgressPlain(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true)
-public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, bool DrawBorder = true)
-public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true)
-public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true)
+public static void WriteVerticalProgressPlain(double Progress, int Left, int Top, int HeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalProgressPlain(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int HeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static void WriteVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
+public static string RenderVerticalProgressPlain(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, bool DrawBorder = true) { }
+public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, bool DrawBorder = true) { }
+public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, bool DrawBorder = true) { }
+public static string RenderVerticalProgress(double Progress, int Left, int Top, int TopHeightOffset, int BottomHeightOffset, Color ProgressColor, Color FrameColor, Color BackgroundColor, bool DrawBorder = true) { }
 ```
 {% endcode %}
 
@@ -279,7 +323,11 @@ Due to how difficult it was to determine the correct height from the left and th
 We advise you to revise your slider and/or progress bar calls and change them accordingly to represent the actual width/height.
 {% endhint %}
 
-### Merged three custom binding classes
+</details>
+
+<details>
+
+<summary>Merged three custom binding classes</summary>
 
 {% code title="CustomBindings.cs" lineNumbers="true" %}
 ```csharp
@@ -293,7 +341,11 @@ The `CustomBindings` class has been recently expanded to include code from itsel
 None of the functions are affected; just update your reference so that it points to `BindingsTools`.
 {% endhint %}
 
-### History system improvements
+</details>
+
+<details>
+
+<summary>History system improvements</summary>
 
 {% code title="TermReaderState.cs" lineNumbers="true" %}
 ```csharp
@@ -303,8 +355,8 @@ public List<string> History
 
 {% code title="TermReaderTools.cs" lineNumbers="true" %}
 ```csharp
-public static void SetHistory(List<string> History)
-public static void ClearHistory()
+public static void SetHistory(List<string> History) { }
+public static void ClearHistory() { }
 ```
 {% endcode %}
 
@@ -314,31 +366,35 @@ The history system has seen a number of improvements that resulted in it being a
 Instead of directly referencing the two deleted methods from `TermReaderTools`, you should use the `HistoryTools` class to manipulate with the history.
 {% endhint %}
 
-### Color conversion and parsing tools refactored
+</details>
+
+<details>
+
+<summary>Color conversion and parsing tools refactored</summary>
 
 {% code title="Conversion tools" lineNumbers="true" %}
 ```csharp
-public static class CmykConversionTools
-public static class CmyConversionTools
-public static class HslConversionTools
-public static class HsvConversionTools
-public static class RgbConversionTools
-public static class RybConversionTools
-public static class YiqConversionTools
-public static class YuvConversionTools
+public static class CmykConversionTools { }
+public static class CmyConversionTools { }
+public static class HslConversionTools { }
+public static class HsvConversionTools { }
+public static class RgbConversionTools { }
+public static class RybConversionTools { }
+public static class YiqConversionTools { }
+public static class YuvConversionTools { }
 ```
 {% endcode %}
 
 {% code title="Parsing tools" lineNumbers="true" %}
 ```csharp
-public static class CmykParsingTools
-public static class CmyParsingTools
-public static class HslParsingTools
-public static class HsvParsingTools
-public static class RgbParsingTools
-public static class RybParsingTools
-public static class YiqParsingTools
-public static class YuvParsingTools
+public static class CmykParsingTools { }
+public static class CmyParsingTools { }
+public static class HslParsingTools { }
+public static class HsvParsingTools { }
+public static class RgbParsingTools { }
+public static class RybParsingTools { }
+public static class YiqParsingTools { }
+public static class YuvParsingTools { }
 ```
 {% endcode %}
 
@@ -350,11 +406,15 @@ As a result, while the generic parsing and conversion tools are unaffected, we'v
 Use the parsing and the conversion tools using the existing classes.
 {% endhint %}
 
-### \[4.0.0.1] Removed the targeted argument for progress bar
+</details>
+
+<details>
+
+<summary>[4.0.0.1] Removed the targeted argument for progress bar</summary>
 
 {% code title="ProgressBarColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteProgress [...] , bool Targeted = false)
+public static void WriteProgress [...] , bool Targeted = false) { }
 ```
 {% endcode %}
 
@@ -364,11 +424,17 @@ We've removed the targeted argument for the horizontal progress bar writers as w
 It's advised to remove all targeted parameter values and to make appropriate changes.
 {% endhint %}
 
-## From 4.0.x to 4.1.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 4.0.x to 4.1.x</mark>
 
 Between the 4.0.x and 4.1.x version range, we've made the following breaking changes:
 
-### Removed `AllowForeground`
+<details>
+
+<summary>Removed <code>AllowForeground</code></summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
@@ -382,7 +448,11 @@ This was made initially to control whether setting foreground colors is allowed 
 Unless you know what you're doing, you should refrain trying to re-implement it. You can, however, use convenience functions that behave similar to this property using the available functions in the `ColorTools` class.
 {% endhint %}
 
-### Replaced border settings with `BorderSettings`
+</details>
+
+<details>
+
+<summary>Replaced border settings with <code>BorderSettings</code></summary>
 
 {% code title="BorderTools.cs" lineNumbers="true" %}
 ```csharp
@@ -395,3 +465,5 @@ The `BorderSettings` class has been introduced to allow you to more comfortably 
 {% hint style="info" %}
 Change your calls to such writers to use the `BorderSettings` overload.
 {% endhint %}
+
+</details>

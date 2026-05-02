@@ -7,48 +7,82 @@ icon: browser
 
 This feature is the new form of interactive TUIs that not only allow you to make an interactive TUI based on a set of data for either a single pane or two panes, but you can also make your own interactive applications seamlessly by separating the rendering code and the key handling code into small functions. This achieves the goal of making textual UI code maintenance easier, while providing the most dynamic UI setup along with support for resize thanks to the [screen](console-screen.md) feature.
 
-To get started using this awesome feature, you can create a new class that implements the `TextualUI` abstract class and overrides the `Render()` function. Inside the function, you can return a string that consists of VT sequences resulting from several console writers, especially the renderables. You can find out more about the renderables here.
-
-{% content-ref url="../console-writers/cyclic-writers/" %}
-[cyclic-writers](../console-writers/cyclic-writers/)
-{% endcontent-ref %}
-
 {% hint style="info" %}
-Before this feature has been implemented, the interactive TUI feature consisted of just data arrays with two panes, which made cases that required something outside that scope unsolvable. The new feature promises to remove this limitation. Meanwhile, you can still use the older interactive TUI, which was first implemented in the Nitrocid KS 0.1.0 milestones in 2022, [here](interactive-tui.md).
+To get started using this awesome feature, you can create a new class that implements the `TextualUI` abstract class and overrides the `Render()` function. Inside the function, you can return a string that consists of VT sequences resulting from several console writers, especially the cyclic writers.
 {% endhint %}
 
-In the class, there are several properties that you can modify at your discretion, such as the name and the refresh delay. You can use the following properties:
+***
 
-* `Guid`: Unique ID for the textual UI (reserved for future use)
-* `State`: State of the textual UI, which is one of the following:
-  * `Ready`: This textual UI is ready, but hasn't started yet.
-  * `Rendering`: This textual UI is waiting for the render code to complete.
-  * `Waiting`: This textual UI is waiting for user input.
-  * `Busy`: This textual UI is busy because it's processing user input.
-  * `Bailing`: This textual UI is about to exit and go back to the `Ready` state.
-* `Name`: Display name of the textual UI (reserved for future use)
-* `RefreshDelay`: Sets the refresh delay in milliseconds. If set to zero or less than zero, this TUI doesn't refresh.
-* `Keybindings`: List of keybindings that you can use within the TUI.
-* `Fallback`: Fallback binding in case a key doesn't bind to anything.
-* `Renderables`: List of renderables that get rendered on top of what the `Render()` function has rendered.
-* `HelpPages`: List of help pages for the interactive TUI.
+## <mark style="color:$primary;">Textual UI properties</mark>
+
+In the class, there are several properties that you can modify at your discretion, such as the name and the refresh delay. This allows you to customize its behavior.
+
+You can use the following properties:
+
+<table><thead><tr><th width="139.99993896484375">Property</th><th>Description</th></tr></thead><tbody><tr><td><code>Guid</code></td><td>Unique ID for the textual UI</td></tr><tr><td><code>State</code></td><td>State of the textual UI</td></tr><tr><td><code>Name</code></td><td>Display name of the textual UI</td></tr><tr><td><code>RefreshDelay</code></td><td>Sets the refresh delay in milliseconds. If set to zero or less than zero, this TUI doesn't refresh.</td></tr><tr><td><code>Keybindings</code></td><td>List of keybindings that you can use within the TUI</td></tr><tr><td><code>Fallback</code></td><td>Fallback binding in case a key doesn't bind to anything</td></tr><tr><td><code>Renderables</code></td><td>List of renderables that get rendered on top of what the <code>Render()</code> function has rendered</td></tr><tr><td><code>HelpPages</code></td><td>List of help pages for the interactive TUI</td></tr></tbody></table>
 
 {% hint style="info" %}
-For the help pages, you'll have to override the `HelpPages` property with an array of `InteractiveTuiHelpPage` classes, which consist of a title, a description, and a body text. in an instance of interactive selector TUIs, you can override the `HelpPages` property in an instance of `BaseInteractiveTui`.
+For the help pages, you'll have to override the `HelpPages` property with an array of `InteractiveTuiHelpPage` classes, which consist of a title, a description, and a body text.
 {% endhint %}
 
-If you want the TUI to refresh in the next render, you'll have to call the `RequireRefresh()` function, which calls the refresh requirement function on the screen instance.
+***
+
+## <mark style="color:$primary;">Textual UI states</mark>
+
+State of the textual UI can be one of the following:
+
+<table><thead><tr><th width="109.333251953125">State</th><th>Description</th></tr></thead><tbody><tr><td><code>Ready</code></td><td>This textual UI is ready, but hasn't started yet.</td></tr><tr><td><code>Rendering</code></td><td>This textual UI is waiting for the render code to complete.</td></tr><tr><td><code>Waiting</code></td><td>This textual UI is waiting for user input.</td></tr><tr><td><code>Busy</code></td><td>This textual UI is busy because it's processing user input.</td></tr><tr><td><code>Bailing</code></td><td>This textual UI is about to exit and go back to the <code>Ready</code> state.</td></tr></tbody></table>
+
+***
+
+## <mark style="color:$primary;">Textual UI tools</mark>
+
+Some of the textual UI tools are available to help build interactive applications. You can also access the `TextualUITools` class to perform the following operations:
+
+<table><thead><tr><th width="169.3333740234375">Function</th><th></th></tr></thead><tbody><tr><td><code>RunTui()</code></td><td>Starts the TUI main loop, clears the screen, waits for user input, and processes it until the TUI has been requested to exit.</td></tr><tr><td><code>ExitTui()</code></td><td>Sets the state of the interactive TUI to <code>Bailing</code> so that the TUI can exit gracefully.</td></tr><tr><td><code>RequireRefresh()</code></td><td>Tells the TUI to refresh on the next render.</td></tr></tbody></table>
+
+***
+
+## <mark style="color:$primary;">Defining Keybindings</mark>
+
+When defining keybindings, you can edit the `Keybindings` property to add your custom keybindings, but it's preferrable to either place them in a constructor or in the overridden value, and to define the delegates in separate private functions inside the UI class.
+
+<details>
+
+<summary>Defining keybindings</summary>
+
+To define a keybinding in your interactive TUI, use the `Keybindings.Add()` statement to pass in a tuple of the following two variables:
+
+* A [`Keybinding`](../../input-reader/other-input/keybindings.md) instance that matches the key and its modifiers (mouse or keyboard) that you want to bind a specific action to.
+* An action delegate or lambda function that tells the interactive TUI what to do.
 
 {% hint style="info" %}
-You can edit the `Keybindings` property to add your custom keybindings, but it's preferrable to either place them in a constructor or in the overridden value, and to define the delegates in separate private functions inside the UI class. Also, make sure that you don't place conflicting keybindings when trying to add them.
+The following four arguments are optional for lambda expressions, but required for delegates:
+
+* Interactive TUI instance that specifies the running TUI.
+* Keyboard press info defined by the [ConsoleKeyInfo](https://learn.microsoft.com/en-us/dotnet/api/system.consolekeyinfo) struct.
+* Mouse event info defined by the [PointerEventContext](../../input-reader/pointer-events.md) class.
 {% endhint %}
 
-In addition to that, you can also access the `TextualUITools` class to perform the following operations:
+</details>
 
-* `RunTui()`: Starts the TUI main loop, clears the screen, waits for user input, and processes it until the TUI has been requested to exit.
-* `ExitTui()`: Sets the state of the interactive TUI to `Bailing` so that the TUI can exit gracefully.
+<details>
 
-## Examples
+<summary>Removing keybindings</summary>
+
+To remove a keybinding in your interactive TUI, use the `Keybindings.RemoveAt()` function.
+
+To remove all keybindings in your interactive TUI, use the `Keybindings.Clear()` function.
+
+</details>
+
+{% hint style="info" %}
+Make sure that keybindings don't conflict when adding a new keybinding.
+{% endhint %}
+
+***
+
+## <mark style="color:$primary;">Examples</mark>
 
 There are two examples as defined in the test application bundled with the source code of Terminaux:
 
@@ -81,16 +115,3 @@ Here's the resulting picture for the TUI:
 <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
-
-## Defining Keybindings
-
-When defining keybindings, it's recommended to do so from either the constructor of the interactive TUI or in the overridden value of the Keybindings list, except if you want this keybinding list to always change during the runtime of the textual UI, such as the color selector. We also recommend to define their actions in separate private functions, passing in the parameters as needed.
-
-* To define a keybinding in your interactive TUI, use the `Keybindings.Add()` statement to pass in a tuple of the following two variables:
-  * A [`Keybinding`](../../input-reader/other-input/keybindings.md) instance that matches the key and its modifiers (mouse or keyboard) that you want to bind a specific action to.
-  * An action delegate or lambda function that tells the interactive TUI what to do. The following four arguments are optional for lambda expressions, but required for delegates:
-    * Interactive TUI instance that specifies the running TUI.
-    * Keyboard press info defined by the [ConsoleKeyInfo](https://learn.microsoft.com/en-us/dotnet/api/system.consolekeyinfo) struct.
-    * Mouse event info defined by the [PointerEventContext](../../input-reader/pointer-events.md) class.
-* To remove a keybinding in your interactive TUI, use the `Keybindings.RemoveAt()` function.
-* To remove all keybindings in your interactive TUI, use the `Keybindings.Clear()` function.

@@ -1,21 +1,25 @@
 ---
-icon: up
 description: Breaking changes for API v3.0
+icon: up
 ---
 
 # API v3.0
 
 Here is a list of breaking changes that happened during the API v3.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 2.7.x to 3.0.x
+***
+
+## <mark style="color:$primary;">From 2.7.x to 3.0.x</mark>
 
 Between the 2.7.x and 3.0.x version range, we've made the following breaking changes:
 
-### Console extension separation
+<details>
+
+<summary>Console extension separation</summary>
 
 {% code title="ConsoleExtensions.cs" lineNumbers="true" %}
 ```csharp
-public static class ConsoleExtensions
+public static class ConsoleExtensions { }
 ```
 {% endcode %}
 
@@ -23,19 +27,21 @@ The console extensions class needed to be separated to several classes to catego
 
 As a result, we've introduced several extensions that you can see here:
 
-{% content-ref url="../usage/console-tools/console-extensions.md" %}
-[console-extensions.md](../usage/console-tools/console-extensions.md)
-{% endcontent-ref %}
+<a href="../usage/console-tools/console-extensions.md" class="button primary">Console Extensions</a>
 
 {% hint style="info" %}
 Consult the above page for functions and their categories to migrate from `ConsoleExtensions`.
 {% endhint %}
 
-### Brightness and contrast moved to `Transformation.Contrast`
+</details>
+
+<details>
+
+<summary>Brightness and contrast moved to <code>Transformation.Contrast</code></summary>
 
 {% code title="Affected classes" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Colors
+namespace Terminaux.Colors { }
 ```
 {% endcode %}
 
@@ -49,15 +55,19 @@ We've moved all the brightness and the contrast classes and enumerations to the 
 You'll have to update your using clauses to `Terminaux.Colors.Transformation.Contrast` when calling any of these classes.
 {% endhint %}
 
-### Moved plain writing functions to `TextWriterRaw`
+</details>
+
+<details>
+
+<summary>Moved plain writing functions to <code>TextWriterRaw</code></summary>
 
 {% code title="TextWriterColor.cs" lineNumbers="true" %}
 ```csharp
-public static void Write()
-public static void WritePlain(string Text, params object[] vars)
-public static void WritePlain(string Text, bool Line, params object[] vars)
-public static void WritePlain(string Text, TermReaderSettings settings, params object[] vars)
-public static void WritePlain(string Text, TermReaderSettings settings, bool Line, params object[] vars)
+public static void Write() { }
+public static void WritePlain(string Text, params object[] vars) { }
+public static void WritePlain(string Text, bool Line, params object[] vars) { }
+public static void WritePlain(string Text, TermReaderSettings settings, params object[] vars) { }
+public static void WritePlain(string Text, TermReaderSettings settings, bool Line, params object[] vars) { }
 ```
 {% endcode %}
 
@@ -67,26 +77,30 @@ We've made a breaking change that moves all the raw writing to its own class to 
 Their names have not been changed, but they have been moved to `TextWriterRaw`, so you'll need to update the references to these functions to point to that class instead of the `TextWriterColor` class.
 {% endhint %}
 
-### Migrated input functions to `TermReader`
+</details>
+
+<details>
+
+<summary>Migrated input functions to <code>TermReader</code></summary>
 
 {% code title="Input.cs" lineNumbers="true" %}
 ```csharp
-public static TermReaderSettings GlobalReaderSettings
-public static string CurrentMask
-public static string ReadLine(bool interruptible = true)
-public static string ReadLine(string InputText, bool interruptible = true)
-public static string ReadLine(string InputText, string DefaultValue, bool interruptible = true)
-public static string ReadLine(string InputText, string DefaultValue, TermReaderSettings settings, bool interruptible = true)
-public static string ReadLineWrapped(bool interruptible = true)
-public static string ReadLineWrapped(string InputText, bool interruptible = true)
-public static string ReadLineWrapped(string InputText, string DefaultValue, bool interruptible = true)
-public static string ReadLineWrapped(string InputText, string DefaultValue, TermReaderSettings settings, bool interruptible = true)
-public static string ReadLine(string InputText, string DefaultValue, bool OneLineWrap = false, bool interruptible = true)
-public static string ReadLine(string InputText, string DefaultValue, bool OneLineWrap = false, TermReaderSettings settings = null, bool interruptible = true)
-public static string ReadLineNoInput(bool interruptible = true)
-public static string ReadLineNoInput(TermReaderSettings settings, bool interruptible = true)
-public static string ReadLineNoInput(char MaskChar, bool interruptible = true)
-public static string ReadLineNoInput(char MaskChar, TermReaderSettings settings, bool interruptible = true)
+public static TermReaderSettings GlobalReaderSettings { get; set; }
+public static string CurrentMask { get; set; }
+public static string ReadLine(bool interruptible = true) { }
+public static string ReadLine(string InputText, bool interruptible = true) { }
+public static string ReadLine(string InputText, string DefaultValue, bool interruptible = true) { }
+public static string ReadLine(string InputText, string DefaultValue, TermReaderSettings settings, bool interruptible = true) { }
+public static string ReadLineWrapped(bool interruptible = true) { }
+public static string ReadLineWrapped(string InputText, bool interruptible = true) { }
+public static string ReadLineWrapped(string InputText, string DefaultValue, bool interruptible = true) { }
+public static string ReadLineWrapped(string InputText, string DefaultValue, TermReaderSettings settings, bool interruptible = true) { }
+public static string ReadLine(string InputText, string DefaultValue, bool OneLineWrap = false, bool interruptible = true) { }
+public static string ReadLine(string InputText, string DefaultValue, bool OneLineWrap = false, TermReaderSettings settings = null, bool interruptible = true) { }
+public static string ReadLineNoInput(bool interruptible = true) { }
+public static string ReadLineNoInput(TermReaderSettings settings, bool interruptible = true) { }
+public static string ReadLineNoInput(char MaskChar, bool interruptible = true) { }
+public static string ReadLineNoInput(char MaskChar, TermReaderSettings settings, bool interruptible = true) { }
 ```
 {% endcode %}
 
@@ -96,11 +110,15 @@ We've discovered that all the `ReadLine()` functions and their associated proper
 You'll have to refer to the `Read()` functions found in the `TermReader` class. You may have to change how to call the function by changing the signatures.
 {% endhint %}
 
-### Removed `ConsolePlatform`
+</details>
+
+<details>
+
+<summary>Removed <code>ConsolePlatform</code></summary>
 
 {% code title="ConsolePlatform.cs" lineNumbers="true" %}
 ```csharp
-public static class ConsolePlatform
+public static class ConsolePlatform { }
 ```
 {% endcode %}
 
@@ -110,12 +128,16 @@ All of its functions have been moved to SpecProbe's Software, so this entire cla
 As Terminaux already makes use of SpecProbe's Software, you should only change the reference to `ConsolePlatform` to point to `PlatformHelper`.
 {% endhint %}
 
-### Moved RGB value conversion tools
+</details>
+
+<details>
+
+<summary>Moved RGB value conversion tools</summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static double SRGBToLinearRGB(int colorNum)
-public static int LinearRGBTosRGB(double linear)
+public static double SRGBToLinearRGB(int colorNum) { }
+public static int LinearRGBTosRGB(double linear) { }
 ```
 {% endcode %}
 
@@ -125,11 +147,15 @@ The sRGB and the linear RGB conversion tools have been moved to the transformati
 These functions are not affected. You just have to update your references to `ColorTools` for these functions to point to `TransformationTools`.
 {% endhint %}
 
-### Moved animated writers to `DynamicWriters`
+</details>
+
+<details>
+
+<summary>Moved animated writers to <code>DynamicWriters</code></summary>
 
 {% code title="All affected classes" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Writer.ConsoleWriters
+namespace Terminaux.Writer.ConsoleWriters { }
 ```
 {% endcode %}
 
@@ -143,14 +169,18 @@ The following animated writers have been moved to their own category, `DynamicWr
 You must update the usings clause to `Terminaux.Writer.DynamicWriters` to continue using the three above functions.
 {% endhint %}
 
-### Removed the `Input` class
+</details>
+
+<details>
+
+<summary>Removed the <code>Input</code> class</summary>
 
 {% code title="Input.cs" lineNumbers="true" %}
 ```csharp
 public static class Input
 {
-    public static (ConsoleKeyInfo result, bool provided) ReadKeyTimeout(bool Intercept, TimeSpan Timeout)
-    public static ConsoleKeyInfo DetectKeypress()
+    public static (ConsoleKeyInfo result, bool provided) ReadKeyTimeout(bool Intercept, TimeSpan Timeout) { }
+    public static ConsoleKeyInfo DetectKeypress() { }
 }
 ```
 {% endcode %}
@@ -166,11 +196,15 @@ If you want to continue using these functions, you'll have to follow the upgrade
 * `Input.DetectKeypress()` -> `TermReader.ReadKey()`
 {% endhint %}
 
-### Moved the color selector to `Inputs`
+</details>
+
+<details>
+
+<summary>Moved the color selector to <code>Inputs</code></summary>
 
 {% code title="ColorSelector.cs" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Colors.Selector
+namespace Terminaux.Colors.Selector { }
 ```
 {% endcode %}
 
@@ -180,11 +214,15 @@ The color selector class, `ColorSelector`, has been moved from `Colors.Selector`
 The class wasn't renamed. You'll have to update the usings clause to use the new namespace.
 {% endhint %}
 
-### Interactive TUIs are now generic
+</details>
+
+<details>
+
+<summary>Interactive TUIs are now generic</summary>
 
 {% code title="BaseInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
-public class BaseInteractiveTui : IInteractiveTui
+public class BaseInteractiveTui : IInteractiveTui { }
 public virtual IEnumerable PrimaryDataSource => Array.Empty<string>();
 public virtual IEnumerable SecondaryDataSource => Array.Empty<string>();
 public static BaseInteractiveTui Instance
@@ -193,7 +231,7 @@ public static BaseInteractiveTui Instance
 
 {% code title="IInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
-public interface IInteractiveTui
+public interface IInteractiveTui { }
 public IEnumerable PrimaryDataSource { get; }
 public IEnumerable SecondaryDataSource { get; }
 ```
@@ -201,8 +239,8 @@ public IEnumerable SecondaryDataSource { get; }
 
 {% code title="InteractiveTuiTools.cs" lineNumbers="true" %}
 ```csharp
-public static void OpenInteractiveTui(BaseInteractiveTui interactiveTui)
-public static void SelectionMovement(BaseInteractiveTui interactiveTui, int pos)
+public static void OpenInteractiveTui(BaseInteractiveTui interactiveTui) { }
+public static void SelectionMovement(BaseInteractiveTui interactiveTui, int pos) { }
 ```
 {% endcode %}
 
@@ -214,11 +252,15 @@ As a consequence, you'll have to either provide an exact type that your interact
 In order to migrate to the new definition, just place a type in both the `BaseInteractiveTui` and the `IInteractiveTui` clauses in the beginning of your TUI class. Additionally, place a type in your `IEnumerable` definition.
 {% endhint %}
 
-### Removed `InputStyle`
+</details>
+
+<details>
+
+<summary>Removed <code>InputStyle</code></summary>
 
 {% code title="InputStyle.cs" lineNumbers="true" %}
 ```csharp
-public static class InputStyle
+public static class InputStyle { }
 ```
 {% endcode %}
 
@@ -228,12 +270,16 @@ To maintain consistency, we've decided to remove the entire class. This is becau
 You should use printing functions that Terminaux implements with a call to `TermReader.Read()` instead.
 {% endhint %}
 
-### Screen now handles clearing the console
+</details>
+
+<details>
+
+<summary>Screen now handles clearing the console</summary>
 
 {% code title="ScreenTools.cs" lineNumbers="true" %}
 ```csharp
-public static void Render(bool clearScreen = false)
-public static void Render(Screen screen, bool clearScreen = false)
+public static void Render(bool clearScreen = false) { }
+public static void Render(Screen screen, bool clearScreen = false) { }
 ```
 {% endcode %}
 
@@ -242,15 +288,19 @@ Starting from Terminaux 3.0, the `clearScreen` variable is no longer needed as t
 However, both local and global configuration will allow you to control whether to enable or to disable automatic handling of clearing the console in some situations where the default clear handler is not feasible enough.
 
 {% hint style="info" %}
-Just remove the clearScreen argument when calling `Render()`.
+Just remove the `clearScreen` argument when calling `Render()`.
 {% endhint %}
 
-### `InputChoiceTools` now returns an array of `InputChoiceInfo`
+</details>
+
+<details>
+
+<summary><code>InputChoiceTools</code> now returns an array of <code>InputChoiceInfo</code></summary>
 
 {% code title="InputChoiceTools.cs" lineNumbers="true" %}
 ```csharp
-public static List<InputChoiceInfo> GetInputChoices(string AnswersStr, string[] AnswersTitles)
-public static List<InputChoiceInfo> GetInputChoices(string[] Answers, string[] AnswersTitles)
+public static List<InputChoiceInfo> GetInputChoices(string AnswersStr, string[] AnswersTitles) { }
+public static List<InputChoiceInfo> GetInputChoices(string[] Answers, string[] AnswersTitles) { }
 ```
 {% endcode %}
 
@@ -260,29 +310,33 @@ All of the `InputChoiceTools`, as well as all the input style class functions th
 Change all the `InputChoiceInfo` lists to arrays before using them in the input functions, such as the selection style.
 {% endhint %}
 
-### Merged four console blacklists/graylists
+</details>
+
+<details>
+
+<summary>Merged four console blacklists/graylists</summary>
 
 {% code title="TerminalEmulatorBlacklist.cs" lineNumbers="true" %}
 ```csharp
-public static class TerminalEmulatorBlacklist
+public static class TerminalEmulatorBlacklist { }
 ```
 {% endcode %}
 
 {% code title="TerminalEmulatorGreylist.cs" lineNumbers="true" %}
 ```csharp
-public static class TerminalEmulatorGreylist
+public static class TerminalEmulatorGreylist { }
 ```
 {% endcode %}
 
 {% code title="TerminalTypeBlacklist.cs" lineNumbers="true" %}
 ```csharp
-public static class TerminalTypeBlacklist
+public static class TerminalTypeBlacklist { }
 ```
 {% endcode %}
 
 {% code title="TerminalTypeGreylist.cs" lineNumbers="true" %}
 ```csharp
-public static class TerminalTypeGreylist
+public static class TerminalTypeGreylist { }
 ```
 {% endcode %}
 
@@ -294,11 +348,15 @@ As a result, we've merged them to a single class, called `ConsoleFilter`, that a
 You'll have to update your references to point to the above class and to make use of both the enums.
 {% endhint %}
 
-### Merged TermInfo to the main library
+</details>
+
+<details>
+
+<summary>Merged <code>TermInfo</code> to the main library</summary>
 
 {% code title="All TermInfo sources" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.TermInfo
+namespace Terminaux.TermInfo { }
 ```
 {% endcode %}
 
@@ -318,11 +376,15 @@ None of the functions have been changed. You'll just have to update the namespac
 As for NCurses, you can consult [this page](https://ftp.gnu.org/pub/gnu/ncurses/) to check to see if there are any newer releases. NCurses doesn't get updated too frequently, and _may_ or _may not_ be updated either annually or bi-annually.
 {% endhint %}
 
-### Progress infobox's `waitForInput` removed
+</details>
+
+<details>
+
+<summary>Progress infobox's <code>waitForInput</code> removed</summary>
 
 {% code title="InfoBoxProgressColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteInfoBoxProgress(double progress, string text, bool waitForInput, params object[] vars)
+public static void WriteInfoBoxProgress(double progress, string text, bool waitForInput, params object[] vars) { }
 (...)
 ```
 {% endcode %}
@@ -333,7 +395,11 @@ waitForInput was accidentally added to almost all the progress information box f
 You may have to remove boolean values for this argument. Otherwise, none of the functions have been functionally affected by this change.
 {% endhint %}
 
-### Interactive TUI functions now made generic
+</details>
+
+<details>
+
+<summary>Interactive TUI functions now made generic</summary>
 
 {% code title="IInteractiveTUI.cs" lineNumbers="true" %}
 ```csharp
@@ -345,9 +411,9 @@ public void RenderStatus(object item);
 
 {% code title="BaseInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
-public virtual string GetEntryFromItem(object item)
-public virtual string GetInfoFromItem(object item)
-public virtual void RenderStatus(object item)
+public virtual string GetEntryFromItem(object item) { }
+public virtual string GetInfoFromItem(object item) { }
+public virtual void RenderStatus(object item) { }
 ```
 {% endcode %}
 
@@ -357,7 +423,11 @@ As a followup to the interactive TUI interface and its associated base class, we
 You'll have to update your overrides to point to your interactive TUI's data type specified in the beginning of its own class file.
 {% endhint %}
 
-### Console color enumeration auto-generated
+</details>
+
+<details>
+
+<summary>Console color enumeration auto-generated</summary>
 
 {% code title="ConsoleColors.cs" lineNumbers="true" %}
 ```csharp
@@ -380,7 +450,11 @@ The following 4-bit color names have been changed:
 The rest of the colors that have their names changed now have their own `-Alt` suffix instead of the color hex as the suffix.
 {% endhint %}
 
-### Renamed the color types
+</details>
+
+<details>
+
+<summary>Renamed the color types</summary>
 
 {% code title="ColorType.cs" lineNumbers="true" %}
 ```csharp
@@ -402,16 +476,22 @@ The following color types have been renamed:
 * `ColorType._16Color` -> `FourBitColor`
 {% endhint %}
 
-## From 3.0.x to 3.2.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 3.0.x to 3.2.x</mark>
 
 Between the 3.0.x and 3.2.x version range, we've made the following breaking changes:
 
-### Reduced input choice complexity
+<details>
+
+<summary>Reduced input choice complexity</summary>
 
 {% code title="InputChoiceTools.cs" lineNumbers="true" %}
 ```csharp
-public static InputChoiceInfo[] GetInputChoices(string AnswersStr, string[] AnswersTitles)
-public static InputChoiceInfo[] GetInputChoices(string[] Answers, string[] AnswersTitles)
+public static InputChoiceInfo[] GetInputChoices(string AnswersStr, string[] AnswersTitles) { }
+public static InputChoiceInfo[] GetInputChoices(string[] Answers, string[] AnswersTitles) { }
 ```
 {% endcode %}
 
@@ -421,7 +501,7 @@ We've reduced the input choice complexity by replacing a string of answers with 
 You can fuse the answers and their titles into one tuple array using this function:
 
 ```csharp
-public static InputChoiceInfo[] GetInputChoices((string, string)[] Answers)
+public static InputChoiceInfo[] GetInputChoices((string, string)[] Answers) { }
 ```
 
 This is a simple example of how to change the calls to this function:
@@ -432,11 +512,15 @@ This is a simple example of how to change the calls to this function:
 ```
 {% endhint %}
 
-### Removed `ConsoleColorsInfo`
+</details>
+
+<details>
+
+<summary>Removed <code>ConsoleColorsInfo</code></summary>
 
 {% code title="ConsoleColorsInfo.cs" lineNumbers="true" %}
 ```csharp
-public class ConsoleColorsInfo : IEquatable<ConsoleColorsInfo>
+public class ConsoleColorsInfo : IEquatable<ConsoleColorsInfo> { }
 ```
 {% endcode %}
 
@@ -444,10 +528,10 @@ We've removed this class because it's making things more complicated that it's s
 
 {% code title="ParsingTools.cs" lineNumbers="true" %}
 ```csharp
-public static (RedGreenBlue? rgb, ConsoleColorsInfo? cci) ParseSpecifier(string specifier, ColorSettings? settings = null)
-public static bool TryParseSpecifier(string specifier, out (RedGreenBlue? rgb, ConsoleColorsInfo? cci) output)
-public static (RedGreenBlue rgb, ConsoleColorsInfo cci) ParseSpecifierRgbName(string specifier, ColorSettings? settings = null)
-public static bool TryParseSpecifierRgbName(string specifier, out (RedGreenBlue? rgb, ConsoleColorsInfo? cci) output)
+public static (RedGreenBlue? rgb, ConsoleColorsInfo? cci) ParseSpecifier(string specifier, ColorSettings? settings = null) { }
+public static bool TryParseSpecifier(string specifier, out (RedGreenBlue? rgb, ConsoleColorsInfo? cci) output) { }
+public static (RedGreenBlue rgb, ConsoleColorsInfo cci) ParseSpecifierRgbName(string specifier, ColorSettings? settings = null) { }
+public static bool TryParseSpecifierRgbName(string specifier, out (RedGreenBlue? rgb, ConsoleColorsInfo? cci) output) { }
 ```
 {% endcode %}
 
@@ -457,7 +541,11 @@ As a consequence, the above functions have been changed to no longer return or u
 You can no longer use this removed class. If you still rely on it, you'll have to get an instance of `ConsoleColorsData` for a specific color that you want to analyze.
 {% endhint %}
 
-### Obsoleted the length properties for the presentation system
+</details>
+
+<details>
+
+<summary>Obsoleted the length properties for the presentation system</summary>
 
 {% code title="PresentationTools.cs" lineNumbers="true" %}
 ```csharp
@@ -479,22 +567,22 @@ It's recommended to either use the available functions to make your own TUI, or 
 The compiler, once you use one of these properties for your custom elements, will issue a warning that says: `These were initially reserved for internal use. Also, the presentation system will be revamped in the next few releases.`
 {% endhint %}
 
-## From 3.2.x to 3.3.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 3.2.x to 3.3.x</mark>
 
 Between the 3.2.x and 3.3.x version range, we've made the following breaking changes:
 
-### Removed overflow check functions from the interactive TUI interface
+<details>
+
+<summary>Removed overflow check functions from the interactive TUI interface</summary>
 
 {% code title="IInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
 public List<InteractiveTuiBinding> Bindings { get; set; }
-/// <summary>
-/// Goes down to the last element upon overflow (caused by remove operation, ...). This applies to the first and the second pane.
-/// </summary>
 public void LastOnOverflow();
-/// <summary>
-/// Goes up to the first element upon underflow (caused by remove operation, ...). This applies to the first and the second pane.
-/// </summary>
 public void FirstOnUnderflow();
 ```
 {% endcode %}
@@ -507,7 +595,11 @@ As an aside, the `Bindings` property's type has been changed from the generic `L
 You can no longer override the two above functions. You can also no longer add key bindings on-demand, but we're working to restore it soon once we find ways to better implement it.
 {% endhint %}
 
-### Simplified status population
+</details>
+
+<details>
+
+<summary>Simplified status population</summary>
 
 {% code title="IInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
@@ -526,7 +618,11 @@ public override string GetStatusFromItem(string item) =>
 ```
 {% endhint %}
 
-### Internalized some TUI status property setters
+</details>
+
+<details>
+
+<summary>Internalized some TUI status property setters</summary>
 
 {% code title="InteractiveTuiStatus.cs" lineNumbers="true" %}
 ```csharp
@@ -548,7 +644,11 @@ However, setting these properties didn't contain sanity checks, so you had to be
 Starting from Terminaux 3.3.0, we require that you use both `SelectionMovement()` and `SwitchSides()` to be able to set these properties as they contain sanity checks. You can no longer use the properties to set them. The `SelectionMovement()` function, however, requires that you have passed the TUI instance as the first argument, so the easiest way to use it is to just call it with the Instance property inside your interactive TUI code.
 {% endhint %}
 
-### Used global password mask settings
+</details>
+
+<details>
+
+<summary>Used global password mask settings</summary>
 
 {% code title="TermReader.cs" lineNumbers="true" %}
 ```csharp
@@ -562,15 +662,21 @@ This property shown above used to hold the current password mask to pass to the 
 You can no longer use this property, but you can still use the simple password-enabled terminal reader functions. They use the global settings starting from Terminaux 3.3.0 to avoid inconsistency.
 {% endhint %}
 
-## From 3.3.x to 3.4.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 3.3.x to 3.4.x</mark>
 
 Between the 3.3.x and 3.4.x version range, we've made the following breaking changes:
 
-### Removed `CheckConsoleOnCall`
+<details>
+
+<summary>Removed <code>CheckConsoleOnCall</code></summary>
 
 {% code title="GeneralColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static class GeneralColorTools
+public static class GeneralColorTools { }
 ```
 {% endcode %}
 
@@ -588,3 +694,5 @@ ConsoleChecker.AddToCheckWhitelist(asm);
 ```
 {% endcode %}
 {% endhint %}
+
+</details>

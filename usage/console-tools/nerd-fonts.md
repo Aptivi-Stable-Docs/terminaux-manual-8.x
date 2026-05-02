@@ -1,11 +1,17 @@
 ---
-icon: glasses
 description: Nerd Fonts support coming to Terminaux!
+icon: glasses
 ---
 
 # Nerd Fonts
 
-Terminaux also provides Nerd Fonts management for the text that you print to the console. This is to make applications look more understandable thanks to a large collection of Nerd Fonts glyphs that contain several different types of Nerd Fonts icons. Nerd Fonts in Terminaux is categorized into different types according to the glyph sets provided by the [NF wiki](https://github.com/ryanoasis/nerd-fonts/wiki/Glyph-Sets-and-Code-Points):
+Terminaux also provides Nerd Fonts management for the text that you print to the console. This is to make applications look more understandable thanks to a large collection of Nerd Fonts glyphs that contain several different types of Nerd Fonts icons.
+
+***
+
+## <mark style="color:$primary;">Types of Nerd Fonts</mark>
+
+Nerd Fonts in Terminaux is categorized into different types according to the glyph sets provided by the [NF wiki](https://github.com/ryanoasis/nerd-fonts/wiki/Glyph-Sets-and-Code-Points):
 
 * [Custom](https://nerdfonts.com/cheat-sheet?q=nf-custom-)
 * [Devicons](https://nerdfonts.com/cheat-sheet?q=nf-dev-)
@@ -21,7 +27,15 @@ Terminaux also provides Nerd Fonts management for the text that you print to the
 * [Pomicons](https://nerdfonts.com/cheat-sheet?q=nf-pom-)
 * [Codicons](https://nerdfonts.com/cheat-sheet?q=nf-code-)
 
-In addition to these categories, there exists a category, called [`All`](https://nerdfonts.com/cheat-sheet?q=nf-), to represent basically the entire Nerd Fonts glyph list. You can use the cheat sheet to get the glyph names for your icon and either match them with the generated category class or with the symbol name that several functions, such as getting the Nerd Font character by category, take. These functions are found in the `Terminaux.Writer.CyclicWriters.Renderer.Tools` namespace as `NerdFontsTools`.
+In addition to these categories, there exists a category, called [`All`](https://nerdfonts.com/cheat-sheet?q=nf-), to represent basically the entire Nerd Fonts glyph list.
+
+***
+
+## <mark style="color:$primary;">Functions of Nerd Fonts</mark>
+
+You can use the cheat sheet to get the glyph names for your icon and either match them with the generated category class or with the symbol name that several functions, such as getting the Nerd Font character by category, take.
+
+These functions are found in the `Terminaux.Writer.CyclicWriters.Renderer.Tools` namespace as `NerdFontsTools`.
 
 This class provides the following tools:
 

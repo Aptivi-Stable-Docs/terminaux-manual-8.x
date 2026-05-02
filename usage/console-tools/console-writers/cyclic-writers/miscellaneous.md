@@ -5,7 +5,17 @@ icon: fill-drip
 
 # Miscellaneous
 
-## Eraser
+Writers that don't fit into the categories are renderers that do a variety of things, such as erasing parts of the screen and printing the keybindings.
+
+***
+
+## <mark style="color:$primary;">List of renderers</mark>
+
+Here are the renderers that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Eraser</mark>
 
 This renderable allows you to erase either the entire screen or a part of the screen.
 
@@ -159,8 +169,10 @@ TextWriterRaw.WriteRaw(eraser4.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Keybindings
+{% step %}
+### <mark style="color:$primary;">Keybindings</mark>
 
 This renderable allows you to write a list of keybindings similar to that of old text-based applications to the terminal.
 
@@ -232,8 +244,10 @@ TextWriterRaw.WriteRaw(RenderableTools.RenderRenderable(misc, new(0, ConsoleWrap
 <figure><img src="../../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## KeyShortcut
+{% step %}
+### <mark style="color:$primary;">`KeyShortcut`</mark>
 
 This renderable allows you to write a keybinding shortcut descriptor, which the `Keybindings` renderable internally uses, similar to that of old text-based applications to the terminal.
 
@@ -247,8 +261,10 @@ TextWriterRaw.WriteRaw(misc.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Emoji
+{% step %}
+### <mark style="color:$primary;">Emoji</mark>
 
 You can use this renderer to render an emoji within a rendered container.
 
@@ -259,8 +275,10 @@ TextWriterWhereColor.WriteWhere(misc.Render(), rng.Next(ConsoleWrapper.WindowWid
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Kaomoji
+{% step %}
+### <mark style="color:$primary;">Kaomoji</mark>
 
 You can use this renderer to render a Kaomoji within a rendered container.
 
@@ -271,8 +289,10 @@ TextWriterWhereColor.WriteWhere(misc.Render(), rng.Next(ConsoleWrapper.WindowWid
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## NerdFonts
+{% step %}
+### <mark style="color:$primary;">`NerdFonts`</mark>
 
 This renderable allows you to render a Nerd Fonts glyph to the console.
 
@@ -284,3 +304,39 @@ ContainerTools.WriteRenderable(misc, pos);
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+
+{% step %}
+### <mark style="color:$primary;">QR code</mark>
+
+Terminaux provides two writers: the normal QR code writer and the micro QR code writer.
+
+{% tabs %}
+{% tab title="QR code" %}
+```csharp
+var qrCode = new QrCode()
+{
+    ForegroundColor = ConsoleColors.Aqua,
+    Text = "Congrats! You've scanned me!",
+};
+TextWriterRaw.WriteRaw(qrCode.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+
+{% tab title="Micro QR code" %}
+```csharp
+var qrCode = new MicroQrCode()
+{
+    ForegroundColor = ConsoleColors.Aqua,
+    Text = "Congrats!",
+};
+TextWriterRaw.WriteRaw(qrCode.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+{% endtabs %}
+{% endstep %}
+{% endstepper %}

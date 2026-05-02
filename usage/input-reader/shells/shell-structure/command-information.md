@@ -5,6 +5,18 @@ icon: info
 
 # Command Information
 
+The shell provides a class that stores information about a specific command that you've created to make your own rules.
+
+***
+
+## <mark style="color:$primary;">Implementation of command information</mark>
+
+To implement your command, you must make a new instance of the command information class that will store general and optional information about your command.
+
+<details>
+
+<summary>Implementing <code>CommandInfo</code></summary>
+
 Each command you define in your shell must provide a new instance of the `CommandInfo` class holding details about the specified command. The new instance of the class can be made using one of the constructors defined below:
 
 ```csharp
@@ -14,11 +26,23 @@ public CommandInfo(string Command, string HelpDefinition, BaseCommand CommandBas
 
 where:
 
-* `Command`: The command
-* `HelpDefinition`: The brief summary of what the command does
-* `CommandArgumentInfo`: Array of argument information about your command (can be omitted)
-* `CommandBase`: An instance of the `BaseCommand` containing command execution information
-* `CommandFlags`: All command flags
+| Variable              | Description                                                               |
+| --------------------- | ------------------------------------------------------------------------- |
+| `Command`             | The command                                                               |
+| `HelpDefinition`      | The brief summary of what the command does                                |
+| `CommandArgumentInfo` | Array of argument information about your command (can be omitted)         |
+| `CommandBase`         | An instance of the `BaseCommand` containing command execution information |
+| `CommandFlags`        | All command flags                                                         |
+
+{% hint style="info" %}
+You can omit the array definition of `CommandArgumentInfo` instances to create parameterless commands more easily.
+{% endhint %}
+
+</details>
+
+<details>
+
+<summary>Implementing <code>CommandArgumentInfo</code></summary>
 
 To implement `CommandArgumentInfo`, call the constructor either with no parameters, which implies that there is no argument required to run this command, or with the following options listed below.
 
@@ -39,13 +63,59 @@ public CommandArgumentInfo(CommandArgumentPart[] Arguments, SwitchInfo[] Switche
 
 where:
 
-* `Arguments`: Defines the command arguments
-* `Switches`: Defines the command switches
-* `AcceptsSet`: Whether to accept the `-set` switch
-* `infiniteBounds`: Whether to accept infinite number of arguments or not
+| Variable         | Description                                           |
+| ---------------- | ----------------------------------------------------- |
+| `Arguments`      | Defines the command arguments                         |
+| `Switches`       | Defines the command switches                          |
+| `AcceptsSet`     | Whether to accept the `-set` switch                   |
+| `infiniteBounds` | Whether to accept infinite number of arguments or not |
 
-{% hint style="info" %}
-For commands that require more than just simple argument checking as specified in the `CommandArgumentPart` instances, you can use the `ArgChecker` property to set it to a function delegate that checks all the arguments, with the command parameter info as the first argument. Such functions must return 0 to continue execution. Else, the command execution will not continue and the last error code will be set to what the function returns.
+</details>
+
+<details>
+
+<summary>Implementing <code>CommandArgumentPart</code></summary>
+
+For `CommandArgumentPart` instances, consult the below constructor to create an array of `CommandArgumentPart` instances when defining your commands:
+
+```csharp
+public CommandArgumentPart(bool argumentRequired, string argumentExpression, Func<string[], string[]> autoCompleter = null, bool isNumeric = false, string[] exactWording = null, string argumentDesc = "")
+```
+
+where:
+
+| Variable             | Description                                                                                                                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `argumentRequired`   | Is this argument part required?                                                                                                                                                                                            |
+| `argumentExpression` | Command argument expression                                                                                                                                                                                                |
+| `autoCompleter`      | <p>Auto completion function delegate<br></p><ul><li>The first <code>string[]</code> denotes the list of last passed arguments</li><li>The second <code>string[]</code> (output) denotes the suggestions returned</li></ul> |
+| `isNumeric`          | Whether this argument part accepts numeric values only                                                                                                                                                                     |
+| `exactWording`       | If not empty, the user must write one of the words declared in this variable for this argument to be satisfied                                                                                                             |
+| `argumentDesc`       | Argument description that shows up in the help entry                                                                                                                                                                       |
+
+In case you want to expressively specify the options without having to use default values for all parameters to set a certain parameter, you can use the `CommandArgumentPartOptions` overload:
+
+```csharp
+public CommandArgumentPart(bool argumentRequired, string argumentExpression, CommandArgumentPartOptions options)
+```
+
+where:
+
+| Variable             | Description                      |
+| -------------------- | -------------------------------- |
+| `argumentRequired`   | Is this argument part required?  |
+| `argumentExpression` | Command argument expression      |
+| `options`            | Options of command argument part |
+
+</details>
+
+<details>
+
+<summary>Implementing stricter argument checker</summary>
+
+For commands that require more than just simple argument checking as specified in the `CommandArgumentPart` instances, you can use the `ArgChecker` property to set it to a function delegate that checks all the arguments, with the command parameter info as the first argument.
+
+Such functions must return 0 to continue execution. Else, the command execution will not continue and the last error code will be set to what the function returns.
 
 This is an example for the `alarm` command:
 
@@ -70,32 +140,20 @@ internal static int CheckArgument(CommandParameters parameters)
 }
 ```
 {% endcode %}
-{% endhint %}
 
-For `CommandArgumentPart` instances, consult the below constructor to create an array of `CommandArgumentPart` instances when defining your commands:
+</details>
 
-```csharp
-public CommandArgumentPart(bool argumentRequired, string argumentExpression, Func<string[], string[]> autoCompleter = null, bool isNumeric = false, string[] exactWording = null, string argumentDesc = "")
-```
+***
 
-where:
+## <mark style="color:$primary;">Auto-completion for commands</mark>
 
-* `argumentRequired`: Is this argument part required?
-* `argumentExpression`: Command argument expression
-* `autoCompleter`: Auto completion function delegate
-  * The first `string[]` denotes the list of last passed arguments
-  * The second `string[]` (output) denotes the suggestions returned
-* `isNumeric`: Whether this argument part accepts numeric values only
-* `exactWording`: If not empty, the user must write one of the words declared in this variable for this argument to be satisfied
-* `argumentDesc`: Argument description that shows up in the help entry
+Commands can have auto-completion set up, so that program users can use their TAB key as means to automatically complete the expression for a command, depending on argument positioning.
 
-{% hint style="success" %}
-Usually, there is no need for you to cut the string to the required position; the shell does it to every single autocomplete result that is given.
-{% endhint %}
+<details>
 
-### Auto-completion for commands
+<summary>How the shell selects a completer</summary>
 
-Commands can have auto-completion set up, so that program users can use their TAB key as means to automatically complete the expression for a command, depending on argument positioning. The shell, when TAB is pressed, will select one of the following completers:
+The shell, when TAB is pressed, will select one of the following completers:
 
 * If the auto completer is specified, then, regardless of whether the expression represents the selection (expressions containing the slash `/` character) or not, the auto completer specified in the constructor will be called.
 * If the auto completer is not specified, then it will go through the following completers:
@@ -107,12 +165,21 @@ Commands can have auto-completion set up, so that program users can use their TA
     * For example, the `true/false` expression will generate an auto completer that completes the two words: `true` and `false`.
   * In case there is none, the shell will use the default auto completer, which fetches possible files and folders on your current working directory.
 
+</details>
+
+<details>
+
+<summary>Manipulating with completion functions</summary>
+
 The known expressions list can be manipulated, by registering and unregistering a completion expression. You can use one of the following functions found in the `CommandAutoCompletionList` class:
 
-* `RegisterCompletionFunction()`: Registers the completion function using a name and a function that returns a list of possible completions.
-* `UnregisterCompletionFunction()`: Unregisters the completion function by name
-* `IsCompletionFunctionRegistered()`: Determines whether the completion function is registered or not
-* `IsCompletionFunctionBuiltin()`: Determines whether the completion function is registered as a built-in completer or not
+<table><thead><tr><th width="299.666748046875">Function</th><th>Description</th></tr></thead><tbody><tr><td><code>RegisterCompletionFunction()</code></td><td>Registers the completion function using a name and a function that returns a list of possible completions.</td></tr><tr><td><code>UnregisterCompletionFunction()</code></td><td>Unregisters the completion function by name</td></tr><tr><td><code>IsCompletionFunctionRegistered()</code></td><td>Determines whether the completion function is registered or not</td></tr><tr><td><code>IsCompletionFunctionBuiltin()</code></td><td>Determines whether the completion function is registered as a built-in completer or not</td></tr></tbody></table>
+
+</details>
+
+<details>
+
+<summary>Example of completion implementation</summary>
 
 Here's a simple example as to how to define such completion function:
 
@@ -127,10 +194,4 @@ ShellManager.UnregisterShell("TestShell");
 </strong><strong>CommandAutoCompletionList.UnregisterCompletionFunction("text");
 </strong></code></pre>
 
-### Command argument part with options
-
-In case you want to expressively specify the options without having to use default values for all parameters to set a certain parameter, you can use the `CommandArgumentPartOptions` overload:
-
-```csharp
-public CommandArgumentPart(bool argumentRequired, string argumentExpression, CommandArgumentPartOptions options)
-```
+</details>

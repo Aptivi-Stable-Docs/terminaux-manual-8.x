@@ -7,12 +7,24 @@ icon: palette
 
 <figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
 
-The new color wheel, `ColorSelector`, is now available. You can use this brand new color selector, which is powered by the [textual UI](../../console-tools/textual-ui/) feature, to get information about your selected color visually. The color preview is split into two views: normal and color blinded. You can call the `OpenColorSelector()` function in your code to get the new color selector.
+The new color wheel, `ColorSelector`, is now available. You can use this brand new color selector, which is powered by the [textual UI](../../console-tools/textual-ui/) feature, to get information about your selected color visually.
+
+***
+
+## <mark style="color:$primary;">Views and colors</mark>
+
+The color preview is split into two views: normal and color blinded. You can call the `OpenColorSelector()` function in your code to get the new color selector.
 
 The color selector allows you to change the color in the following modes:
 
 * In true color mode, you can change the hue, the lighting, and the saturation by pressing the appropriate key shortcuts to change the colors.
 * In 256 and 16 colors mode, you can select a color using the right and the left arrow keys. It shows you color information, including the CMYK, HSL, and grayscale values.
+
+This function returns a `Color` instance containing necessary information.
+
+***
+
+## <mark style="color:$primary;">Controls</mark>
 
 The following controls are available:
 
@@ -39,9 +51,3 @@ The following controls are available:
 | `CTRL` + `M`                                    | Decrease transformation frequenc                                               |
 | `W`                                             | Select web color                                                               |
 | `L`                                             | Shows color list                                                               |
-
-This function returns a `Color` instance containing necessary information. To know more about the structure of the `Color` class, visit the page below to learn more.
-
-{% content-ref url="../../color-sequences/" %}
-[color-sequences](../../color-sequences/)
-{% endcontent-ref %}

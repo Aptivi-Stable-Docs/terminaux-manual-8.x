@@ -5,11 +5,21 @@ icon: plug
 
 # Console Wrapper
 
-Terminaux provides you with a powerful console wrapper that allows you to customize how the console behaves in your .NET console applications that make use of this wrapper and/or built-in Terminaux features. This wrapper is easy to use, amidst the recent structural improvements to the console wrapper functionality compared to Terminaux 1.x.
+Terminaux provides you with a powerful and easy-to-use console wrapper that allows you to customize how the console behaves in your .NET console applications that make use of this wrapper and/or built-in Terminaux features.
 
 One big advantage of using this console wrapper is that you're able to get the console cursor visibility, but only if you're using Terminaux's cursor visibility wrapper. This works on Windows, macOS, Android, and Linux.
 
-To use this console wrapper, just replace all the calls to `Console` with our replacement `ConsoleWrapper` to take advantage of Terminaux's console wrapping feature. However, you can use this wrapper only for the following actions:
+***
+
+## <mark style="color:$primary;">Usage</mark>
+
+To use this console wrapper, just replace all the calls to `Console` with our replacement `ConsoleWrapper` to take advantage of Terminaux's console wrapping feature.
+
+<details>
+
+<summary>Supported actions for the console wrapper</summary>
+
+You can use this wrapper only for the following actions:
 
 * `CursorLeft` (get and set)
 * `CursorTop` (get and set)
@@ -33,25 +43,22 @@ To use this console wrapper, just replace all the calls to `Console` with our re
 * `Error.WriteLine()`
 
 {% hint style="info" %}
-**Note that properties and functions that work only for Windows, such as `MoveBufferArea`, and have no good alternative alternatives for macOS and Linux are not going to be wrapped.**
+Note that properties and functions that work only for Windows, such as `MoveBufferArea`, and have no good alternative alternatives for macOS and Linux are not going to be wrapped.
 {% endhint %}
 
-## Setting the Wrappers
+</details>
 
-You can customize the console wrappers so that applications that call the Terminaux console wrapper can make use of your own custom wrapper function by setting the wrapper using `SetWrapper()` found in the `ConsoleWrapperTools` class once you register it using `RegisterWrapper()`. You need to make a new class that inherits from `BaseConsoleWrapper`. A very simple example of this is:
+***
 
-```csharp
-internal class Null : BaseConsoleWrapper
-{
-    public override bool IsDumb => true;
-    public override int CursorLeft { get => 0; set => throw new NotImplementedException(); }
-    public override int CursorTop { get => 0; set => throw new NotImplementedException(); }
-    public override Coordinate GetCursorPosition => new(CursorLeft, CursorTop);
-    // other overrides
-}
-```
+## <mark style="color:$primary;">Customizing the wrappers</mark>
 
-You can make changes to the following wrappers by overriding a function in your console wrapper class:
+You can customize the console wrappers so that applications that call the Terminaux console wrapper can make use of your own custom wrapper function by setting the wrapper using `SetWrapper()` found in the `ConsoleWrapperTools` class once you register it using `RegisterWrapper()`. You need to make a new class that inherits from `BaseConsoleWrapper`.
+
+<details>
+
+<summary>Overridable functions and properties</summary>
+
+You can make changes to the following wrappers by overriding a function or a property in your console wrapper class:
 
 * `IsDumb`
 * `MovementDetected`
@@ -92,3 +99,24 @@ You can make changes to the following wrappers by overriding a function in your 
 {% hint style="info" %}
 In order for your console wrapper to be usable, all your custom wrapper functions must be fast, as interactive TUIs rely on performance.
 {% endhint %}
+
+</details>
+
+<details>
+
+<summary>Example of a very simple console wrapper class</summary>
+
+A very simple example of this is:
+
+```csharp
+internal class Null : BaseConsoleWrapper
+{
+    public override bool IsDumb => true;
+    public override int CursorLeft { get => 0; set => throw new NotImplementedException(); }
+    public override int CursorTop { get => 0; set => throw new NotImplementedException(); }
+    public override Coordinate GetCursorPosition => new(CursorLeft, CursorTop);
+    // other overrides
+}
+```
+
+</details>

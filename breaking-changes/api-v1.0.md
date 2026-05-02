@@ -7,11 +7,15 @@ icon: up
 
 Here is a list of breaking changes that happened during the API v1.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 1.0.x to 1.1.x
+***
+
+## <mark style="color:$primary;">From 1.0.x to 1.1.x</mark>
 
 Between the 1.0.x and 1.1.x version range, we've made the following breaking changes:
 
-### Moved `FigletTools`
+<details>
+
+<summary>Moved <code>FigletTools</code></summary>
 
 {% code title="FigletTools.cs" lineNumbers="true" %}
 ```csharp
@@ -29,11 +33,17 @@ using Terminaux.Figlet
 ```
 {% endhint %}
 
-## From 1.1.x to 1.4.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 1.1.x to 1.4.x</mark>
 
 Between the 1.1.x and 1.4.x version range, we've made the following breaking changes:
 
-### Added the signing key (a.k.a. strong name) <a href="#added-the-signing-key-a.k.a.-strong-name" id="added-the-signing-key-a.k.a.-strong-name"></a>
+<details>
+
+<summary>Added the signing key (a.k.a. strong name)</summary>
 
 Nitrocid KS launched without any signing key. Originally, it was planned to come signed by us, but it didn't work. However, we used the strong naming tool to give Nitrocid KS a unique identity to avoid dependency hell.
 
@@ -43,7 +53,11 @@ It's not necessary to strong name your mods, but we recommend you to do so using
 Most of the time, you don't have to do anything to your mods, since the signing key change doesn't break any API functions. If you found that your mods no longer worked, try to update to the latest version of Nitrocid, or contact the mod vendor.
 {% endhint %}
 
-### Enhanced console wrapper
+</details>
+
+<details>
+
+<summary>Enhanced console wrapper</summary>
 
 {% code title="ConsoleWrapperTools.cs" lineNumbers="true" %}
 ```csharp
@@ -59,17 +73,23 @@ When Terminaux shipped its first version, it had a console wrapper that was excl
 None of the actions are affected.
 {% endhint %}
 
-## From 1.4.x to 1.6.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 1.4.x to 1.6.x</mark>
 
 Between the 1.4.x and 1.6.x version range, we've made the following breaking changes:
 
-### Moved the legacy Figgle writers
+<details>
+
+<summary>Moved the legacy Figgle writers</summary>
 
 {% code title="*Legacy.cs" lineNumbers="true" %}
 ```csharp
-public static class CenteredFigletTextColorLegacy
-public static class FigletColorLegacy
-public static class FigletWhereColorLegacy
+public static class CenteredFigletTextColorLegacy { }
+public static class FigletColorLegacy { }
+public static class FigletWhereColorLegacy { }
 ```
 {% endcode %}
 
@@ -81,22 +101,28 @@ If possible, merge to Figletize and use the new figlet functions to achieve more
 * `Terminaux.Figgle.Writers`
 {% endhint %}
 
-## From 1.6.x to 1.8.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 1.6.x to 1.8.x</mark>
 
 Between the 1.6.x and 1.8.x version range, we've made the following breaking changes:
 
-### Conflicting write overloads reduced
+<details>
+
+<summary>Conflicting write overloads reduced</summary>
 
 {% code title="TextWriterColor.cs and all similar writers" lineNumbers="true" %}
 ```csharp
-public static void Write(string Text, bool Line, ConsoleColors color, params object[] vars)
-public static void Write(string Text, bool Line, bool Highlight, ConsoleColors color, params object[] vars)
-public static void Write(string Text, bool Line, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars)
-public static void Write(string Text, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars)
-public static void Write(string Text, bool Line, Color color, params object[] vars)
-public static void Write(string Text, bool Line, bool Highlight, Color color, params object[] vars)
-public static void Write(string Text, bool Line, Color ForegroundColor, Color BackgroundColor, params object[] vars)
-public static void Write(string Text, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars)
+public static void Write(string Text, bool Line, ConsoleColors color, params object[] vars) { }
+public static void Write(string Text, bool Line, bool Highlight, ConsoleColors color, params object[] vars) { }
+public static void Write(string Text, bool Line, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars) { }
+public static void Write(string Text, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars) { }
+public static void Write(string Text, bool Line, Color color, params object[] vars) { }
+public static void Write(string Text, bool Line, bool Highlight, Color color, params object[] vars) { }
+public static void Write(string Text, bool Line, Color ForegroundColor, Color BackgroundColor, params object[] vars) { }
+public static void Write(string Text, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars) { }
 ```
 {% endcode %}
 
@@ -106,23 +132,27 @@ We've recommended mod developers who suffer from this ambiguity issue append a `
 
 So, we've decided to rename function names that take colors to these variants:
 
-* `Write()`: for plain writing in default colors
-* `WriteColor()`: for writing with custom foreground colors
-* `WriteColorBack()`: for writing with custom foreground and background colors
+<table><thead><tr><th width="170.33331298828125">Function</th><th>Purpose</th></tr></thead><tbody><tr><td><code>Write()</code></td><td>for plain writing in default colors</td></tr><tr><td><code>WriteColor()</code></td><td>for writing with custom foreground colors</td></tr><tr><td><code>WriteColorBack()</code></td><td>for writing with custom foreground and background colors</td></tr></tbody></table>
 
 {% hint style="info" %}
 You no longer need to override the vars value using the above method. Instead, you can replace these calls with one of the above functions, based on the color type.
 {% endhint %}
 
-## From 1.8.x to 1.10.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 1.8.x to 1.10.x</mark>
 
 Between the 1.8.x and 1.10.x version range, we've made the following breaking changes:
 
-### Replaced `Color255` with deserialized colors data
+<details>
+
+<summary>Replaced <code>Color255</code> with deserialized colors data</summary>
 
 {% code title="Color255.cs" lineNumbers="true" %}
 ```csharp
-public static class Color255
+public static class Color255 { }
 ```
 {% endcode %}
 
@@ -133,3 +163,5 @@ As a result, we've decided to reduce complexity by removing the `ColorDataJson` 
 {% hint style="info" %}
 The list of all 256 console colors and their info can be accessed using the `GetColorData()` function from the `ConsoleColorData` class.
 {% endhint %}
+
+</details>

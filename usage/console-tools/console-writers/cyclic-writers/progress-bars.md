@@ -7,7 +7,15 @@ icon: bars-progress
 
 Progress bars describe how much of a progress was done for the current task. You can make the progress bar either with text or without text. Progress bars can either be determinate (at which you can know the progress) or indeterminate (at which the process is not determined)
 
-## **Progress bar with text**
+***
+
+## <mark style="color:$primary;">List of progress bars</mark>
+
+Here are the progress bars that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">**Progress bar with text**</mark>
 
 This writer allows you to show a progress bar while allowing you to describe what is going on during the process.
 
@@ -107,8 +115,10 @@ finally
 <figure><img src="../../../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## **Progress bar without text**
+{% step %}
+### <mark style="color:$primary;">**Progress bar without text**</mark>
 
 This writer allows you to show a progress bar without any text.
 
@@ -206,8 +216,10 @@ finally
 <figure><img src="../../../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## **Simple progress bars**
+{% step %}
+### <mark style="color:$primary;">**Simple progress bars**</mark>
 
 If you want to just print a progress bar either horizontally or vertically without any extra elements, you can use the `SimpleProgress` renderable.
 
@@ -408,8 +420,10 @@ finally
 <figure><img src="../../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Slider
+{% step %}
+### <mark style="color:$primary;">Slider</mark>
 
 This writer allows you to write a slider that moves according to the minimum position, the current position, and the maximum position. This is useful for slider bars.
 
@@ -555,8 +569,10 @@ finally
 <figure><img src="../../../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Spinner
+{% step %}
+### <mark style="color:$primary;">Spinner</mark>
 
 This writer allows you to write a spinner that moves according to the number of times that the spinner has rendered. This is useful for progress bars and others.
 
@@ -594,3 +610,9 @@ finally
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Built-in spinners are available in the `BuiltinSpinners` class.
+{% endhint %}
+{% endstep %}
+{% endstepper %}

@@ -5,7 +5,17 @@ icon: list-ul
 
 # Lists and Calendars
 
-## Tables and Calendars
+List renderers allow you to list elements to the console, while calendar renderers print a full calendar to the console.
+
+***
+
+## <mark style="color:$primary;">List of renderers</mark>
+
+Here are the renderers that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Tables and Calendars</mark>
 
 This allows you to render a table that consists of rows and columns to the terminal. You can use the cell options variable to configure various cells, such as colors. Calendars internally use the table renderer to render the core elements of a calendar, and they support non-Gregorian calendars.
 
@@ -88,8 +98,10 @@ TextWriterRaw.WriteRaw(calendar.Render());
 <figure><img src="../../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## `ListEntry` and `Listing`
+{% step %}
+### <mark style="color:$primary;">`ListEntry`</mark> <mark style="color:$primary;"></mark><mark style="color:$primary;">and</mark> <mark style="color:$primary;"></mark><mark style="color:$primary;">`Listing`</mark>
 
 These renderables help you create a rendered list of items easily. `Listing` accepts any enumerable with optional functions that convert individual items to string representations, while `ListEntry` is used to render a single entry in the key and the value form.
 
@@ -190,8 +202,10 @@ TextWriterRaw.WritePlain(misc8.Render());
 <figure><img src="../../../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Selection
+{% step %}
+### <mark style="color:$primary;">Selection</mark>
 
 You can render a list of selection elements using this renderable. This uses a part of the selection style renderer code.
 
@@ -280,8 +294,10 @@ TextWriterRaw.WriteRaw(selections.Render());
 <figure><img src="../../../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Simple Selection
+{% step %}
+### <mark style="color:$primary;">Simple Selection</mark>
 
 You can render a list of selection elements using this renderable. This renders choices one by one, while still maintaining flexibility of the regular selections, making it suitable for CLIs.
 
@@ -329,3 +345,5 @@ TextWriterRaw.WriteRaw(selections.Render());
 <figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
+{% endstepper %}

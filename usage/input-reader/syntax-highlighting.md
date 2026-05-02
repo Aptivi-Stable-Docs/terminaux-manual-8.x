@@ -13,6 +13,10 @@ Syntax highlighting is also available on vim for code files and for configuratio
 To try this feature out, you can execute the console demo of Terminaux, passing the `PromptHighlighted` argument.
 {% endhint %}
 
+***
+
+## <mark style="color:$primary;">Structure</mark>
+
 The syntax highlighting tools provide you with functions to manage your highlighters, including registering them after getting an instance of the highlighter from its JSON representation that looks like the following:
 
 {% code title="Minimum JSON" lineNumbers="true" %}
@@ -32,11 +36,21 @@ The syntax highlighting tools provide you with functions to manage your highligh
 
 All of your highlighters must follow this convention above to make a useful highlighter for your syntax. If done correctly, you must be able to get a registerable instance of a `SyntaxHighlighting` instance.
 
+***
+
+## <mark style="color:$primary;">Registration and unregistration</mark>
+
 Registering this instance require making either a JSON file that contains the above syntax highlighter properties, or a JSON string variable, such as in [this demo's source code](https://github.com/Aptivi/Terminaux/blob/main/Terminaux.Console/Fixtures/Cases/PromptHighlighted.cs), require getting the instance using the `GetHighlighterFromJson()` function. Afterwards, you can register it using `RegisterHighlighter()`.
 
 {% hint style="info" %}
 This registration process is necessary for your syntax highlighter to be usable in the terminal reader.
 {% endhint %}
+
+If you want to unregister a highlighter, you can use the `UnregisterHighlighter()` function. Be sure that you're really done with the highlighter before trying to call this function.
+
+***
+
+## <mark style="color:$primary;">Usage in terminal reader settings</mark>
 
 You need to keep a handy copy of the instance of your highlighter so that you can use it in the terminal reader settings like this:
 
@@ -50,16 +64,14 @@ var settingsCustom = new TermReaderSettings()
 ```
 {% endcode %}
 
-After that, you must pass the settings instance to the `Read()` function to be able to recognize your highlighter. You can also use the global settings to do the same thing. You can read more about how the reader settings works here:
-
-{% content-ref url="reader-settings.md" %}
-[reader-settings.md](reader-settings.md)
-{% endcontent-ref %}
+After that, you must pass the settings instance to the `Read()` function to be able to recognize your highlighter. You can also use the global settings to do the same thing.
 
 {% hint style="info" %}
 If you need to get your highlighter in another function, or if you start the reader in another function, you can use the `GetHighlighter()` function, passing it the name of your highlighter defined in the `name` part of its JSON contents, as long as it's registered.
 {% endhint %}
 
-If you want to unregister a highlighter, you can use the `UnregisterHighlighter()` function. Be sure that you're really done with the highlighter before trying to call this function.
+***
+
+## <mark style="color:$primary;">Saving the highlighter</mark>
 
 You can also save your highlighter to a JSON string which you can then save to a file using `GetHighlighterToJson()`. You can later read it using the `GetHighlighterFromJson()` function.

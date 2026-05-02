@@ -13,6 +13,10 @@ The figlet font selector allows you to flexibly select a Figlet font provided by
 `FigletTextTools` provides default figlet font settings.
 {% endhint %}
 
+***
+
+## <mark style="color:$primary;">Invoking the selector</mark>
+
 You can simply invoke the selector on your interactive console application by calling the below function like so:
 
 ```csharp
@@ -26,7 +30,9 @@ var figlet = FigletTools.GetFigletFont(font);
 FigletColor.WriteFiglet("Hello!", figlet, ConsoleColors.Green);
 ```
 
-Additionally, you can press `S` to write the desired font name and quickly switch to that font. If you want to cancel, you can press `ESC`.
+***
+
+## <mark style="color:$primary;">Controls</mark>
 
 The following controls are available for the normal figlet font selector:
 
@@ -35,9 +41,3 @@ The following controls are available for the normal figlet font selector:
 The following controls are available for the character showcase:
 
 <table><thead><tr><th width="226">Key</th><th>Action</th></tr></thead><tbody><tr><td><code>ENTER</code></td><td>Go back</td></tr><tr><td><code>LEFT</code> / <code>WHEEL UP</code></td><td>Previous character</td></tr><tr><td><code>RIGHT</code> / <code>WHEEL DOWN</code></td><td>Next character</td></tr></tbody></table>
-
-More details about `WriteFiglet()` can be found in the below link:
-
-{% content-ref url="../../console-tools/console-writers/" %}
-[console-writers](../../console-tools/console-writers/)
-{% endcontent-ref %}

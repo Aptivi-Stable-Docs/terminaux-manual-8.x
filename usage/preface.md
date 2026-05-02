@@ -7,9 +7,13 @@ icon: lightbulb-on
 
 To use this library, you first need to know exactly why do you need to install Terminaux into your console application. If your application is intended to be an interactive one, or if your application shows graphics (text, info box, ...), then Terminaux is the right library for you.
 
+***
+
+## <mark style="color:$primary;">Terminal actions</mark>
+
 Terminaux provides several terminal actions, like reading an input (was on TermRead), getting color information (was on ColorSeq), and using VT sequences and filtering them (was on VT.NET).
 
-### Reading an input
+### <mark style="color:$primary;">Reading an input</mark>
 
 To get started reading input, follow the below page to get started:
 
@@ -17,7 +21,7 @@ To get started reading input, follow the below page to get started:
 [input-reader](input-reader/)
 {% endcontent-ref %}
 
-### Other console tools
+### <mark style="color:$primary;">Other console tools</mark>
 
 For other console tools that Terminaux provides, you can access the below page:
 
@@ -25,7 +29,9 @@ For other console tools that Terminaux provides, you can access the below page:
 [console-tools](console-tools/)
 {% endcontent-ref %}
 
-## Trying Terminaux out
+***
+
+## <mark style="color:$primary;">Trying Terminaux out</mark>
 
 Each version of Terminaux contains their own release page that allows you to download a demo zip file from GitHub. This allows you access to the interactive demo, which allows you to try almost all Terminaux features out, including the interactive TUI, the terminal reader, and so on.
 

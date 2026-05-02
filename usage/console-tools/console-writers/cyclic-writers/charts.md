@@ -5,7 +5,13 @@ icon: chart-line-up
 
 # Charts
 
-Presenting numbers, especially when comparing device performance benchmark numbers, can sometimes be clearer if you use a chart instead of a table. In order to use charts, you must specify at least the chart elements that can be described as an array of `ChartElement` class instances, which is usually set in the `Elements` property. You can create a new element like this:
+Presenting numbers, especially when comparing device performance benchmark numbers, can sometimes be clearer if you use a chart instead of a table.
+
+***
+
+## <mark style="color:$primary;">Rendering a chart</mark>
+
+In order to use charts, you must specify at least the chart elements that can be described as an array of `ChartElement` class instances, which is usually set in the `Elements` property. You can create a new element like this:
 
 ```csharp
 var element = new ChartElement()
@@ -17,7 +23,15 @@ var element = new ChartElement()
 
 You must specify at least the name and the value to identify your element. However, elements can either have a random color (if the `Color` property isn't specified) or a specific color. It can also be hidden from view by enabling the `Hidden` property.
 
-## Breakdown chart
+***
+
+## <mark style="color:$primary;">List of charts</mark>
+
+Here are the charts that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Breakdown chart</mark>
 
 This gives you either a horizontal stick or a vertical stick that describes what part of the whole stick has taken per each item. This describes a breakdown of several items that you want to present.
 
@@ -176,8 +190,10 @@ TextWriterRaw.WriteRaw(chart.Render());
 <figure><img src="../../../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Bar chart
+{% step %}
+### <mark style="color:$primary;">Bar chart</mark>
 
 This gives you a horizontal bar chart that allows you to present various numbers in an amazing way for comparison.
 
@@ -257,8 +273,10 @@ TextWriterRaw.WriteRaw(chart.Render());
 <figure><img src="../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Stick chart
+{% step %}
+### <mark style="color:$primary;">Stick chart</mark>
 
 This gives you a vertical bar chart that allows you to present various numbers in an amazing way for comparison.
 
@@ -340,8 +358,10 @@ TextWriterRaw.WriteRaw(chart.Render());
 <figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Stem and Leaf Chart
+{% step %}
+### <mark style="color:$primary;">Stem and Leaf Chart</mark>
 
 This shows you a stem and leaf chart that describes the breakdown of the numbers, with the following conditions:
 
@@ -371,8 +391,10 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Line Charts
+{% step %}
+### <mark style="color:$primary;">Line charts</mark>
 
 This allows you to render a line chart that shows you rises and falls of a specific data to the console.
 
@@ -456,9 +478,11 @@ var chart = new LineChart()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Wins and Losses
+{% step %}
+### <mark style="color:$primary;">Wins and Losses</mark>
 
 This chart allows you to visualize wins and losses for a company or for other things in your console.
 
@@ -483,9 +507,11 @@ var chart = new WinsLosses()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Pie charts
+{% step %}
+### <mark style="color:$primary;">Pie charts</mark>
 
 Pie charts visualize data, like all other data charts, but in a pie instead of the usual bars. It uses the values to calculate the arc angles of all elements to then display the whole pie to the console.
 
@@ -570,8 +596,10 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Chart of Lines
+{% step %}
+### <mark style="color:$primary;">Chart of Lines</mark>
 
 This kind of chart demonstrates how an item has increased or decreased over either time periods or, more generally, iterations. It uses lines for such demonstration.
 
@@ -608,4 +636,6 @@ var chart = new LinesChart()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+{% endstepper %}

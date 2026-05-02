@@ -5,16 +5,11 @@ icon: triangle
 
 # Geometric Shapes
 
-Terminaux also provides a wide assortment of classes that allow you to render different geometric shapes to the console easily. You can select one of the following shapes to render to your console:
+Terminaux also provides a wide assortment of classes that allow you to render different geometric shapes to the console easily.
 
-* Rectangle
-* Square
-* Triangle
-* Trapezoid
-* Parallelogram
-* Circle
-* Arc
-* Ellipsis
+***
+
+## <mark style="color:$primary;">Implementation</mark>
 
 They implement the `GraphicalCyclicWriter` and the `CyclicWriter` classes to allow you to iteratively render different geometric shapes from arrays of shapes that you can loop through to speed up the process and to allow you to implement your custom geometric shape.
 
@@ -22,11 +17,11 @@ They implement the `GraphicalCyclicWriter` and the `CyclicWriter` classes to all
 You can also store these shapes in a container and render them iteratively using the [`Container`](./) class. For line rendering, we recommend that you rely on the cyclic writer and its renderables.
 {% endhint %}
 
-To render a geometric shape, such as a rectangle, to the console, you must create a new instance of a shape class, providing the width and the height of the shape, as well as the position that tells Terminaux where to render the shape, whether to render the outline or the full shape (optional), and the selected color (optional).
+***
 
-{% hint style="info" %}
-It's up to your shape class to have a constructor that doesn't necessarily require all the shape arguments as outlined above.
-{% endhint %}
+## <mark style="color:$primary;">Rendering a shape</mark>
+
+To render a geometric shape, such as a rectangle, to the console, you must create a new instance of a shape class, providing the width and the height of the shape, as well as the position that tells Terminaux where to render the shape, whether to render the outline or the full shape (optional), and the selected color (optional).
 
 After creating a new instance, just call `Render()` on the shape instance.
 
@@ -41,9 +36,19 @@ TextWriterRaw.WriteRaw(rect2.Render());
 
 <figure><img src="../../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
-You can render the following shapes directly to your console:
+{% hint style="info" %}
+It's up to your shape class to have a constructor that doesn't necessarily require all the shape arguments as outlined above.
+{% endhint %}
 
-## Circle
+***
+
+## <mark style="color:$primary;">List of shapes</mark>
+
+Here are the shapes that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Circle</mark>
 
 The circle writer allows you to write a circle to the console. It also allows you to either draw just an outline or the whole filled circle.
 
@@ -66,8 +71,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Arc
+{% step %}
+### <mark style="color:$primary;">Arc</mark>
 
 This writer allows you to write an arc directly to the console with some parameters, such as custom inner and outer radius, and angle ranges.
 
@@ -183,8 +190,10 @@ TextWriterRaw.WriteRaw(arc2.Render());
 <figure><img src="../../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Ellipsis
+{% step %}
+### <mark style="color:$primary;">Ellipsis</mark>
 
 This writer allows you to write an ellipsis directly to the console. It also allows you to either draw just an outline or the whole filled ellipsis.
 
@@ -207,8 +216,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Parallelogram
+{% step %}
+### <mark style="color:$primary;">Parallelogram</mark>
 
 This writer allows you to write a parallelogram to the console directly. You can specify whether to draw just the outline or the whole shape.
 
@@ -231,8 +242,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Rectangle
+{% step %}
+### <mark style="color:$primary;">Rectangle</mark>
 
 This writer allows you to write a rectangle to the console directly. You can specify whether to print the whole shape or just the edges.
 
@@ -255,8 +268,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Square
+{% step %}
+### <mark style="color:$primary;">Square</mark>
 
 This shape basically renders a rectangle, but with just the height specified. In the console, the width is multiplied by two due to the space widths taking up only one cell. It basically renders a square.
 
@@ -279,8 +294,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (114).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Trapezoid
+{% step %}
+### <mark style="color:$primary;">Trapezoid</mark>
 
 This renders a trapezoid using a specified height, a top edge width, and a bottom edge width. You can also make it either render just the outline or as a full shape.
 
@@ -303,8 +320,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Triangle
+{% step %}
+### <mark style="color:$primary;">Triangle</mark>
 
 This renders either an equilateral triangle or an isosceles triangle to the console.
 
@@ -327,8 +346,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 <figure><img src="../../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Line
+{% step %}
+### <mark style="color:$primary;">Line</mark>
 
 This renders either a rough line or a smooth line, and it can either be half-width or full-width.
 
@@ -360,3 +381,5 @@ TextWriterRaw.WriteRaw(line.Render());
 <figure><img src="../../../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
+{% endstepper %}

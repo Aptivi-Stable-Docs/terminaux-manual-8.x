@@ -7,20 +7,28 @@ icon: arrows-spin
 
 <figure><img src="../../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
 
-Terminaux provides a selector that allows you to choose a spinner in an interactive way with live previews, powered by the [textual UI](../../console-tools/textual-ui/) feature. This feature can be found in the `SpinnerSelector` class found in the `Terminaux.Inputs.Styles` namespace, and you can run it with the following functions:
+Terminaux provides a selector that allows you to choose a spinner in an interactive way with live previews, powered by the [textual UI](../../console-tools/textual-ui/) feature.
+
+***
+
+## <mark style="color:$primary;">Prompting for spinner</mark>
+
+This feature can be found in the `SpinnerSelector` class found in the `Terminaux.Inputs.Styles` namespace, and you can run it with the following functions:
 
 * `PromptForSpinner()`
 * `PromptForSpinner(string spinner)`
 
 The first overload automatically falls back to the `Dots` built-in spinner, while the second overload allows you to specify the name of a built-in spinner. You can get a list of built-in spinner names defined in the `BuiltinSpinners` class.
 
+Once the user end submitted their selection, the two functions will return a `Spinner` instance obtained from the built-in spinner instance list, which can be rendered immediately using a function described [here](../../console-tools/console-writers/cyclic-writers/).
+
 {% hint style="warning" %}
 You can't use custom spinners, as they are not considered to be built-in.
 {% endhint %}
 
-Once the user end submitted their selection, the two functions will return a `Spinner` instance obtained from the built-in spinner instance list, which can be rendered immediately using a function described [here](../../console-tools/console-writers/cyclic-writers/).
+***
 
-## Controls
+## <mark style="color:$primary;">Controls</mark>
 
 The below keybindings can be used to control the selector:
 

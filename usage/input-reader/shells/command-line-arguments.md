@@ -5,11 +5,15 @@ icon: square-code
 
 # Command-Line Arguments
 
-An application can be invoked either without the command-line arguments or with such arguments, depending on the application used. Some of them require arguments, and some do not. All arguments that are to be parsed will have to be prepended with a prefix, `--`. For example, if you want to pass `noparse` as an argument, use `--noparse`. Those arguments will be parsed upon calling the argument parser.
+An application can be invoked either without the command-line arguments or with such arguments, depending on the application used. Some of them require arguments, and some do not.
+
+All arguments that are to be parsed will have to be prepended with a prefix, `--`. For example, if you want to pass `noparse` as an argument, use `--noparse`. Those arguments will be parsed upon calling the argument parser.
 
 The argument parser can be found in the `ArgumentParse` class with the `ParseArguments()` function. You can typically call that in the application entry point, but you'll have to specify the list of arguments with their `ArgumentInfo` class instances. Here's when argument structure comes into play.
 
-## Creating the argument info class
+***
+
+## <mark style="color:$primary;">Creating the argument info class</mark>
 
 To make a dictionary of arguments, which will be required by several command-line argument tools, you'll have to first create a list of arguments, just like this:
 
@@ -45,7 +49,9 @@ Specify an argument without the `--` marks, a help definition, and a new instanc
 [command-information.md](shell-structure/command-information.md)
 {% endcontent-ref %}
 
-## Help system
+***
+
+## <mark style="color:$primary;">Help system</mark>
 
 Command-line arguments also have a help system built in, because users may need a quick reference to the available arguments for a specific program. For this purpose, the help system is available at `ArgumentHelpPrint`.
 

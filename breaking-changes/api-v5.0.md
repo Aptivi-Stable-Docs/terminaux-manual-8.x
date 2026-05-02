@@ -1,44 +1,48 @@
 ---
-icon: up
 description: Breaking changes for API v5.0
+icon: up
 ---
 
 # API v5.0
 
 Here is a list of breaking changes that happened during the API v5.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 4.3.x to 5.0.x
+***
+
+## <mark style="color:$primary;">From 4.3.x to 5.0.x</mark>
 
 Between the 4.3.x and 5.0.x version range, we've made the following breaking changes:
 
-### ChoiceStyle simplified
+<details>
+
+<summary><code>ChoiceStyle</code> simplified</summary>
 
 {% code title="ChoiceStyle.cs" lineNumbers="true" %}
 ```csharp
-public static string PromptChoice(string Question, (string, string)[] Answers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
-public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false)
+public static string PromptChoice(string Question, (string, string)[] Answers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, (string, string)[] Answers, (string, string)[] AlternateAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
+public static string PromptChoice(string Question, InputChoiceInfo[] Answers, InputChoiceInfo[] AltAnswers, Color questionColor, Color inputColor, Color optionColor, Color altOptionColor, Color disabledOptionColor, ChoiceOutputType OutputType = ChoiceOutputType.OneLine, bool PressEnter = false) { }
 ```
 {% endcode %}
 
@@ -48,15 +52,19 @@ We've made a new class, `ChoiceStyleSettings`, to ease configuration of the choi
 You must move all the configuration, including the colors, to the `ChoiceStyleSettings` instance to be able to continue configuration.
 {% endhint %}
 
-### Table renderer re-write
+</details>
+
+<details>
+
+<summary>Table renderer re-write</summary>
 
 {% code title="TableColor.cs" lineNumbers="true" %}
 ```csharp
-public static void WriteTablePlain(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null)
-public static void WriteTable(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null)
-public static void WriteTable(string[] Headers, string[,] Rows, int Margin, Color SeparatorForegroundColor, Color HeaderForegroundColor, Color ValueForegroundColor, Color BackgroundColor, bool SeparateRows = true, List<CellOptions>? CellOptions = null)
-public static string RenderTablePlain(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null)
-public static string RenderTable(string[] Headers, string[,] Rows, int Margin, Color SeparatorForegroundColor, Color HeaderForegroundColor, Color ValueForegroundColor, Color BackgroundColor, bool SeparateRows = true, List<CellOptions>? CellOptions = null)
+public static void WriteTablePlain(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null) { }
+public static void WriteTable(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null) { }
+public static void WriteTable(string[] Headers, string[,] Rows, int Margin, Color SeparatorForegroundColor, Color HeaderForegroundColor, Color ValueForegroundColor, Color BackgroundColor, bool SeparateRows = true, List<CellOptions>? CellOptions = null) { }
+public static string RenderTablePlain(string[] Headers, string[,] Rows, int Margin, bool SeparateRows = true, List<CellOptions>? CellOptions = null) { }
+public static string RenderTable(string[] Headers, string[,] Rows, int Margin, Color SeparatorForegroundColor, Color HeaderForegroundColor, Color ValueForegroundColor, Color BackgroundColor, bool SeparateRows = true, List<CellOptions>? CellOptions = null) { }
 ```
 {% endcode %}
 
@@ -70,11 +78,15 @@ You can now place your headers at the top of the rows argument and set the `enab
 You'll have to take application behavior into account, as applications that depend on the previous behavior will need to be re-written.
 {% endhint %}
 
-### Terminaux.Extensions removal
+</details>
+
+<details>
+
+<summary><code>Terminaux.Extensions</code> removal</summary>
 
 {% code title="EnumerableExtensions.cs" lineNumbers="true" %}
 ```csharp
-public static class EnumerableExtensions
+public static class EnumerableExtensions { }
 ```
 {% endcode %}
 
@@ -84,7 +96,11 @@ As we don't want to cause conflicts of implementations and duplicate commits for
 Migration to Terminaux 5.0 requires that you remove Terminaux.Extensions from your NuGet dependencies and replace it with Magico.
 {% endhint %}
 
-### Input class introduced
+</details>
+
+<details>
+
+<summary>Input class introduced</summary>
 
 {% code title="PointerListener.cs" lineNumbers="true" %}
 ```csharp
@@ -98,11 +114,15 @@ While we were trying to fix the mouse listener CPU usage being 100% in all the s
 You should change your references to PointerListener so that they point to their Input class equivalents, although they usually hold the same name. However, methods that start or stop the listener have been removed, and their equivalent is a property, `EnableMouse`, that enables or disables mouse support.
 {% endhint %}
 
-### Resize listener back to Terminaux
+</details>
+
+<details>
+
+<summary>Resize listener back to Terminaux</summary>
 
 {% code title="ConsoleResizeListener.cs" lineNumbers="true" %}
 ```csharp
-public static class ConsoleResizeListener
+public static class ConsoleResizeListener { }
 ```
 {% endcode %}
 
@@ -112,7 +132,11 @@ We've restored the resize listener functions back to the base Terminaux library,
 Functions, although their names haven't changed, have been moved to another namespace and class, `Terminaux.Base.ConsoleResizeHandler`. Change your references to point to that instead.
 {% endhint %}
 
-### Interactive TUI polishing
+</details>
+
+<details>
+
+<summary>Interactive TUI polishing</summary>
 
 As of Terminaux 5.0.0, the interactive TUI has been improved. As a result, the following changes have to be made:
 
@@ -131,8 +155,8 @@ In order for this system to be more maintainable, we've removed the two above pr
 
 {% code title="BaseInteractiveTui.cs" lineNumbers="true" %}
 ```csharp
-public void LastOnOverflow()
-public void FirstOnUnderflow()
+public void LastOnOverflow() { }
+public void FirstOnUnderflow() { }
 ```
 {% endcode %}
 
@@ -201,9 +225,9 @@ We've removed the above properties.
 ```csharp
 public virtual IEnumerable<T> PrimaryDataSource
 public virtual IEnumerable<T> SecondaryDataSource
-public virtual string GetEntryFromItem(T item)
-public virtual string GetInfoFromItem(T item)
-public virtual string GetStatusFromItem(T item)
+public virtual string GetEntryFromItem(T item) { }
+public virtual string GetInfoFromItem(T item) { }
+public virtual string GetStatusFromItem(T item) { }
 ```
 {% endcode %}
 
@@ -215,7 +239,7 @@ As a result, all the functions in the InteractiveTuiTools class have been change
 
 {% code title="InteractiveTuiBinding.cs" lineNumbers="true" %}
 ```csharp
-public class InteractiveTuiBinding : Keybinding, IEquatable<InteractiveTuiBinding?>
+public class InteractiveTuiBinding : Keybinding, IEquatable<InteractiveTuiBinding?> { }
 ```
 {% endcode %}
 
@@ -230,25 +254,29 @@ public List<InteractiveTuiBinding> Bindings { get; internal set; }
 {% code title="InteractiveTuiBinding.cs" lineNumbers="true" %}
 ```csharp
 public Action<object?, int>? BindingAction
-public InteractiveTuiBinding(string bindingName, ConsoleKey bindingKeyName, Action<object?, int>? bindingAction, bool canRunWithoutItems = false)
-public InteractiveTuiBinding(string bindingName, ConsoleKey bindingKeyName, ConsoleModifiers bindingKeyModifiers, Action<object?, int>? bindingAction, bool canRunWithoutItems = false)
-public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, Action<object?, int>? bindingAction, bool canRunWithoutItems = false)
-public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, PointerButtonPress bindingPointerButtonPress, Action<object?, int>? bindingAction, bool canRunWithoutItems = false)
-public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, PointerButtonPress bindingPointerButtonPress, PointerModifiers bindingButtonModifiers, Action<object?, int>? bindingAction, bool canRunWithoutItems = false)
-public bool Equals(InteractiveTuiBinding? other)
-public static bool operator ==(InteractiveTuiBinding? left, InteractiveTuiBinding? right)
-public static bool operator !=(InteractiveTuiBinding? left, InteractiveTuiBinding? right)
+public InteractiveTuiBinding(string bindingName, ConsoleKey bindingKeyName, Action<object?, int>? bindingAction, bool canRunWithoutItems = false) { }
+public InteractiveTuiBinding(string bindingName, ConsoleKey bindingKeyName, ConsoleModifiers bindingKeyModifiers, Action<object?, int>? bindingAction, bool canRunWithoutItems = false) { }
+public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, Action<object?, int>? bindingAction, bool canRunWithoutItems = false) { }
+public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, PointerButtonPress bindingPointerButtonPress, Action<object?, int>? bindingAction, bool canRunWithoutItems = false) { }
+public InteractiveTuiBinding(string bindingName, PointerButton bindingPointerButton, PointerButtonPress bindingPointerButtonPress, PointerModifiers bindingButtonModifiers, Action<object?, int>? bindingAction, bool canRunWithoutItems = false) { }
+public bool Equals(InteractiveTuiBinding? other) { }
+public static bool operator ==(InteractiveTuiBinding? left, InteractiveTuiBinding? right) { }
+public static bool operator !=(InteractiveTuiBinding? left, InteractiveTuiBinding? right) { }
 ```
 {% endcode %}
 
 You'll now have to determine whether to use the primary and the secondary values and indexes or not when defining your own interactive TUI keybindings.
 
-### Input choice moved to Inputs.Styles
+</details>
+
+<details>
+
+<summary>Input choice moved to <code>Inputs.Styles</code></summary>
 
 {% code title="Terminaux.Inputs -> Terminaux.Inputs.Styles" lineNumbers="true" %}
 ```csharp
-public class InputChoiceInfo
-public static class InputChoiceTools
+public class InputChoiceInfo { }
+public static class InputChoiceTools { }
 ```
 {% endcode %}
 
@@ -258,11 +286,15 @@ The two above classes have been moved to `Terminaux.Inputs.Styles` as the input 
 Change the using clause that contain both classes to use `Terminaux.Inputs.Styles`.
 {% endhint %}
 
-### `InitializeSequences()` moved
+</details>
+
+<details>
+
+<summary><code>InitializeSequences()</code> moved</summary>
 
 {% code title="ConsolePositioning.cs" lineNumbers="true" %}
 ```csharp
-public static bool InitializeSequences()
+public static bool InitializeSequences() { }
 ```
 {% endcode %}
 
@@ -272,11 +304,15 @@ This function has nothing to do with cursor positioning, so we've moved it outsi
 We haven't changed the name of the function or its functionality, but you should change all references that point to this function to reference the `ConsoleMisc` class.
 {% endhint %}
 
-### Removed `SelectionStyleSwitches`
+</details>
+
+<details>
+
+<summary>Removed <code>SelectionStyleSwitches</code></summary>
 
 {% code title="SelectionStyleSwitches.cs" lineNumbers="true" %}
 ```csharp
-public static class SelectionStyleSwitches
+public static class SelectionStyleSwitches { }
 ```
 {% endcode %}
 
@@ -286,21 +322,25 @@ Currently, we don't have any use of this class because we've removed showing pag
 It will be back in a future Terminaux release, so be patient.
 {% endhint %}
 
-### Outsourced character width tools to Textify
+</details>
+
+<details>
+
+<summary>Outsourced character width tools to Textify</summary>
 
 {% code title="ConsoleChar.cs" lineNumbers="true" %}
 ```csharp
 public static bool UseTwoCellsForUnassignedChars { get; set; }
 public static bool UseTwoCellsForAmbiguousChars { get; set; }
 public static bool UseTwoCellsForPrivateChars { get; set; }
-public static int GetCharWidth(int c)
-public static CharWidthType GetCharWidthType(int c)
+public static int GetCharWidth(int c) { }
+public static CharWidthType GetCharWidthType(int c) { }
 ```
 {% endcode %}
 
 {% code title="CharWidthType.cs" lineNumbers="true" %}
 ```csharp
-public enum CharWidthType
+public enum CharWidthType { }
 ```
 {% endcode %}
 
@@ -310,25 +350,31 @@ These functions and properties could have been implemented in Textify, but we ha
 Refer to [Textify's manual](https://app.gitbook.com/o/fj052nYlsxW9IdL3bsZj/s/NaUWjRlaBR1k5rO42Zy8/) for more info. You'll only have to change the reference to point to `TextTools`.
 {% endhint %}
 
-## From 5.0.x to 5.3.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 5.0.x to 5.3.x</mark>
 
 Between the 5.0.x and 5.3.x version range, we've made the following breaking changes:
 
-### Used `TermInfoValueDesc` for capabilities
+<details>
+
+<summary>Used <code>TermInfoValueDesc</code> for capabilities</summary>
 
 {% code title="ExtendedCapabilities.cs" lineNumbers="true" %}
 ```csharp
-public bool? GetBoolean(string key)
-public int? GetNum(string key)
-public string? GetString(string key)
+public bool? GetBoolean(string key) { }
+public int? GetNum(string key) { }
+public string? GetString(string key) { }
 ```
 {% endcode %}
 
 {% code title="TermInfoDesc.cs" lineNumbers="true" %}
 ```csharp
-public bool? GetBoolean(TermInfoCaps.Boolean value)
-public int? GetNum(TermInfoCaps.Num value)
-public string? GetString(TermInfoCaps.String value)
+public bool? GetBoolean(TermInfoCaps.Boolean value) { }
+public int? GetNum(TermInfoCaps.Num value) { }
+public string? GetString(TermInfoCaps.String value) { }
 
 // and all corresponding generated capability properties
 ```
@@ -343,7 +389,7 @@ In order to implement the parameter extraction functionality, we had to implemen
 
 {% code title="TermInfoCapsKind.cs" lineNumbers="true" %}
 ```csharp
-public enum TermInfoCapsKind
+public enum TermInfoCapsKind { }
 ```
 {% endcode %}
 
@@ -353,21 +399,31 @@ As a consequence, we had to remove the above enumeration in order to satisfy the
 You'll have to adjust your calls to call appropriate properties. For example, if you used to be able to access a string directly, you'll have to get a value of the `Value` property found in the `TermInfoValueDesc<string?>` string capability instance.
 {% endhint %}
 
-## From 5.3.x to 5.4.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 5.3.x to 5.4.x</mark>
 
 Between the 5.3.x and 5.4.x version range, we've made the following breaking changes:
 
-### Infobox clarifications
+<details>
+
+<summary>Infobox clarifications</summary>
 
 {% code title="InfoBoxColor.cs" lineNumbers="true" %}
 ```csharp
-public static class InfoBoxColor
+public static class InfoBoxColor { }
 ```
 {% endcode %}
 
 Since the start of Terminaux, when we had implemented informational boxes, we kept saying "modal infoboxes" for boxes that require a user input and "non-modal infoboxes" for boxes that don't require a user input and just print themselves to the terminal, while the modality could be demonstrated by toggling the `waitForInput` parameter on or off. To clear confusion, we've decided to rename the class to indicate infobox modality
 
 {% hint style="info" %}
+From now on, the class names are:
+
 * For modal infoboxes, the class name is `InfoBoxModalColor`.
 * For non-modal infoboxes, the class name is `InfoBoxNonModalColor`.
 {% endhint %}
+
+</details>

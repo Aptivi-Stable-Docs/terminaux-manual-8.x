@@ -7,7 +7,15 @@ icon: text-size
 
 The following writers write text in different ways to the console.
 
-## Aligned figlet text
+***
+
+## <mark style="color:$primary;">List of text renderers</mark>
+
+Here are the text renderers that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Aligned figlet text</mark>
 
 This allows you to write an aligned Figlet text to the console.
 
@@ -111,8 +119,10 @@ TextWriterRaw.WriteRaw(text3.Render());
 <figure><img src="../../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Aligned text
+{% step %}
+### <mark style="color:$primary;">Aligned text</mark>
 
 This allows you to write an aligned text to the console.
 
@@ -216,8 +226,10 @@ TextWriterRaw.WriteRaw(text3.Render());
 <figure><img src="../../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Animated text
+{% step %}
+### <mark style="color:$primary;">Animated text</mark>
 
 This allows you to write text with animations using frames to define how the text is going to move.
 
@@ -275,8 +287,10 @@ for (int i = 0; i < animatedText.TextFrames.Length; i++)
 ```
 
 <figure><img src="../../../../.gitbook/assets/animated-text.gif" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Bounded text
+{% step %}
+### <mark style="color:$primary;">Bounded text</mark>
 
 This allows you to write text with boundaries to the console to allow enough information to fit in a specified width and height. This works either according to lines, or according to column and row of the invisible caret.
 
@@ -345,8 +359,10 @@ TextWriterRaw.WriteRaw(text2.Render());
 <figure><img src="../../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Figlet text
+{% step %}
+### <mark style="color:$primary;">Figlet text</mark>
 
 This allows you to write unaligned Figlet text to the console.
 
@@ -356,8 +372,10 @@ TextWriterRaw.WriteRaw(text.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Text marquee
+{% step %}
+### <mark style="color:$primary;">Text marquee</mark>
 
 This allows you to write an animated text marquee to the console.
 
@@ -401,8 +419,10 @@ finally
 ```
 
 <figure><img src="../../../../.gitbook/assets/1000022817.gif" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Decoration
+{% step %}
+### <mark style="color:$primary;">Decoration</mark>
 
 This allows you to create decorative renders for your text, but in a standalone form. You can also use this instance with aligned text instances to decorate your text with prefixes and suffixes.
 
@@ -448,14 +468,12 @@ TextWriterRaw.WritePlain("Aligned text with decoration:    " + alignedTextDecora
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Syntax text
+{% step %}
+### <mark style="color:$primary;">Syntax text</mark>
 
 You can render a syntax highlighted snippet of code using this renderable.
-
-{% hint style="info" %}
-Please note that you must have the [`highlight`](http://andre-simon.de/zip/download.php) app installed.
-{% endhint %}
 
 ```csharp
 var chart = new SyntaxText()
@@ -476,7 +494,13 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 <figure><img src="../../../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
 
-## Text path
+{% hint style="info" %}
+Please note that you must have the [`highlight`](http://andre-simon.de/zip/download.php) app installed.
+{% endhint %}
+{% endstep %}
+
+{% step %}
+### <mark style="color:$primary;">Text path</mark>
 
 You can render the decorated text path with this renderable so that the paths appear more elegant and simplified.
 
@@ -534,3 +558,5 @@ TextWriterRaw.WriteRaw(path4.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
+{% endstepper %}

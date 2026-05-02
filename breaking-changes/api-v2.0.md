@@ -7,23 +7,27 @@ icon: up
 
 Here is a list of breaking changes that happened during the API v2.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 1.12.x to 2.0.x
+## <mark style="color:$primary;">From 1.12.x to 2.0.x</mark>
 
 Between the 1.12.x and 2.0.x version range, we've made the following breaking changes:
 
-### Removed `Terminaux.Figgle`
+<details>
 
-Figgle was not maintained by the original developer for a long time, so we've forked this library to create Figletize, and its documentation can be found here:
+<summary>Removed <code>Terminaux.Figgle</code></summary>
 
-{% content-ref url="https://app.gitbook.com/o/fj052nYlsxW9IdL3bsZj/s/ImPNBShiE2aqA6pDyeiZ/" %}
-[Figletize - Manual](https://app.gitbook.com/o/fj052nYlsxW9IdL3bsZj/s/ImPNBShiE2aqA6pDyeiZ/)
-{% endcontent-ref %}
+Figgle was not maintained by the original developer for a long time, so we've forked this library to create Figletize which got deprecated later. Figlet documentation can be found here:
+
+<a href="https://app.gitbook.com/s/NaUWjRlaBR1k5rO42Zy8/usage/how-to-use/extra-features/figlet-text" class="button primary">Textify's Figlet text</a>
 
 {% hint style="info" %}
 It's advisable to use the built-in Figlet tools instead of using Terminaux.Figgle as it's considered legacy.
 {% endhint %}
 
-### Removed the old color wheel
+</details>
+
+<details>
+
+<summary>Removed the old color wheel</summary>
 
 The old color wheel wasn't updated to benefit from the latest Terminaux improvements, so we had to remove the old color wheel to reduce the maintenance burden.
 
@@ -31,11 +35,15 @@ The old color wheel wasn't updated to benefit from the latest Terminaux improvem
 It's advisable to use the newer color selector as it's more up to date.
 {% endhint %}
 
-### Implemented a proper console wrapper
+</details>
+
+<details>
+
+<summary>Implemented a proper console wrapper</summary>
 
 {% code title="ConsoleWrappers.cs" lineNumbers="true" %}
 ```csharp
-public static class ConsoleWrappers
+public static class ConsoleWrappers { }
 ```
 {% endcode %}
 
@@ -65,23 +73,27 @@ To be able to achieve a successful migration, you must replace the following cal
 * `ActionWriteLineParameterized` -> `WriteLine`
 {% endhint %}
 
-### Textify is used for VT sequence feature
+</details>
+
+<details>
+
+<summary>Textify is used for VT sequence feature</summary>
 
 {% code title="Affected classes" lineNumbers="true" %}
 ```csharp
-public static class ApcSequences
-public static class C1Sequences
-public static class CsiSequences
-public static class DcsSequences
-public static class EscSequences
-public static class OscSequences
-public static class PmSequences
-public static class VtSequenceBasicChars
-public static class VtSequenceBuilderTools
-public enum VtSequenceSpecificTypes
-public static class VtSequenceRegexes
-public static class VtSequenceTools
-public enum VtSequenceType
+public static class ApcSequences { }
+public static class C1Sequences { }
+public static class CsiSequences { }
+public static class DcsSequences { }
+public static class EscSequences { }
+public static class OscSequences { }
+public static class PmSequences { }
+public static class VtSequenceBasicChars { }
+public static class VtSequenceBuilderTools { }
+public enum VtSequenceSpecificTypes { }
+public static class VtSequenceRegexes { }
+public static class VtSequenceTools { }
+public enum VtSequenceType { }
 ```
 {% endcode %}
 
@@ -93,11 +105,15 @@ Terminaux will pull Textify as a dependency when you install the 2.0 version, so
 If you're impatient for the next version of Terminaux, you can install Textify manually and use these functions. Be aware that you may need to resolve the conflicts.
 {% endhint %}
 
-### Moved `Inputs` to the root namespace
+</details>
+
+<details>
+
+<summary>Moved <code>Inputs</code> to the root namespace</summary>
 
 {% code title="Affected files" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Reader.Inputs
+namespace Terminaux.Reader.Inputs { }
 ```
 {% endcode %}
 
@@ -109,11 +125,15 @@ However, we've moved the entire `Inputs` namespace to `Terminaux.Inputs` as it j
 None of the classes and their functions have changed. You just have to update the imports to use `Terminaux.Inputs` instead of the old namespace shown above.
 {% endhint %}
 
-### Figlet selector moved to `Inputs.Styles`
+</details>
+
+<details>
+
+<summary>Figlet selector moved to <code>Inputs.Styles</code></summary>
 
 {% code title="FigletSelector.cs" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Figlet
+namespace Terminaux.Figlet { }
 ```
 {% endcode %}
 
@@ -123,11 +143,15 @@ Since the legacy Figlet code has been removed from Terminaux and the figlet sele
 None of the functions have changed during this movement. You need to update your imports to point to `Terminaux.Inputs.Styles`.
 {% endhint %}
 
-### Removed `ColorSeqException`
+</details>
+
+<details>
+
+<summary>Removed <code>ColorSeqException</code></summary>
 
 {% code title="ColorSeqException.cs" lineNumbers="true" %}
 ```csharp
-internal class ColorSeqException
+internal class ColorSeqException { }
 ```
 {% endcode %}
 
@@ -139,11 +163,15 @@ We've removed `ColorSeqException` as an internal class, but we need to put this 
 You no longer need to use reflection to find out the type name of the removed exception, because you can catch `TerminauxException`, which the color management system now uses.
 {% endhint %}
 
-### `ConsolePlatform`'s `NewLine`
+</details>
+
+<details>
+
+<summary><code>ConsolePlatform</code>'s <code>NewLine</code></summary>
 
 {% code title="ConsolePlatform.cs" lineNumbers="true" %}
 ```csharp
-public static string NewLine
+public static string NewLine { get; }
 ```
 {% endcode %}
 
@@ -153,7 +181,11 @@ From now on, this property has been removed as it isn't used except the console 
 If you still make use of this property, replace its call with either the `\n` string literal (which represents a new line and is platform-agnostic), or use `Environment.NewLine` if you want to use platform-specific newlines.
 {% endhint %}
 
-### Relocated color model conversion tools
+</details>
+
+<details>
+
+<summary>Relocated color model conversion tools</summary>
 
 {% code title="Color.cs" lineNumbers="true" %}
 ```csharp
@@ -171,11 +203,15 @@ They are also titled appropriately so that you can better understand what is the
 Change all the calls to the color model-specific properties to refer to the conversion tools that focus on a target that you want. For example, converting RGB to CMY requires usage of the `CmyConversionTools` class.
 {% endhint %}
 
-### Reworked transformation method switch
+</details>
+
+<details>
+
+<summary>Reworked transformation method switch</summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static bool EnableSimpleColorTransformation { get; set; } = false;
+ EnableSimpleColorTransformation { get; set; } = false;
 ```
 {% endcode %}
 
@@ -191,7 +227,11 @@ public static TransformationMethod ColorTransformationMethod { get; set; } = Tra
 ```
 {% endhint %}
 
-### Removed `IsDark/Bright` for `ConsoleColorsInfo`
+</details>
+
+<details>
+
+<summary>Removed <code>IsDark/Bright</code> for <code>ConsoleColorsInfo</code></summary>
 
 {% code title="ConsoleColorsInfo.cs" lineNumbers="true" %}
 ```csharp
@@ -206,11 +246,15 @@ We've removed `IsDark/Bright` for the above class because they are just repeat p
 In order to get access to this data, you need to access the `Color` property and get the value of `Brightness`.
 {% endhint %}
 
-### Renamed color blindness type
+</details>
+
+<details>
+
+<summary>Renamed color blindness type</summary>
 
 {% code title="Deficiency.cs" lineNumbers="true" %}
 ```csharp
-public enum Deficiency
+public enum Deficiency { }
 ```
 {% endcode %}
 
@@ -225,19 +269,25 @@ The color blindness type enumeration name has been changed, along with its names
 * References: `Deficiency` -> `TransformationFormula`
 {% endhint %}
 
-## From 2.0.x to 2.1.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.0.x to 2.1.x</mark>
 
 Between the 2.0.x and 2.1.x version range, we've made the following breaking changes:
 
-### Titled variants of infoboxes merged
+<details>
+
+<summary>Titled variants of infoboxes merged</summary>
 
 ```csharp
-public static class InfoBoxTitledButtonsColor
-public static class InfoBoxTitledColor
-public static class InfoBoxTitledInputColor
-public static class InfoBoxTitledProgressColor
-public static class InfoBoxTitledSelectionColor
-public static class InfoBoxTitledSelectionMultipleColor
+public static class InfoBoxTitledButtonsColor { }
+public static class InfoBoxTitledColor { }
+public static class InfoBoxTitledInputColor { }
+public static class InfoBoxTitledProgressColor { }
+public static class InfoBoxTitledSelectionColor { }
+public static class InfoBoxTitledSelectionMultipleColor { }
 ```
 
 The titled variants of all informational box types have been moved to a completely different place, which is their parent class, like `InfoBoxColor`. This ensures that maintenance is not a burden when it comes to maintaining them.
@@ -252,11 +302,15 @@ To continue using the titled variants, you'll have to remove the "Titled" word f
 You'll have to replace `Terminaux.Inputs.Styles.InfoboxTitled` in your usings with `Terminaux.Inputs.Styles.Infobox`.
 {% endhint %}
 
-### Border and box frame color writers refactored
+</details>
+
+<details>
+
+<summary>Border and box frame color writers refactored</summary>
 
 ```csharp
-public static class BorderTextColor
-public static class BoxFrameTextColor
+public static class BorderTextColor { }
+public static class BoxFrameTextColor { }
 ```
 
 When we wanted to make the titled borders and box frames, we wanted to make titled informational boxes. However, after making several types of informational boxes and their titled variants, we've discovered that there were a lot of repeated code for different situations.
@@ -272,11 +326,15 @@ Usually, you'll only have to change all references to the two above classes to t
 In case you see unexpected rendering behavior, adjust the parameters as necessary.
 {% endhint %}
 
-### Specifier parser function signature changed
+</details>
+
+<details>
+
+<summary>Specifier parser function signature changed</summary>
 
 {% code title="ParsingTools.cs" lineNumbers="true" %}
 ```csharp
-public static RedGreenBlue ParseSpecifier(string specifier)
+public static RedGreenBlue ParseSpecifier(string specifier) { }
 ```
 {% endcode %}
 
@@ -289,7 +347,11 @@ You don't have to change the parameters. However, you'll need to get the two val
 * `cci`: For color information for 256 and 16 color modes
 {% endhint %}
 
-### Implemented color settings class
+</details>
+
+<details>
+
+<summary>Implemented color settings class</summary>
 
 ```csharp
 public static bool EnableColorTransformation { get; set; } = false;
@@ -307,11 +369,17 @@ As a result, we had to spray the settings argument everywhere to allow Terminaux
 You'll have to either use the global settings property from `ColorTools`, `GlobalSettings`, or make a new `ColorSettings` instance with your own settings. If you use the latter, pass it with your settings instance when creating a new `Color` instance.
 {% endhint %}
 
-## From 2.1.x to 2.2.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.1.x to 2.2.x</mark>
 
 Between the 2.1.x and 2.2.x version range, we've made the following breaking changes:
 
-### Removed non-standalone char write wrapper
+<details>
+
+<summary>Removed non-standalone char write wrapper</summary>
 
 {% code title="ConsoleWrapperTools.cs" lineNumbers="true" %}
 ```csharp
@@ -327,23 +395,27 @@ So, we've removed this wrapper as a result to reduce complexity.
 You can no longer set up a wrapper for this kind of writer.
 {% endhint %}
 
-### Highlighted text writer moved
+</details>
+
+<details>
+
+<summary>Highlighted text writer moved</summary>
 
 {% code title="TextWriterColor.cs" lineNumbers="true" %}
 ```csharp
-public static void Write(string Text, bool Line, bool Highlight, params object[] vars)
-public static void WriteColor(string Text, bool Line, bool Highlight, ConsoleColors color, params object[] vars)
-public static void WriteColorBack(string Text, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars)
-public static void WriteColor(string Text, bool Line, bool Highlight, Color color, params object[] vars)
-public static void WriteColorBack(string Text, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars)
-public static void WriteForReaderPlain(string Text, TermReaderSettings settings, params object[] vars)
-public static void WriteForReaderPlain(string Text, TermReaderSettings settings, bool Line, params object[] vars)
-public static void WriteForReader(string Text, TermReaderSettings settings, bool Line, bool Highlight, params object[] vars)
-public static void WriteForReaderColor(string Text, TermReaderSettings settings, bool Line, bool Highlight, ConsoleColors color, params object[] vars)
-public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars)
-public static void WriteForReaderColor(string Text, TermReaderSettings settings, bool Line, bool Highlight, Color color, params object[] vars)
-public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, Color ForegroundColor, Color BackgroundColor, params object[] vars)
-public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars)
+public static void Write(string Text, bool Line, bool Highlight, params object[] vars) { }
+public static void WriteColor(string Text, bool Line, bool Highlight, ConsoleColors color, params object[] vars) { }
+public static void WriteColorBack(string Text, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars) { }
+public static void WriteColor(string Text, bool Line, bool Highlight, Color color, params object[] vars) { }
+public static void WriteColorBack(string Text, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars) { }
+public static void WriteForReaderPlain(string Text, TermReaderSettings settings, params object[] vars) { }
+public static void WriteForReaderPlain(string Text, TermReaderSettings settings, bool Line, params object[] vars) { }
+public static void WriteForReader(string Text, TermReaderSettings settings, bool Line, bool Highlight, params object[] vars) { }
+public static void WriteForReaderColor(string Text, TermReaderSettings settings, bool Line, bool Highlight, ConsoleColors color, params object[] vars) { }
+public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, bool Highlight, ConsoleColors ForegroundColor, ConsoleColors BackgroundColor, params object[] vars) { }
+public static void WriteForReaderColor(string Text, TermReaderSettings settings, bool Line, bool Highlight, Color color, params object[] vars) { }
+public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, Color ForegroundColor, Color BackgroundColor, params object[] vars) { }
+public static void WriteForReaderColorBack(string Text, TermReaderSettings settings, bool Line, bool Highlight, Color ForegroundColor, Color BackgroundColor, params object[] vars) { }
 ```
 {% endcode %}
 
@@ -355,15 +427,21 @@ Also, we've made changes as to how to handle color resetting at the end of the w
 If you want to use the highlighted writer, you can use the brand new class, `TextWriterHighlightedColor`.
 {% endhint %}
 
-## From 2.2.x to 2.4.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.2.x to 2.4.x</mark>
 
 Between the 2.2.x and 2.4.x version range, we've made the following breaking changes:
 
-### Color contrast class added
+<details>
+
+<summary>Color contrast class added</summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static bool IsSeeable(ColorType type, int colorLevel, int colorR, int colorG, int colorB)
+public static bool IsSeeable(ColorType type, int colorLevel, int colorR, int colorG, int colorB) { }
 ```
 {% endcode %}
 
@@ -373,27 +451,37 @@ We've moved the `IsSeeable` function as part of the addition of the color contra
 The functionality of the function hasn't changed. You just need to change the reference to this function from `ColorTools` to `ColorContrast`.
 {% endhint %}
 
-### Moved ConsoleColors\[Info] to Colors.Data
+</details>
+
+<details>
+
+<summary>Moved <code>ConsoleColors[Info]</code> to <code>Colors.Data</code></summary>
 
 {% code title="ConsoleColors.cs" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Colors
+namespace Terminaux.Colors { }
 ```
 {% endcode %}
 
 {% code title="ConsoleColorsInfo.cs" lineNumbers="true" %}
 ```csharp
-namespace Terminaux.Colors
+namespace Terminaux.Colors { }
 ```
 {% endcode %}
 
 We've moved the two classes, `ConsoleColors` and its associated `Info` class, to `Terminaux.Colors.Data` as they're part of the console colors information gathering for both 16-color and 256-color information.
 
-## From 2.4.x to 2.5.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.4.x to 2.5.x</mark>
 
 Between the 2.4.x and 2.5.x version range, we've made the following breaking changes:
 
-### YIQ values changed
+<details>
+
+<summary>YIQ values changed</summary>
 
 {% code title="LumaChromaUv.cs" lineNumbers="true" %}
 ```csharp
@@ -421,13 +509,17 @@ The values in the YIQ color model have been changed to store natural integer num
 You'll have to re-write the specifiers so that all the components range from `0` to `255`. In-phase and quadrature values of `0` are `128` in the new range implemented in Terminaux 2.5.0 and higher.
 {% endhint %}
 
-### Moved X11-related functions to `ConversionTools`
+</details>
+
+<details>
+
+<summary>Moved X11-related functions to <code>ConversionTools</code></summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static ConsoleColors TranslateToX11ColorMap(ConsoleColor color)
-public static ConsoleColor TranslateToStandardColorMap(ConsoleColors color)
-public static ConsoleColor CorrectStandardColor(ConsoleColor color)
+public static ConsoleColors TranslateToX11ColorMap(ConsoleColor color) { }
+public static ConsoleColor TranslateToStandardColorMap(ConsoleColors color) { }
+public static ConsoleColor CorrectStandardColor(ConsoleColor color) { }
 ```
 {% endcode %}
 
@@ -437,11 +529,15 @@ These functions used to reside on `ColorTools` before they're moved to `Conversi
 The functionality for these functions has not changed. You'll have to update the references to `ConversionTools`.
 {% endhint %}
 
-### Moved `RenderColorBlindnessAware()`
+</details>
+
+<details>
+
+<summary>Moved <code>RenderColorBlindnessAware()</code></summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static Color RenderColorBlindnessAware(Color color, TransformationFormula formula, double severity, TransformationMethod method = TransformationMethod.Brettel1997)
+public static Color RenderColorBlindnessAware(Color color, TransformationFormula formula, double severity, TransformationMethod method = TransformationMethod.Brettel1997) { }
 ```
 {% endcode %}
 
@@ -453,13 +549,17 @@ This function, however, has been moved to `TransformationTools` instead of `Colo
 The functionality for this function has not changed. You'll have to update the references to `TransformationTools`.
 {% endhint %}
 
-### Removed obsolete functions
+</details>
+
+<details>
+
+<summary>Removed obsolete functions</summary>
 
 {% code title="ColorTools.cs" lineNumbers="true" %}
 ```csharp
-public static string ConvertFromHexToRGB(string Hex)
-public static string ConvertFromRGBToHex(string RGBSequence)
-public static string ConvertFromRGBToHex(int R, int G, int B)
+public static string ConvertFromHexToRGB(string Hex) { }
+public static string ConvertFromRGBToHex(string RGBSequence) { }
+public static string ConvertFromRGBToHex(int R, int G, int B) { }
 ```
 {% endcode %}
 
@@ -472,11 +572,17 @@ To migrate away from the three functions, you'll have to follow the migration st
 * For the second and the third functions, create a new `Color` instance with either the specified `RGBSequence` value or the three RGB values and call this instance's `Hex` property.
 {% endhint %}
 
-## From 2.5.x to 2.6.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.5.x to 2.6.x</mark>
 
 Between the 2.5.x and 2.6.x version range, we've made the following breaking changes:
 
-### Removed R, G, and B properties (and normalized) from `Color`
+<details>
+
+<summary>Removed R, G, and B properties (and normalized) from <code>Color</code></summary>
 
 {% code title="Color.cs" lineNumbers="true" %}
 ```csharp
@@ -506,21 +612,27 @@ All you have to do is to change all the references to these properties so that t
 ```
 {% endhint %}
 
-## From 2.6.x to 2.7.x
+</details>
+
+***
+
+## <mark style="color:$primary;">From 2.6.x to 2.7.x</mark>
 
 Between the 2.6.x and 2.7.x version range, we've made the following breaking changes:
 
-### `ReadKeyTimeout()` no longer throws a removed exception
+<details>
+
+<summary><code>ReadKeyTimeout()</code> no longer throws a removed exception</summary>
 
 {% code title="Input.cs" lineNumbers="true" %}
 ```csharp
-public static ConsoleKeyInfo ReadKeyTimeout(bool Intercept, TimeSpan Timeout)
+public static ConsoleKeyInfo ReadKeyTimeout(bool Intercept, TimeSpan Timeout) { }
 ```
 {% endcode %}
 
 {% code title="TerminauxContinuableException.cs" lineNumbers="true" %}
 ```csharp
-public class TerminauxContinuableException
+public class TerminauxContinuableException { }
 ```
 {% endcode %}
 
@@ -535,14 +647,18 @@ You'll have to change the variable in which will hold the value of `ReadKeyTimeo
 * Key has been pressed or not (`boolean`)
 {% endhint %}
 
-### Button infoboxes now handle choice info
+</details>
+
+<details>
+
+<summary>Button infoboxes now handle choice info</summary>
 
 {% code title="InfoBoxButtonsColor.cs" lineNumbers="true" %}
 ```csharp
-public static int WriteInfoBoxButtonsPlain(string[] buttons, string text, params object[] vars)
-public static int WriteInfoBoxButtonsPlain(string[] buttons, string text, char UpperLeftCornerChar, char LowerLeftCornerChar, char UpperRightCornerChar, char LowerRightCornerChar, char UpperFrameChar, char LowerFrameChar, char LeftFrameChar, char RightFrameChar, params object[] vars)
+public static int WriteInfoBoxButtonsPlain(string[] buttons, string text, params object[] vars) { }
+public static int WriteInfoBoxButtonsPlain(string[] buttons, string text, char UpperLeftCornerChar, char LowerLeftCornerChar, char UpperRightCornerChar, char LowerRightCornerChar, char UpperFrameChar, char LowerFrameChar, char LeftFrameChar, char RightFrameChar, params object[] vars) { }
 (...)
-public static int WriteInfoBoxButtonsColorBack(string title, string[] buttons, string text, char UpperLeftCornerChar, char LowerLeftCornerChar, char UpperRightCornerChar, char LowerRightCornerChar, char UpperFrameChar, char LowerFrameChar, char LeftFrameChar, char RightFrameChar, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars)
+public static int WriteInfoBoxButtonsColorBack(string title, string[] buttons, string text, char UpperLeftCornerChar, char LowerLeftCornerChar, char UpperRightCornerChar, char LowerRightCornerChar, char UpperFrameChar, char LowerFrameChar, char LeftFrameChar, char RightFrameChar, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars) { }
 ```
 {% endcode %}
 
@@ -551,3 +667,5 @@ The button infoboxes now handle the choice info instead of simple string array o
 {% hint style="info" %}
 You'll have to change how to define the buttons from passing it a simple array of strings to an array of `InputChoiceInfo` instances that contain info about your choices.
 {% endhint %}
+
+</details>

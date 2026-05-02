@@ -11,7 +11,15 @@ Unified commands are a fixed set of commands that are available in every shell, 
 Most of the unified commands are hidden, and you can show them using the `-hidden` switch in the help command. You can learn more about hidden commands [here](./#command-flags).
 {% endhint %}
 
+***
+
+## <mark style="color:$primary;">The list</mark>
+
 Consult the unified commands table below to get the full list of unified commands below:
+
+<details>
+
+<summary>Unified commands table</summary>
 
 | Command              | Usage                                                                                                                  | Description                                                                       | Flags                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | -------------------- |
@@ -111,3 +119,5 @@ Consult the unified commands table below to get the full list of unified command
 | `unset`              | `[-justwipe] <$variable>`                                                                                              | Removes a variable from the MESH variable list                                    | None                 |
 | `uppercase`          | `[-whole\|-first] [-verbose] <text>`                                                                                   | Uppercases a string                                                               | Hidden               |
 | `wrap`               | `<command>`                                                                                                            | Wraps the console output                                                          | None                 |
+
+</details>

@@ -7,41 +7,45 @@ icon: up
 
 Here is a list of breaking changes that happened during the API v7.0 period when differing versions of Terminaux introduced breaking changes.
 
-## From 6.0.x to 7.0.x
+***
+
+## <mark style="color:$primary;">From 6.0.x to 7.0.x</mark>
 
 Between the 6.0.x and 7.0.x version range, we've made the following breaking changes:
 
-### Removed all obsolete functions
+<details>
+
+<summary>Removed all obsolete functions</summary>
 
 {% code title="Affected classes" lineNumbers="true" %}
 ```csharp
-public static class GraphicsTools
-public static class ListWriterColor
-public static class AlignedFigletTextColor
-public static class AlignedTextColor
-public static class BarChartColor
-public static class BorderColor
-public static class BorderTextColor
-public static class BoxColor
-public static class BoxFrameColor
-public static class BreakdownChartColor
-public static class CanvasColor
-public static class FigletColor
-public static class FigletWhereColor
-public static class PowerLineColor
-public static class ProgressBarColor
-public static class ProgressBarVerticalColor
-public static class RainbowBackTextWriterColor
-public static class RainbowTextWriterColor
-public static class SliderColor
-public static class SliderVerticalColor
-public static class StickChartColor
-public static class TableColor
-public static class TruncatedLineText
-public static class TruncatedText
-public static class KeybindingsWriter
-public static class LineHandleRangedWriter
-public static class LineHandleWriter
+public static class GraphicsTools { }
+public static class ListWriterColor { }
+public static class AlignedFigletTextColor { }
+public static class AlignedTextColor { }
+public static class BarChartColor { }
+public static class BorderColor { }
+public static class BorderTextColor { }
+public static class BoxColor { }
+public static class BoxFrameColor { }
+public static class BreakdownChartColor { }
+public static class CanvasColor { }
+public static class FigletColor { }
+public static class FigletWhereColor { }
+public static class PowerLineColor { }
+public static class ProgressBarColor { }
+public static class ProgressBarVerticalColor { }
+public static class RainbowBackTextWriterColor { }
+public static class RainbowTextWriterColor { }
+public static class SliderColor { }
+public static class SliderVerticalColor { }
+public static class StickChartColor { }
+public static class TableColor { }
+public static class TruncatedLineText { }
+public static class TruncatedText { }
+public static class KeybindingsWriter { }
+public static class LineHandleRangedWriter { }
+public static class LineHandleWriter { }
 ```
 {% endcode %}
 
@@ -51,7 +55,11 @@ The above classes, which were marked as deprecated back in Terminaux 6.0, have b
 You'll have to use cyclic writers if you want to continue using fancy writers. You can consult [this page](../usage/console-tools/console-writers/cyclic-writers/) for more info.
 {% endhint %}
 
-### Base shell info generic class implemented
+</details>
+
+<details>
+
+<summary>Base shell info generic class implemented</summary>
 
 {% code title="BaseShellInfo.cs" lineNumbers="true" %}
 ```csharp
@@ -63,7 +71,7 @@ When you create your own shell info classes to give your shell some important in
 
 Starting from Nitrocid KS 0.1.2 and Terminaux 7.0, you'll no longer have to override the BaseShell property because we've implemented a generic version of the above class that takes a type of your shell. For example, if your shell is called `OxygenShell` and your shell info class is called `OxygenShellInfo`, you can just inherit the generic version of the class so that it becomes `BaseShellInfo<OxygenShell>`.
 
-As a result, the following properties are removed from the IShellInfo interface:
+As a result, the following properties are removed from the `IShellInfo` interface:
 
 {% code title="IShellInfo.cs" lineNumbers="true" %}
 ```csharp
@@ -76,7 +84,11 @@ PromptPresetBase CurrentPreset { get; }
 When inheriting the non-generic base shell class, your shell info class might hold wrong information about your shell, even if your commands are defined. Therefore, you must migrate to the generic version of the class if you want to retain your shell settings.
 {% endhint %}
 
-### Cyclic writers now use typed `CyclicWriter` classes
+</details>
+
+<details>
+
+<summary>Cyclic writers now use typed <code>CyclicWriter</code> classes</summary>
 
 The cyclic writers have been redefined to make their classes use the typed `CyclicWriter` classes. These classes consist of:
 
@@ -150,7 +162,11 @@ Part of the introduction of the two typed cyclic writer classes involved removin
 Consult the updated cyclic writer documentation for more information.
 {% endhint %}
 
-### Changed left and right margins to widths in some graphical writers
+</details>
+
+<details>
+
+<summary>Changed left and right margins to widths in some graphical writers</summary>
 
 {% code title="Some graphical writers" lineNumbers="true" %}
 ```csharp
@@ -180,7 +196,11 @@ We have replaced the two above properties with the `Width` property that some gr
 You'll have to calculate the total width that the affected writers need to render to the terminal.
 {% endhint %}
 
-### `Keybindings` and `StemLeafChart` writers now act as a simple writer
+</details>
+
+<details>
+
+<summary><code>Keybindings</code> and <code>StemLeafChart</code> writers now act as a simple writer</summary>
 
 {% code title="Keybindings.cs + StemLeafChart.cs" lineNumbers="true" %}
 ```csharp
@@ -195,15 +215,23 @@ The two above properties have been removed because simple writers are not suppos
 You can still use the rendering tools functions to accommodate your needs, should you use positioning to write these.
 {% endhint %}
 
-### Moved `WriteRenderable()` and `RenderRenderable()` to `RendererTools`
+</details>
+
+<details>
+
+<summary>Moved <code>WriteRenderable()</code> and <code>RenderRenderable()</code> to <code>RendererTools</code></summary>
 
 We have moved all `WriteRenderable()` and `RenderRenderable()` function overloads from `ContainerTools` to `RendererTools` to better convey the goals as we have created the two base cyclic writer classes.
 
-### Migrated `InfoBoxInputPasswordColor` to `InfoBoxInputColor`
+</details>
+
+<details>
+
+<summary>Migrated <code>InfoBoxInputPasswordColor</code> to <code>InfoBoxInputColor</code></summary>
 
 {% code title="InfoBoxInputPasswordColor.cs" lineNumbers="true" %}
 ```csharp
-public static class InfoBoxInputPasswordColor
+public static class InfoBoxInputPasswordColor { }
 ```
 {% endcode %}
 
@@ -213,11 +241,15 @@ We've migrated the two classes into one by adding functions labelled with `Passw
 You'll have to reference the same functions but with the `InfoBoxInputColor` class.
 {% endhint %}
 
-### Removed `SplitVTSequencesMultiple()`
+</details>
+
+<details>
+
+<summary>Removed <code>SplitVTSequencesMultiple()</code></summary>
 
 {% code title="VtSequenceTools.cs" lineNumbers="true" %}
 ```csharp
-public static string[] SplitVTSequencesMultiple(string Text, VtSequenceType types = VtSequenceType.All)
+public static string[] SplitVTSequencesMultiple(string Text, VtSequenceType types = VtSequenceType.All) { }
 ```
 {% endcode %}
 
@@ -227,7 +259,11 @@ As `SplitVTSequencesMultiple()` provides the same functionality as `SplitVTSeque
 Replace all calls to the removed function with `SplitVTSequences()`.
 {% endhint %}
 
-### Removed `SliderInside` from `Selection`
+</details>
+
+<details>
+
+<summary>Removed <code>SliderInside</code> from <code>Selection</code></summary>
 
 {% code title="Selection.cs" lineNumbers="true" %}
 ```csharp
@@ -241,15 +277,23 @@ As development of Terminaux 7.0 continues, we've seen the above property as redu
 You'll have to manually adjust the left position to add `1`, depending on the look of your application. If you're using this property, you'll have to increment the left position. Otherwise, you don't have to.
 {% endhint %}
 
-### Presentation system now uses the input modules
+</details>
+
+<details>
+
+<summary>Presentation system now uses the input modules</summary>
 
 {% code title="InputInfo.cs" lineNumbers="true" %}
 ```csharp
-public class InputInfo
+public class InputInfo { }
 ```
 {% endcode %}
 
-Input modules have been implemented, and they are stable enough that the presentation input elements are actually duplicates of the broader input module classes. As a result, we've decided to eliminate the presentation-specific input elements and to rename the `InputInfo` class to `PresentationInputInfo` to avoid ambiguity. As a result, the following input methods have been removed together with the corresponding interface, `IInputMethod`, and the base class, `BaseInputMethod`:
+Input modules have been implemented, and they are stable enough that the presentation input elements are actually duplicates of the broader input module classes.
+
+We've decided to eliminate the presentation-specific input elements and to rename the `InputInfo` class to `PresentationInputInfo` to avoid ambiguity.
+
+As a result, the following input methods have been removed together with the corresponding interface, `IInputMethod`, and the base class, `BaseInputMethod`:
 
 * `MaskedTextInputMethod`
 * `SelectionInputMethod`
@@ -267,13 +311,17 @@ You'll have to replace all definitions of the older `InputMethod` classes with t
 * `TextInputMethod` -> `TextBoxModule`
 {% endhint %}
 
-### Refactored CIE color models
+</details>
+
+<details>
+
+<summary>Refactored CIE color models</summary>
 
 {% code title="Cie*Full.cs" lineNumbers="true" %}
 ```csharp
-public class CieLabFull : BaseColorModel, IEquatable<CieLabFull> {}
-public class CieLchFull : BaseColorModel, IEquatable<CieLchFull> {}
-public class CieLuvFull : BaseColorModel, IEquatable<CieLuvFull> {}
+public class CieLabFull : BaseColorModel, IEquatable<CieLabFull> { }
+public class CieLchFull : BaseColorModel, IEquatable<CieLchFull> { }
+public class CieLuvFull : BaseColorModel, IEquatable<CieLuvFull> { }
 ```
 {% endcode %}
 
@@ -285,7 +333,11 @@ Functions that were suffixed with `Full` were also migrated in the same manner a
 You'll have to use the functions and the classes of CIE-Lab, CIE-Lch, and CIE-Luv without the `Full` suffix.
 {% endhint %}
 
-### Refactored the input management code
+</details>
+
+<details>
+
+<summary>Refactored the input management code</summary>
 
 {% code title="Input.cs" lineNumbers="true" %}
 ```csharp
@@ -336,11 +388,15 @@ else if (key is ConsoleKeyInfo cki && !Input.PointerActive)
 ```
 {% endhint %}
 
-### Removed icon quality, keeping the normal version
+</details>
+
+<details>
+
+<summary>Removed icon quality, keeping the normal version</summary>
 
 {% code title="IconsQuality.cs" lineNumbers="true" %}
 ```csharp
-public enum IconsQuality
+public enum IconsQuality { }
 ```
 {% endcode %}
 
@@ -350,13 +406,17 @@ We've removed the icons quality enumeration because it's useful only in actual G
 There is no alternative for this enum, and we're planning to roll out this change to Terminaux 6.1.x and older.
 {% endhint %}
 
-### Aligned text writer improved
+</details>
+
+<details>
+
+<summary>Aligned text writer improved</summary>
 
 {% code title="AlignedText.cs and AlignedFigletText.cs" lineNumbers="true" %}
 ```csharp
 public int LeftMargin
 public int RightMargin
-public bool OneLine (AlignedFigletText)
+public bool OneLine(AlignedFigletText) { }
 ```
 {% endcode %}
 
@@ -366,12 +426,16 @@ The aligned text writer and the figlet counterpart have been improved to get rid
 You can use the `Left` and the `Width` properties to replace the older `LeftMargin` and `RightMargin` properties.
 {% endhint %}
 
-### VT sequence tools refactored
+</details>
+
+<details>
+
+<summary>VT sequence tools refactored</summary>
 
 {% code title="VtSequenceTools.cs" lineNumbers="true" %}
 ```csharp
-public static (VtSequenceType type, Match[] matches)[] MatchVTSequences(string Text, VtSequenceType type = VtSequenceType.All)
-public static Dictionary<VtSequenceType, bool> IsMatchVTSequencesSpecific(string Text, VtSequenceType type = VtSequenceType.All)
+public static (VtSequenceType type, Match[] matches)[] MatchVTSequences(string Text, VtSequenceType type = VtSequenceType.All) { }
+public static Dictionary<VtSequenceType, bool> IsMatchVTSequencesSpecific(string Text, VtSequenceType type = VtSequenceType.All) { }
 ```
 {% endcode %}
 
@@ -406,7 +470,11 @@ public static class VtSequenceBuilderTools
 For increased flexbility, `MatchVTSequences()` and `IsMatchVTSequencesSpecific()` both return a full dictionary that contain info about every single sequence type, even if there are no entries. This makes sure that you can now safely use the indexer in the resulting variable without worrying about its existence.
 {% endhint %}
 
-### Shell features backported from Nitrocid
+</details>
+
+<details>
+
+<summary>Shell features backported from Nitrocid</summary>
 
 The initial migration of the UESH shell started when working on Terminaux 6.0. Since then, the Nitrocid shell has been evaluated for the second time, and found that we needed to make the shell more complete and consistent with Nitrocid and other Terminaux applications.
 
@@ -414,7 +482,11 @@ As a result, we've added new features to Terminaux's shell implementation. Howev
 
 In addition to that, Nitrocid's codebase has been stripped to meet this requirement by removing Nitrocid's implementation since the Terminaux one has almost all the features.
 
-### Removed color templates to precede the themes feature
+</details>
+
+<details>
+
+<summary>Removed color templates to precede the themes feature</summary>
 
 ```csharp
 public class TemplateInfo { }
@@ -427,12 +499,16 @@ The color template feature introduced in Terminaux wasn't meeting all the requir
 Use the improved themes feature to take advantage of all the improvements that the writers have undergone.
 {% endhint %}
 
-### Removed legacy argument parsing
+</details>
+
+<details>
+
+<summary>Removed legacy argument parsing</summary>
 
 {% code title="ArgumentParse.cs" lineNumbers="true" %}
 ```csharp
-public static void ParseArgumentsLegacy(string[]? ArgumentsInput, Dictionary<string, ArgumentInfo> arguments)
-public static bool IsArgumentPassedLegacy(string[]? ArgumentsInput, string argumentName, Dictionary<string, ArgumentInfo> arguments)
+public static void ParseArgumentsLegacy(string[]? ArgumentsInput, Dictionary<string, ArgumentInfo> arguments) { }
+public static bool IsArgumentPassedLegacy(string[]? ArgumentsInput, string argumentName, Dictionary<string, ArgumentInfo> arguments) { }
 ```
 {% endcode %}
 
@@ -442,7 +518,11 @@ As we've improved the methodology of processing arguments that are passed to the
 Use `ParseArguments()` and `IsArgumentPassed()` functions instead.
 {% endhint %}
 
-### Removed hex and text viewer classes
+</details>
+
+<details>
+
+<summary>Removed hex and text viewer classes</summary>
 
 ```csharp
 public static class HexViewInteractive { }
@@ -455,24 +535,28 @@ The hex and text editors have undergone many recent improvements to the point th
 You can still open the viewer, but use the `HexEditInteractive` and `TextEditInteractive` respectively with passing `false` to the `edit` argument.
 {% endhint %}
 
-### Removed obsolete infobox functions
+</details>
+
+<details>
+
+<summary>Removed obsolete infobox functions</summary>
 
 ```csharp
-public static int WriteInfoBoxButtonsPlain(InputChoiceInfo[] buttons, string text, params object[] vars) =>
-public static int WriteInfoBoxButtonsPlain(InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) =>
-public static int WriteInfoBoxButtonsColor(InputChoiceInfo[] buttons, string text, Color InfoBoxButtonsColor, params object[] vars) =>
-public static int WriteInfoBoxButtonsColorBack(InputChoiceInfo[] buttons, string text, Color InfoBoxButtonsColor, Color BackgroundColor, params object[] vars) =>
-public static int WriteInfoBoxButtons(InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) =>
-public static int WriteInfoBoxButtonsColor(InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxButtonsColor, params object[] vars) =>
-public static int WriteInfoBoxButtonsColorBack(InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxButtonsColor, Color BackgroundColor, params object[] vars) =>
-public static int WriteInfoBoxButtonsPlain(string title, InputChoiceInfo[] buttons, string text, params object[] vars) =>
-public static int WriteInfoBoxButtonsPlain(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) =>
-public static int WriteInfoBoxButtons(string title, InputChoiceInfo[] buttons, string text, params object[] vars) =>
-public static int WriteInfoBoxButtonsColor(string title, InputChoiceInfo[] buttons, string text, Color InfoBoxTitledButtonsColor, params object[] vars) =>
-public static int WriteInfoBoxButtonsColorBack(string title, InputChoiceInfo[] buttons, string text, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars) =>
-public static int WriteInfoBoxButtons(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) =>
-public static int WriteInfoBoxButtonsColor(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxTitledButtonsColor, params object[] vars) =>
-public static int WriteInfoBoxButtonsColorBack(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars) =>
+public static int WriteInfoBoxButtonsPlain(InputChoiceInfo[] buttons, string text, params object[] vars) { }
+public static int WriteInfoBoxButtonsPlain(InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) { }
+public static int WriteInfoBoxButtonsColor(InputChoiceInfo[] buttons, string text, Color InfoBoxButtonsColor, params object[] vars) { }
+public static int WriteInfoBoxButtonsColorBack(InputChoiceInfo[] buttons, string text, Color InfoBoxButtonsColor, Color BackgroundColor, params object[] vars) { }
+public static int WriteInfoBoxButtons(InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) { }
+public static int WriteInfoBoxButtonsColor(InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxButtonsColor, params object[] vars) { }
+public static int WriteInfoBoxButtonsColorBack(InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxButtonsColor, Color BackgroundColor, params object[] vars) { }
+public static int WriteInfoBoxButtonsPlain(string title, InputChoiceInfo[] buttons, string text, params object[] vars) { }
+public static int WriteInfoBoxButtonsPlain(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) { }
+public static int WriteInfoBoxButtons(string title, InputChoiceInfo[] buttons, string text, params object[] vars) { }
+public static int WriteInfoBoxButtonsColor(string title, InputChoiceInfo[] buttons, string text, Color InfoBoxTitledButtonsColor, params object[] vars) { }
+public static int WriteInfoBoxButtonsColorBack(string title, InputChoiceInfo[] buttons, string text, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars) { }
+public static int WriteInfoBoxButtons(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, params object[] vars) { }
+public static int WriteInfoBoxButtonsColor(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxTitledButtonsColor, params object[] vars) { }
+public static int WriteInfoBoxButtonsColorBack(string title, InputChoiceInfo[] buttons, string text, BorderSettings settings, Color InfoBoxTitledButtonsColor, Color BackgroundColor, params object[] vars) { }
 
 // ...and other similar functions in all infobox classes
 ```
@@ -482,3 +566,5 @@ We have introduced `InfoBoxSettings`. As a result, we've decided to remove all t
 {% hint style="info" %}
 Move the arguments to their relevant fields by creating a new instance of `InfoBoxSettings` and using the properties to assign their correct values. For example, `InfoBoxSettings` contains a property called `Title` that you can use to set the title.
 {% endhint %}
+
+</details>

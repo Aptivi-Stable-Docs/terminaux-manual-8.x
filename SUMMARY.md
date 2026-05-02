@@ -10,13 +10,12 @@
   * [API v6.0](breaking-changes/api-v6.0.md)
   * [API v7.0](breaking-changes/api-v7.0.md)
   * [API v8.0](breaking-changes/api-v8.0.md)
+* [Installation and Upgrade](https://app.gitbook.com/s/Id4bob6wnHvpX4zbVVtI/csharp-libraries/installation-and-upgrade)
 
 ## Usage
 
 * [Preface](usage/preface.md)
 * [Console Tools](usage/console-tools/README.md)
-  * [Image Rendering](usage/console-tools/image-rendering/README.md)
-    * [Icons](usage/console-tools/image-rendering/icons.md)
   * [Console Writers](usage/console-tools/console-writers/README.md)
     * [Individual Writers](usage/console-tools/console-writers/individual-writers.md)
     * [Cyclic Writers](usage/console-tools/console-writers/cyclic-writers/README.md)
@@ -33,6 +32,7 @@
     * [Console Screen](usage/console-tools/textual-ui/console-screen.md)
     * [Console Resize Listener](usage/console-tools/textual-ui/console-resize-listener.md)
     * [VT Sequences](usage/console-tools/textual-ui/vt-sequences.md)
+  * [Image Rendering](usage/console-tools/image-rendering.md)
   * [Console Checker](usage/console-tools/console-checker.md)
   * [Console Wrapper](usage/console-tools/console-wrapper.md)
   * [Console Colors](usage/console-tools/console-colors.md)
@@ -44,6 +44,7 @@
   * [Test Fixtures](usage/console-tools/test-fixtures.md)
   * [Terminal Structures](usage/console-tools/terminal-structures.md)
   * [Console Logging](usage/console-tools/console-logging.md)
+  * [Interop with Spectre.Console](usage/console-tools/interop-with-spectre.console.md)
 * [Input Reader](usage/input-reader/README.md)
   * [Shells](usage/input-reader/shells/README.md)
     * [Shell Structure](usage/input-reader/shells/shell-structure/README.md)
@@ -71,11 +72,6 @@
   * [Reader Settings](usage/input-reader/reader-settings.md)
   * [Syntax Highlighting](usage/input-reader/syntax-highlighting.md)
   * [Pointer Events](usage/input-reader/pointer-events.md)
-* [Color Sequences](usage/color-sequences/README.md)
-  * [Color Model Conversions](usage/color-sequences/color-model-conversions.md)
-  * [Color Model Parsing](usage/color-sequences/color-model-parsing.md)
-  * [Interop with System.Drawing.Color](usage/color-sequences/interop-with-system.drawing.color.md)
-* [Interop with Spectre.Console](usage/interop-with-spectre.console.md)
 
 ***
 

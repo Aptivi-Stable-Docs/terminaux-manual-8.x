@@ -7,21 +7,29 @@ icon: presentation-screen
 
 This API provides you the presentation system used for presenting something to your users in the full-screen view. It's like a presentation in steroids.
 
-## How to present
+***
 
-To present your presentation to your users, you must implement a `Presentation` class instance, which must assign the following variables in the constructor:
+## <mark style="color:$primary;">How to present</mark>
 
-* `Name`
-  * Presentation name
-* `Pages`
-  * Presentation pages (List of `PresentationPage` instances)
+To present your presentation to your users, the presentation system must know how to render the presentation using a set of elements.
+
+<details>
+
+<summary>Implementing a presentation class instance</summary>
+
+To implement a `Presentation` class instance, you must call its constructor with the following variables:
+
+<table><thead><tr><th width="120">Argument</th><th>Description</th></tr></thead><tbody><tr><td><code>Name</code></td><td>Presentation name</td></tr><tr><td><code>Pages</code></td><td>Presentation pages (List of <code>PresentationPage</code> instances)</td></tr></tbody></table>
+
+</details>
+
+<details>
+
+<summary>Implementing a presentation page instance</summary>
 
 To implement the `PresentationPage` instances, you must call its constructor with the following variables:
 
-* `Name`
-  * Presentation page name
-* `Pages`
-  * Presentation page elements (List of `IElement` instances)
+<table><thead><tr><th width="120">Argument</th><th>Description</th></tr></thead><tbody><tr><td><code>Name</code></td><td>Presentation name</td></tr><tr><td><code>Elements</code></td><td>Presentation page elements (List of <code>IElement</code> instances)</td></tr></tbody></table>
 
 {% hint style="info" %}
 You can make cyclic presentation pages by assigning a non-zero value to the `CycleFrequency` property in your presentation page. To learn more about how it works, consult the below page:
@@ -29,32 +37,25 @@ You can make cyclic presentation pages by assigning a non-zero value to the `Cyc
 <a href="textual-ui/console-screen.md" class="button primary">Console Screen</a>
 {% endhint %}
 
-To implement the page elements, make new instances of the elements. Base elements that Nitrocid KS implements are:
+</details>
 
-* `TextElement`
-  * Static text.
-  * The first argument in the element `Arguments` is the string to be printed.
-* `DynamicTextElement`
-  * Dynamic text.
-  * The first argument in the element `Arguments` is the action to which it generates the string, for example, `TimeDateRenderers.Render()`.
+<details>
 
-{% hint style="info" %}
-You can also make your custom `IElement` in your code, and no registration is needed.
-{% endhint %}
+<summary>Implementing presentation elements</summary>
 
-### Controls
+To implement the page elements, make new instances of the elements. You can also make your custom `IElement` in your code, and no registration is needed.
 
-The presentation viewer has the following controls:
+The following elements are available:
 
-* `ENTER` / `Left-click (mouse)`
-  * Advances to the next page
-* `ESC`
-  * Bails out from the presentation
-  * Has no effect on kiosk and modal presentations
+<table><thead><tr><th width="190.3333740234375">Element</th><th width="130">Description</th><th>Parameters</th></tr></thead><tbody><tr><td><code>TextElement</code></td><td>Static text</td><td>The first argument in the element <code>Arguments</code> is the string to be printed.</td></tr><tr><td><code>DynamicTextElement</code></td><td>Dynamic text</td><td>The first argument in the element <code>Arguments</code> is the action which generates the string.</td></tr></tbody></table>
 
-### Input
+</details>
 
-In addition to the presentation elements, you can also add input to your presentation to interact with your users more. Just create a new instance of the `PresentationInputInfo` class and provide the title, the description, and a new instance of the input module class that implements the `InputModule` class.
+<details>
+
+<summary>Implementing input</summary>
+
+You can add input to your presentation to interact with your users more. Just create a new instance of the `PresentationInputInfo` class and provide the title, the description, and a new instance of the input module class that implements the `InputModule` class.
 
 ```csharp
 internal static PresentationInputInfo input =
@@ -93,7 +94,11 @@ In order to be able to get the input, it's recommended to put the `PresentationI
 You can also specify whether the input is required in the constructor. Currently, the input is not required, but you can pass `true` to the fourth argument to make it required, such as in the example above.
 {% endhint %}
 
-The presentation system checks the page to see if there are any input instances. If true, you'll be presented with an informational box telling you to select an input to fill. The asterisk next to the number denotes the required input. This means that users should fill in such input before being able to go on. Those without the asterisk means that it's fully optional.
+### <mark style="color:$primary;">Input requirement</mark>
+
+The presentation system checks the page to see if there are any input instances. If true, you'll be presented with an informational box telling you to select an input to fill.
+
+The asterisk next to the number denotes the required input. This means that users should fill in such input before being able to go on. Those without the asterisk means that it's fully optional.
 
 {% hint style="info" %}
 To learn more about input modules, consult the below page:
@@ -101,10 +106,26 @@ To learn more about input modules, consult the below page:
 <a href="../input-reader/other-input/input-modules.md" class="button primary">Input Modules</a>
 {% endhint %}
 
-### Appearance
+</details>
+
+<details>
+
+<summary>Customizing appearance</summary>
 
 You can customize how your slideshow looks using the following properties:
 
-* `BorderSettings`: Customizes your presentation's borders
-* `FrameColor`: Customizes your presentation's border frame color
-* `BackgroundColor`: Customizes your presentation's background color
+<table><thead><tr><th width="169.6666259765625">Property</th><th>Description</th></tr></thead><tbody><tr><td><code>BorderSettings</code></td><td>Customizes your presentation's borders</td></tr><tr><td><code>FrameColor</code></td><td>Customizes your presentation's border frame color</td></tr><tr><td><code>BackgroundColor</code></td><td>Customizes your presentation's background color</td></tr></tbody></table>
+
+</details>
+
+***
+
+## <mark style="color:$primary;">Controls</mark>
+
+The presentation viewer has the following controls:
+
+<table><thead><tr><th width="248.66668701171875">Keybinding</th><th></th></tr></thead><tbody><tr><td><code>ENTER</code> / <code>Left-click (mouse)</code></td><td>Advances to the next page</td></tr><tr><td><code>ESC</code></td><td>Bails out from the presentation</td></tr></tbody></table>
+
+{% hint style="info" %}
+Please note that `ESC` has no effect on kiosk and modal presentations.
+{% endhint %}

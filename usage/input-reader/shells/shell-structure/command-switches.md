@@ -7,19 +7,31 @@ icon: toggle-large-on
 
 The command switches function is split into two categories, which is switch management and switch information definition.
 
-## Switch management
+***
 
-There is a static class dedicated to managing the switches, called `SwitchManager`. It allows you to manage the switches with the values. There are two functions that specialize in getting the switch values: `GetSwitchValues()` and `GetSwitchValue()`.
+## <mark style="color:$primary;">Switch management</mark>
 
-The first function returns the list of switches with their values stored in a tuple, and the second function returns the switch value for a specified switch or a blank value if not found.
+There is a static class dedicated to managing the switches, called `SwitchManager`. It allows you to manage the switches with the values.
+
+<details>
+
+<summary>Obtaining switch values</summary>
+
+There are two functions that specialize in getting the switch values:
+
+<table><thead><tr><th width="179.99993896484375">Function</th><th>Description</th></tr></thead><tbody><tr><td><code>GetSwitchValues()</code></td><td>Returns the list of switches with their values stored in a tuple</td></tr><tr><td><code>GetSwitchValue()</code></td><td>Returns the switch value for a specified switch or a blank value if not found</td></tr></tbody></table>
 
 {% hint style="info" %}
 You can always use these functions with the `SwitchesOnly` array found in the `Execute()` function in the `CommandBase` class.
 {% endhint %}
 
-The switches can be set to conflict with each other by passing an array of incompatible switches to the `SwitchInfo` constructor, specifically the last parameter, `conflictsWith`. However, each switch to be conflicted must set their `conflictsWith` arrays to the opposing switches.
+</details>
 
-<figure><img src="../../../../.gitbook/assets/109-shell.png" alt=""><figcaption></figcaption></figure>
+<details>
+
+<summary>Conflicting switches</summary>
+
+The switches can be set to conflict with each other by passing an array of incompatible switches to the `SwitchInfo` constructor, specifically the last parameter, `conflictsWith`. However, each switch to be conflicted must set their `conflictsWith` arrays to the opposing switches.
 
 For example, if you want a command to have three switches (`-s`, `-t`, `-u`) that conflict with each other, you can specify three `SwitchInfo` instances with the following properties (assuming that you've already set the `HelpDefinition`, `IsRequired`, and `ArgumentsRequired` parameters):
 
@@ -60,7 +72,19 @@ Be sure that you put all the conflicts in the above form for each conflicting `S
 {% endcode %}
 {% endhint %}
 
+</details>
+
+<details>
+
+<summary>Making switches not accept values</summary>
+
 The switches can also be set not to accept any value by setting the `AcceptsValues` argument to `false`. It will cause parsing to fail once the value in such switches are encountered, stating that such switches don't accept any value.
+
+</details>
+
+<details>
+
+<summary>Optionalizing last n required arguments</summary>
 
 As for the switches that cause some or all arguments to be omittable (optional), you can indicate so in the constructor of your switch. The `optionalizeLastRequiredArguments` argument in the constructor specifies how many arguments are going to be made optional starting from the last argument in the list.
 
@@ -80,7 +104,13 @@ new SwitchInfo("list", "Shows all the available cities", false, false, null, 2, 
 ```
 {% endhint %}
 
-Additionally, you can set your switches to only accept numeric values as the switch value when executing commands that contain such switches. When the shell detects that the non-numeric value is provided to such switches, the shell will print an error message. This is how you can define such switch:
+</details>
+
+<details>
+
+<summary>Making switches only accept numeric values</summary>
+
+You can set your switches to only accept numeric values as the switch value when executing commands that contain such switches. When the shell detects that the non-numeric value is provided to such switches, the shell will print an error message. This is how you can define such switch:
 
 <pre class="language-csharp"><code class="lang-csharp">new SwitchInfo("columns", /* Localizable */ "Specifies the columns per line", new SwitchOptions()
 {
@@ -89,7 +119,13 @@ Additionally, you can set your switches to only accept numeric values as the swi
 </strong>})
 </code></pre>
 
-In addition to these features, you can now also check the specific switch value to see if that value is numeric or not. That means it's checking to see if it's a number (as in either positive numbers or negative numbers) or a number with decimals (as in numbers that have decimals, separated by a dot).
+</details>
+
+<details>
+
+<summary>Checking if a switch value is numeric</summary>
+
+You can check the specific switch value to see if that value is numeric or not. That means it's checking to see if it's a number (as in either positive numbers or negative numbers) or a number with decimals (as in numbers that have decimals, separated by a dot).
 
 The function to perform this check on a specific switch is `IsSwitchValueNumeric()`, which you can call using the following signature:
 
@@ -99,9 +135,19 @@ public static bool IsSwitchValueNumeric(string[] switches, string switchKey)
 ```
 {% endcode %}
 
+</details>
+
+<details>
+
+<summary>Checking if any or all of switches were passed</summary>
+
 Additionally, you can check to see if a group of passed switches contains any of or all of the switches or not, with the `ContainsAllSwitches()` and the `ContainsAnySwitches()` functions.
 
-## Switch information definition
+</details>
+
+***
+
+## <mark style="color:$primary;">Switch information definition</mark>
 
 For `SwitchInfo` instances, consult the below constructors to create an array of `SwitchInfo` instances when defining your commands:
 

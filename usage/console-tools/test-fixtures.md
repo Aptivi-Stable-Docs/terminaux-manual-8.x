@@ -7,16 +7,24 @@ icon: flask
 
 CliTester is easy to use, but this page talks about the usage of this library to be able to use it in your console application.
 
-## Fixture types
+***
+
+## <mark style="color:$primary;">Fixture types</mark>
 
 CliTester provides functionality that allows you to define test fixtures that are of the following types:
 
 * Unconditional fixtures: Test fixtures that fall into this category tests against functions that don't return a value (that is, returning `void`).
 * Conditional fixtures: Test fixtures that fall into this category tests against functions that return a value (that is, returning a value other than `void`).
 
-### Unconditional fixtures
+To learn more, expand one of them.
 
-Fixtures that don't compare the returned value with the expected value and that the function being tested returns `void` are unconditional fixtures. This type can be created using the constructor of either a generic version of the `FixtureUnconditional` class (i.e. you are required to provide a delegate type that returns `void`, such as `Action` or `Action<string>`) or a non-generic one for dynamic usage.
+<details>
+
+<summary>Unconditional fixtures</summary>
+
+Fixtures that don't compare the returned value with the expected value and that the function being tested returns `void` are unconditional fixtures.
+
+This type can be created using the constructor of either a generic version of the `FixtureUnconditional` class (i.e. you are required to provide a delegate type that returns `void`, such as `Action` or `Action<string>`) or a non-generic one for dynamic usage.
 
 Unconditional fixtures can be defined like these example declarations:
 
@@ -46,7 +54,43 @@ internal static void TestWriteArgs(string name)
 }
 ```
 
-### Conditional Fixtures
+### <mark style="color:$primary;">How to run?</mark>
+
+When you need to run such fixtures, you'll need to take these tips into account:
+
+*   Unconditional tests that are defined using the generic version of the `FixtureUnconditional` class can be run using the `RunTest<TDelegate>()` function in the `FixtureRunner` static class.
+
+
+
+    ```csharp
+    var fixture = new FixtureUnconditional<Action>(nameof(UnconditionalFunctions.TestWrite), "Tests writing to console", UnconditionalFunctions.TestWrite);
+    bool result = FixtureRunner.RunTest(fixture, out var exc);
+    ```
+
+
+*   Unconditional tests that are defined using the non-generic version of the `FixtureUnconditional` class can be run using the `RunUnconditionalTest()` function in the fixture runner class.
+
+
+
+    ```csharp
+    var fixture = new FixtureUnconditional(nameof(UnconditionalFunctions.TestWrite), "Tests writing to console", UnconditionalFunctions.TestWrite);
+    bool result = FixtureRunner.RunUnconditionalTest(fixture, out var exc);
+    ```
+
+{% hint style="info" %}
+Test fixtures can also be run with the `RunGeneralTest()` function if you don't know whether the fixture is unconditional or conditional.
+
+```csharp
+var fixture = new FixtureConditional<Func<double, double, double>>(nameof(ConditionalFunctions.TestReadArgs), "Tests reading from console with arguments", ConditionalFunctions.TestReadArgs, 0d, 4, 2);
+bool result = FixtureRunner.RunGeneralTest(fixture, out var exc);
+```
+{% endhint %}
+
+</details>
+
+<details>
+
+<summary>Conditional Fixtures</summary>
 
 In the other hand, fixtures that compare the returned value with the expected value and that the function being tested has a return value are conditional fixtures. This type can be created using the constructor of either a generic version of the `FixtureConditional` class (i.e. you are required to provide a delegate type that supports return value, such as `Func<int>` or `Func<double, double, double>`) or a non-generic one for dynamic usage.
 
@@ -76,29 +120,9 @@ internal static double TestReadArgs(double dividend, double divisor) =>
     dividend % divisor;
 ```
 
-## Running the fixtures
+### <mark style="color:$primary;">How to run?</mark>
 
-When you need to run the fixtures, you'll need to take these tips into account:
-
-*   Unconditional tests that are defined using the generic version of the `FixtureUnconditional` class can be run using the `RunTest<TDelegate>()` function in the `FixtureRunner` static class.
-
-
-
-    ```csharp
-    var fixture = new FixtureUnconditional<Action>(nameof(UnconditionalFunctions.TestWrite), "Tests writing to console", UnconditionalFunctions.TestWrite);
-    bool result = FixtureRunner.RunTest(fixture, out var exc);
-    ```
-
-
-*   Unconditional tests that are defined using the non-generic version of the `FixtureUnconditional` class can be run using the `RunUnconditionalTest()` function in the fixture runner class.
-
-
-
-    ```csharp
-    var fixture = new FixtureUnconditional(nameof(UnconditionalFunctions.TestWrite), "Tests writing to console", UnconditionalFunctions.TestWrite);
-    bool result = FixtureRunner.RunUnconditionalTest(fixture, out var exc);
-    ```
-
+When you need to run such fixtures, you'll need to take these tips into account:
 
 *   Conditional tests that are defined using the generic version of the `FixtureConditional` class can be run using the `RunTest<TDelegate, TValue>()` function in the `FixtureRunner` static class, but you are required to provide both the delegate type and the value type in the `RunTest()` type parameters.
 
@@ -119,23 +143,44 @@ When you need to run the fixtures, you'll need to take these tips into account:
     bool result = FixtureRunner.RunConditionalTest<int>(fixture, out var exc);
     ```
 
+{% hint style="info" %}
+Test fixtures can also be run with the `RunGeneralTest()` function if you don't know whether the fixture is unconditional or conditional.
 
-*   Test fixtures can also be run with the `RunGeneralTest()` function if you don't know whether the fixture is unconditional or conditional.
+```csharp
+var fixture = new FixtureConditional<Func<double, double, double>>(nameof(ConditionalFunctions.TestReadArgs), "Tests reading from console with arguments", ConditionalFunctions.TestReadArgs, 0d, 4, 2);
+bool result = FixtureRunner.RunGeneralTest(fixture, out var exc);
+```
+{% endhint %}
 
+</details>
 
-
-    ```csharp
-    var fixture = new FixtureConditional<Func<double, double, double>>(nameof(ConditionalFunctions.TestReadArgs), "Tests reading from console with arguments", ConditionalFunctions.TestReadArgs, 0d, 4, 2);
-    bool result = FixtureRunner.RunGeneralTest(fixture, out var exc);
-    ```
-
-
-
+{% hint style="info" %}
 All the fixture runners return a Boolean value indicating whether the test passed or failed. If the test has passed, then the exception output parameter value is `null`. Otherwise, it's populated with exception information that tells you what happened.
+{% endhint %}
 
-## Fixture selector
+***
 
-To be able to make your console demo application more interactive, you can leverage the use of the fixture selector function that allows the end user to select a test fixture from the full-screen menu. This requires making a new array of type `Fixture[]` that stores all the test fixtures that you want. An example of array declaration of all the test fixtures (unconditional or not) is:
+## <mark style="color:$primary;">Fixture selector</mark>
+
+To be able to make your console demo application more interactive, you can leverage the use of the fixture selector function that allows the end user to select a test fixture from the full-screen menu. This requires making a new array of type `Fixture[]` that stores all the test fixtures that you want.
+
+For each test, there is a status box that indicates whether the test has been run, has succeeded, or has failed.
+
+* `[ ]`: For tests that are yet to run, this is shown.
+* `[*]`: For tests that have succeeded, this is shown.
+* `[X]`: For tests that have failed, this is shown.
+
+You can press <kbd>ENTER</kbd> to start a test fixture. If the test has succeeded, you'll get a green text saying that the test has passed. If the test has failed, you'll get a red text saying that the test has failed with an error message that may tell you why.
+
+{% hint style="info" %}
+The fixture selector requires a working terminal which meets [Terminaux](console-checker.md)'s requirements.
+{% endhint %}
+
+<details>
+
+<summary>Example of test fixtures with selector</summary>
+
+An example of array declaration of all the test fixtures (unconditional or not) is:
 
 ```csharp
 Fixture[] fixtures =
@@ -158,14 +203,4 @@ If you've defined all the test fixtures correctly, you should now see a menu tha
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-For each test, there is a status box that indicates whether the test has been run, has succeeded, or has failed.
-
-* `[ ]`: For tests that are yet to run, this is shown.
-* `[*]`: For tests that have succeeded, this is shown.
-* `[X]`: For tests that have failed, this is shown.
-
-You can press ENTER to start a test fixture. If the test has succeeded, you'll get a green text saying that the test has passed. If the test has failed, you'll get a red text saying that the test has failed with an error message that may tell you why.
-
-{% hint style="info" %}
-The fixture selector requires a working terminal which meets [Terminaux](console-checker.md)'s requirements.
-{% endhint %}
+</details>

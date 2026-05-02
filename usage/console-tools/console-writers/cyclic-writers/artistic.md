@@ -7,9 +7,21 @@ icon: paintbrush
 
 This allows you to draw artistic stuff into the console so that you can build your own interactive console applications easily.
 
-## Border
+***
+
+## <mark style="color:$primary;">List of artistic renderers</mark>
+
+Here are the artistic renderers that you can use:
+
+{% stepper %}
+{% step %}
+### <mark style="color:$primary;">Border</mark>
 
 You can render a nice border to the console either without any text, just a title, a text, or box title and text. You can also customize the borders, such as drop shadows which we'll showcase in the `BoxFrame` renderable.
+
+{% hint style="info" %}
+You can use the border settings to change the color of the border and to determine whether to display the entire border or not using a set of properties. For example, if you don't want to render the right edge, you can set `BorderRightFrameEnabled` to `false`.
+{% endhint %}
 
 {% tabs %}
 {% tab title="No text" %}
@@ -76,12 +88,10 @@ TextWriterRaw.WriteRaw(artistic.Render());
 <figure><img src="../../../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-{% hint style="info" %}
-You can use the border settings to change the color of the border and to determine whether to display the entire border or not using a set of properties. For example, if you don't want to render the right edge, you can set `BorderRightFrameEnabled` to `false`.
-{% endhint %}
-
-## Box
+{% step %}
+### <mark style="color:$primary;">Box</mark>
 
 You can render a box to the terminal easily.
 
@@ -98,8 +108,10 @@ TextWriterRaw.WriteRaw(artistic.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+{% endstep %}
 
-## Box frame
+{% step %}
+### <mark style="color:$primary;">Box frame</mark>
 
 It's basically the same as a border, but without text support and without filling inside the box
 
@@ -308,8 +320,10 @@ TextWriterRaw.WriteRaw(frame6.Render());
 <figure><img src="../../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Canvas
+{% step %}
+### <mark style="color:$primary;">Canvas</mark>
 
 This is your sandbox for your awesome creations. This is done by coloring individual pixels with a color of your choice.
 
@@ -327,8 +341,8 @@ var artistic = new Canvas()
 	InteriorHeight = 20,
 	Pixels =
 	[
-        // Draw the top part of the "T" letter
-        new(2, 2) { CellColor = ConsoleColors.Yellow },
+    // Draw the top part of the "T" letter
+    new(2, 2) { CellColor = ConsoleColors.Yellow },
 		new(3, 2) { CellColor = ConsoleColors.Yellow },
 		new(4, 2) { CellColor = ConsoleColors.Yellow },
 		new(5, 2) { CellColor = ConsoleColors.Yellow },
@@ -363,8 +377,8 @@ var artistic = new Canvas()
 		new(17, 3) { CellColor = ConsoleColors.Yellow },
 		new(18, 3) { CellColor = ConsoleColors.Yellow },
         
-        // Draw the line of the "T" letter
-        new(9, 3) { CellColor = ConsoleColors.Yellow },
+    // Draw the line of the "T" letter
+    new(9, 3) { CellColor = ConsoleColors.Yellow },
 		new(9, 4) { CellColor = ConsoleColors.Yellow },
 		new(9, 5) { CellColor = ConsoleColors.Yellow },
 		new(9, 6) { CellColor = ConsoleColors.Yellow },
@@ -746,12 +760,16 @@ TextWriterRaw.WriteRaw(artistic.Render());
 <figure><img src="../../../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
 
-## Animated canvases
+{% step %}
+### <mark style="color:$primary;">Animated canvases</mark>
 
 You can make animated canvases using the `AnimatedCanvas` class. It allows you to define canvas frames that describe a group of arrays of cell properties. They are changed sequentially to form an animated canvas. The example below is taken from [this file](https://github.com/Aptivi/Terminaux/blob/main/Terminaux.Console/Fixtures/Cases/Writer/TestAnimatedCanvas.cs).
+{% endstep %}
 
-## Rulers
+{% step %}
+### <mark style="color:$primary;">Rulers</mark>
 
 You can render the rulers in your console either horizontally or vertically using the `Ruler` simple renderer.
 
@@ -791,7 +809,7 @@ TextWriterRaw.WritePlain(ruler3.Render());
 TextWriterRaw.WritePlain(ruler4.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Horizontal - without indicator" %}
@@ -825,6 +843,8 @@ TextWriterRaw.WritePlain(ruler3.Render());
 TextWriterRaw.WritePlain(ruler4.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
+{% endstep %}
+{% endstepper %}

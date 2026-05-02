@@ -7,15 +7,27 @@ icon: brush
 
 <figure><img src="../../../../.gitbook/assets/112-shell.png" alt=""><figcaption></figcaption></figure>
 
+Presets are the input style for a shell that can be customized to your liking by implementing a shell preset class.
+
+***
+
+## <mark style="color:$primary;">Shell preset management</mark>
+
 While `ShellManager.GetLine()` prompts for input, it decides which shell preset, `PromptPresetBase`, is used according to the list of presets, `ShellPresets`, that **should** make a new prompt preset class that you made for your shell.
 
 `CurrentPreset` specifies the current `PromptPresetBase` class, which is usually found in the `ShellPresets` list. It usually calls the `PromptPresetManager.CurrentPresets[ShellType]` variable.
 
-{% hint style="warning" %}
-The first preset **should** implement a preset called `Default` in the `ShellPresets` dictionary.
-{% endhint %}
+<details>
+
+<summary>Setting a preset</summary>
 
 `PromptPresetManager.SetPreset()` queries both the shell pre-defined presets, `ShellPresets`, and the custom presets, `CustomShellPresets`. After that, it sets the preset to the specified preset in the internal `CurrentPresets`.
+
+</details>
+
+<details>
+
+<summary>Implementing a preset</summary>
 
 Every preset must implement a base class, `PromptPresetBase` and `IPromptPreset`, as in below:
 
@@ -38,6 +50,16 @@ public override string PresetPrompt =>
     PresetPromptBuilder();
 internal override string PresetPromptBuilder()
 ```
+
+{% hint style="warning" %}
+The first preset **should** implement a preset called `Default` in the `ShellPresets` dictionary.
+{% endhint %}
+
+</details>
+
+<details>
+
+<summary>Optional overridable properties</summary>
 
 Optionally, these variables can be overridden:
 
@@ -70,3 +92,5 @@ Since the `Showcase` versions of the properties are meant to simulate how the pr
 
 The easiest way to avoid using these assets is to make up things, such as `database.sqlite` for the SQL shell.
 {% endhint %}
+
+</details>

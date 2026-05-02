@@ -13,7 +13,9 @@ In Linux systems, the shell is initiated with the help of both the log-in handle
 
 Each shell contain their own built-in commands and their usage and purpose that are hard-coded to the shell, and they're usually not distributed in a binary form. External commands are just programs or scripts that you would execute, but found in your system drive or any of the drives.
 
-## Mirage Easy SHell (MESH)
+***
+
+## <mark style="color:$primary;">Mirage Easy SHell (MESH)</mark>
 
 This program is part of the core kernel that is programmed to be a standalone yet extensible shell. It provides you an ability to be able to implement your commands.
 

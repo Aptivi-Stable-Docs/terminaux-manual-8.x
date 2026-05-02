@@ -252,6 +252,8 @@ The following properties can be used to position the informational box however y
 
 <table><thead><tr><th width="130.6666259765625">Property</th><th>Description</th></tr></thead><tbody><tr><td><code>Autofit</code></td><td>If turned on, the informational box will be automatically placed in the middle of the screen, growing according to the textual content. If turned off, the informational box will be rendered based on the below positioning values.</td></tr><tr><td><code>Left</code></td><td>Zero-based left position of the infobox</td></tr><tr><td><code>Top</code></td><td>Zero-based top position of the infobox</td></tr><tr><td><code>Width</code></td><td>Width of the infobox (excluding the extra width) (default: <code>50</code>)</td></tr><tr><td><code>Height</code></td><td>Height of the infobox (excluding the extra height) (default: <code>5</code>)</td></tr><tr><td><code>ExtraWidth</code></td><td>Reserved width for the informational box that may store wider elements than the text itself (keep zero for text only)</td></tr><tr><td><code>ExtraHeight</code></td><td>Reserved height for elements that will be placed after the information text (keep zero for text only)</td></tr></tbody></table>
 
+{% hint style="info" %}
 Turning off autofit for infoboxes, while keeping default configuration, will result in this:
 
-<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+<img src="../../../.gitbook/assets/image (174).png" alt="" data-size="original">
+{% endhint %}

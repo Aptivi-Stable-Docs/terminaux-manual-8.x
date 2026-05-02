@@ -19,156 +19,170 @@ Here are the renderers that you can use:
 
 This renderable allows you to erase either the entire screen or a part of the screen.
 
+<details>
+
+<summary>Example 1</summary>
+
 ```csharp
 var misc = new Eraser()
 {
     Left = 2,
     Top = 2,
-    InteriorWidth = 40,
-    InteriorHeight = 10,
+    Width = 40,
+    Height = 10,
 };
 TextWriterRaw.WriteRaw(misc.Render());
 ```
 
-For example, this is used to erase edges from a canvas without modifying the canvas instance itself:
+</details>
 
+<details>
+
+<summary>Example 2</summary>
+
+This is used to erase edges from a canvas without modifying the canvas instance itself:
+
+{% code expandable="true" %}
 ```csharp
-var canvas = new Canvas()
-{
-    Left = 2,
-    Top = 2,
-    Color = ConsoleColors.Green,
-    InteriorWidth = 20,
-    InteriorHeight = 20,
-    Transparent = true,
-    Pixels =
-    [
-        // Draw the top part of the "T" letter
-        new(2, 2) { CellColor = ConsoleColors.Yellow },
-        new(3, 2) { CellColor = ConsoleColors.Yellow },
-        new(4, 2) { CellColor = ConsoleColors.Yellow },
-        new(5, 2) { CellColor = ConsoleColors.Yellow },
-        new(6, 2) { CellColor = ConsoleColors.Yellow },
-        new(7, 2) { CellColor = ConsoleColors.Yellow },
-        new(8, 2) { CellColor = ConsoleColors.Yellow },
-        new(9, 2) { CellColor = ConsoleColors.Yellow },
-        new(10, 2) { CellColor = ConsoleColors.Yellow },
-        new(11, 2) { CellColor = ConsoleColors.Yellow },
-        new(12, 2) { CellColor = ConsoleColors.Yellow },
-        new(13, 2) { CellColor = ConsoleColors.Yellow },
-        new(14, 2) { CellColor = ConsoleColors.Yellow },
-        new(15, 2) { CellColor = ConsoleColors.Yellow },
-        new(16, 2) { CellColor = ConsoleColors.Yellow },
-        new(17, 2) { CellColor = ConsoleColors.Yellow },
-        new(18, 2) { CellColor = ConsoleColors.Yellow },
-        new(2, 3) { CellColor = ConsoleColors.Yellow },
-        new(3, 3) { CellColor = ConsoleColors.Yellow },
-        new(4, 3) { CellColor = ConsoleColors.Yellow },
-        new(5, 3) { CellColor = ConsoleColors.Yellow },
-        new(6, 3) { CellColor = ConsoleColors.Yellow },
-        new(7, 3) { CellColor = ConsoleColors.Yellow },
-        new(8, 3) { CellColor = ConsoleColors.Yellow },
-        new(9, 3) { CellColor = ConsoleColors.Yellow },
-        new(10, 3) { CellColor = ConsoleColors.Yellow },
-        new(11, 3) { CellColor = ConsoleColors.Yellow },
-        new(12, 3) { CellColor = ConsoleColors.Yellow },
-        new(13, 3) { CellColor = ConsoleColors.Yellow },
-        new(14, 3) { CellColor = ConsoleColors.Yellow },
-        new(15, 3) { CellColor = ConsoleColors.Yellow },
-        new(16, 3) { CellColor = ConsoleColors.Yellow },
-        new(17, 3) { CellColor = ConsoleColors.Yellow },
-        new(18, 3) { CellColor = ConsoleColors.Yellow },
-        
-        // Draw the line of the "T" letter
-        new(9, 3) { CellColor = ConsoleColors.Yellow },
-        new(9, 4) { CellColor = ConsoleColors.Yellow },
-        new(9, 5) { CellColor = ConsoleColors.Yellow },
-        new(9, 6) { CellColor = ConsoleColors.Yellow },
-        new(9, 7) { CellColor = ConsoleColors.Yellow },
-        new(9, 8) { CellColor = ConsoleColors.Yellow },
-        new(9, 9) { CellColor = ConsoleColors.Yellow },
-        new(9, 10) { CellColor = ConsoleColors.Yellow },
-        new(9, 11) { CellColor = ConsoleColors.Yellow },
-        new(9, 12) { CellColor = ConsoleColors.Yellow },
-        new(9, 13) { CellColor = ConsoleColors.Yellow },
-        new(9, 14) { CellColor = ConsoleColors.Yellow },
-        new(9, 15) { CellColor = ConsoleColors.Yellow },
-        new(9, 16) { CellColor = ConsoleColors.Yellow },
-        new(9, 17) { CellColor = ConsoleColors.Yellow },
-        new(9, 18) { CellColor = ConsoleColors.Yellow },
-        new(9, 19) { CellColor = ConsoleColors.Yellow },
-        new(10, 3) { CellColor = ConsoleColors.Yellow },
-        new(10, 4) { CellColor = ConsoleColors.Yellow },
-        new(10, 5) { CellColor = ConsoleColors.Yellow },
-        new(10, 6) { CellColor = ConsoleColors.Yellow },
-        new(10, 7) { CellColor = ConsoleColors.Yellow },
-        new(10, 8) { CellColor = ConsoleColors.Yellow },
-        new(10, 9) { CellColor = ConsoleColors.Yellow },
-        new(10, 10) { CellColor = ConsoleColors.Yellow },
-        new(10, 11) { CellColor = ConsoleColors.Yellow },
-        new(10, 12) { CellColor = ConsoleColors.Yellow },
-        new(10, 13) { CellColor = ConsoleColors.Yellow },
-        new(10, 14) { CellColor = ConsoleColors.Yellow },
-        new(10, 15) { CellColor = ConsoleColors.Yellow },
-        new(10, 16) { CellColor = ConsoleColors.Yellow },
-        new(10, 17) { CellColor = ConsoleColors.Yellow },
-        new(10, 18) { CellColor = ConsoleColors.Yellow },
-        new(10, 19) { CellColor = ConsoleColors.Yellow },
-        new(11, 3) { CellColor = ConsoleColors.Yellow },
-        new(11, 4) { CellColor = ConsoleColors.Yellow },
-        new(11, 5) { CellColor = ConsoleColors.Yellow },
-        new(11, 6) { CellColor = ConsoleColors.Yellow },
-        new(11, 7) { CellColor = ConsoleColors.Yellow },
-        new(11, 8) { CellColor = ConsoleColors.Yellow },
-        new(11, 9) { CellColor = ConsoleColors.Yellow },
-        new(11, 10) { CellColor = ConsoleColors.Yellow },
-        new(11, 11) { CellColor = ConsoleColors.Yellow },
-        new(11, 12) { CellColor = ConsoleColors.Yellow },
-        new(11, 13) { CellColor = ConsoleColors.Yellow },
-        new(11, 14) { CellColor = ConsoleColors.Yellow },
-        new(11, 15) { CellColor = ConsoleColors.Yellow },
-        new(11, 16) { CellColor = ConsoleColors.Yellow },
-        new(11, 17) { CellColor = ConsoleColors.Yellow },
-        new(11, 18) { CellColor = ConsoleColors.Yellow },
-        new(11, 19) { CellColor = ConsoleColors.Yellow },
-    ]
-};
-var eraser1 = new Eraser()
-{
-    Left = 2,
-    Top = 2,
-    InteriorWidth = 40,
-    InteriorHeight = 1,
-};
-var eraser2 = new Eraser()
-{
-    Left = 2,
-    Top = 3,
-    InteriorWidth = 2,
-    InteriorHeight = 19,
-};
-var eraser3 = new Eraser()
-{
-    Left = 2,
-    Top = 21,
-    InteriorWidth = 40,
-    InteriorHeight = 1,
-};
-var eraser4 = new Eraser()
-{
-    Left = 38,
-    Top = 3,
-    InteriorWidth = 4,
-    InteriorHeight = 19,
-};
-TextWriterRaw.WriteRaw(canvas.Render());
-TextWriterRaw.WriteRaw(eraser1.Render());
-TextWriterRaw.WriteRaw(eraser2.Render());
-TextWriterRaw.WriteRaw(eraser3.Render());
-TextWriterRaw.WriteRaw(eraser4.Render());
+    var canvas = new Canvas()
+    {
+        Left = 2,
+        Top = 2,
+        Color = ConsoleColors.Green,
+        Width = 20,
+        Height = 20,
+        Pixels =
+        [
+            // Draw the top part of the "T" letter
+            new(2, 2) { CellColor = ConsoleColors.Yellow },
+            new(3, 2) { CellColor = ConsoleColors.Yellow },
+            new(4, 2) { CellColor = ConsoleColors.Yellow },
+            new(5, 2) { CellColor = ConsoleColors.Yellow },
+            new(6, 2) { CellColor = ConsoleColors.Yellow },
+            new(7, 2) { CellColor = ConsoleColors.Yellow },
+            new(8, 2) { CellColor = ConsoleColors.Yellow },
+            new(9, 2) { CellColor = ConsoleColors.Yellow },
+            new(10, 2) { CellColor = ConsoleColors.Yellow },
+            new(11, 2) { CellColor = ConsoleColors.Yellow },
+            new(12, 2) { CellColor = ConsoleColors.Yellow },
+            new(13, 2) { CellColor = ConsoleColors.Yellow },
+            new(14, 2) { CellColor = ConsoleColors.Yellow },
+            new(15, 2) { CellColor = ConsoleColors.Yellow },
+            new(16, 2) { CellColor = ConsoleColors.Yellow },
+            new(17, 2) { CellColor = ConsoleColors.Yellow },
+            new(18, 2) { CellColor = ConsoleColors.Yellow },
+            new(2, 3) { CellColor = ConsoleColors.Yellow },
+            new(3, 3) { CellColor = ConsoleColors.Yellow },
+            new(4, 3) { CellColor = ConsoleColors.Yellow },
+            new(5, 3) { CellColor = ConsoleColors.Yellow },
+            new(6, 3) { CellColor = ConsoleColors.Yellow },
+            new(7, 3) { CellColor = ConsoleColors.Yellow },
+            new(8, 3) { CellColor = ConsoleColors.Yellow },
+            new(9, 3) { CellColor = ConsoleColors.Yellow },
+            new(10, 3) { CellColor = ConsoleColors.Yellow },
+            new(11, 3) { CellColor = ConsoleColors.Yellow },
+            new(12, 3) { CellColor = ConsoleColors.Yellow },
+            new(13, 3) { CellColor = ConsoleColors.Yellow },
+            new(14, 3) { CellColor = ConsoleColors.Yellow },
+            new(15, 3) { CellColor = ConsoleColors.Yellow },
+            new(16, 3) { CellColor = ConsoleColors.Yellow },
+            new(17, 3) { CellColor = ConsoleColors.Yellow },
+            new(18, 3) { CellColor = ConsoleColors.Yellow },
+            
+            // Draw the line of the "T" letter
+            new(9, 3) { CellColor = ConsoleColors.Yellow },
+            new(9, 4) { CellColor = ConsoleColors.Yellow },
+            new(9, 5) { CellColor = ConsoleColors.Yellow },
+            new(9, 6) { CellColor = ConsoleColors.Yellow },
+            new(9, 7) { CellColor = ConsoleColors.Yellow },
+            new(9, 8) { CellColor = ConsoleColors.Yellow },
+            new(9, 9) { CellColor = ConsoleColors.Yellow },
+            new(9, 10) { CellColor = ConsoleColors.Yellow },
+            new(9, 11) { CellColor = ConsoleColors.Yellow },
+            new(9, 12) { CellColor = ConsoleColors.Yellow },
+            new(9, 13) { CellColor = ConsoleColors.Yellow },
+            new(9, 14) { CellColor = ConsoleColors.Yellow },
+            new(9, 15) { CellColor = ConsoleColors.Yellow },
+            new(9, 16) { CellColor = ConsoleColors.Yellow },
+            new(9, 17) { CellColor = ConsoleColors.Yellow },
+            new(9, 18) { CellColor = ConsoleColors.Yellow },
+            new(9, 19) { CellColor = ConsoleColors.Yellow },
+            new(10, 3) { CellColor = ConsoleColors.Yellow },
+            new(10, 4) { CellColor = ConsoleColors.Yellow },
+            new(10, 5) { CellColor = ConsoleColors.Yellow },
+            new(10, 6) { CellColor = ConsoleColors.Yellow },
+            new(10, 7) { CellColor = ConsoleColors.Yellow },
+            new(10, 8) { CellColor = ConsoleColors.Yellow },
+            new(10, 9) { CellColor = ConsoleColors.Yellow },
+            new(10, 10) { CellColor = ConsoleColors.Yellow },
+            new(10, 11) { CellColor = ConsoleColors.Yellow },
+            new(10, 12) { CellColor = ConsoleColors.Yellow },
+            new(10, 13) { CellColor = ConsoleColors.Yellow },
+            new(10, 14) { CellColor = ConsoleColors.Yellow },
+            new(10, 15) { CellColor = ConsoleColors.Yellow },
+            new(10, 16) { CellColor = ConsoleColors.Yellow },
+            new(10, 17) { CellColor = ConsoleColors.Yellow },
+            new(10, 18) { CellColor = ConsoleColors.Yellow },
+            new(10, 19) { CellColor = ConsoleColors.Yellow },
+            new(11, 3) { CellColor = ConsoleColors.Yellow },
+            new(11, 4) { CellColor = ConsoleColors.Yellow },
+            new(11, 5) { CellColor = ConsoleColors.Yellow },
+            new(11, 6) { CellColor = ConsoleColors.Yellow },
+            new(11, 7) { CellColor = ConsoleColors.Yellow },
+            new(11, 8) { CellColor = ConsoleColors.Yellow },
+            new(11, 9) { CellColor = ConsoleColors.Yellow },
+            new(11, 10) { CellColor = ConsoleColors.Yellow },
+            new(11, 11) { CellColor = ConsoleColors.Yellow },
+            new(11, 12) { CellColor = ConsoleColors.Yellow },
+            new(11, 13) { CellColor = ConsoleColors.Yellow },
+            new(11, 14) { CellColor = ConsoleColors.Yellow },
+            new(11, 15) { CellColor = ConsoleColors.Yellow },
+            new(11, 16) { CellColor = ConsoleColors.Yellow },
+            new(11, 17) { CellColor = ConsoleColors.Yellow },
+            new(11, 18) { CellColor = ConsoleColors.Yellow },
+            new(11, 19) { CellColor = ConsoleColors.Yellow },
+        ]
+    };
+    var eraser1 = new Eraser()
+    {
+        Left = 2,
+        Top = 2,
+        Width = 40,
+        Height = 1,
+    };
+    var eraser2 = new Eraser()
+    {
+        Left = 2,
+        Top = 3,
+        Width = 2,
+        Height = 19,
+    };
+    var eraser3 = new Eraser()
+    {
+        Left = 2,
+        Top = 21,
+        Width = 40,
+        Height = 1,
+    };
+    var eraser4 = new Eraser()
+    {
+        Left = 38,
+        Top = 3,
+        Width = 4,
+        Height = 19,
+    };
+    TextWriterRaw.WriteRaw(canvas.Render());
+    TextWriterRaw.WriteRaw(eraser1.Render());
+    TextWriterRaw.WriteRaw(eraser2.Render());
+    TextWriterRaw.WriteRaw(eraser3.Render());
+    TextWriterRaw.WriteRaw(eraser4.Render());
+}
 ```
+{% endcode %}
 
 <figure><img src="../../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -176,8 +190,10 @@ TextWriterRaw.WriteRaw(eraser4.Render());
 
 This renderable allows you to write a list of keybindings similar to that of old text-based applications to the terminal.
 
-{% tabs %}
-{% tab title="No overflow" %}
+<details>
+
+<summary>No overflow</summary>
+
 ```csharp
 var misc = new Keybindings()
 {
@@ -193,9 +209,13 @@ TextWriterRaw.WriteRaw(RenderableTools.RenderRenderable(misc, new(0, ConsoleWrap
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Overflow" %}
+</details>
+
+<details>
+
+<summary>Overflow</summary>
+
 ```csharp
 var misc = new Keybindings()
 {
@@ -217,9 +237,13 @@ TextWriterRaw.WriteRaw(RenderableTools.RenderRenderable(misc, new(0, ConsoleWrap
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Overflow + custom help key" %}
+</details>
+
+<details>
+
+<summary>Overflow + custom help key</summary>
+
 ```csharp
 var misc = new Keybindings()
 {
@@ -242,14 +266,18 @@ TextWriterRaw.WriteRaw(RenderableTools.RenderRenderable(misc, new(0, ConsoleWrap
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">`KeyShortcut`</mark>
 
 This renderable allows you to write a keybinding shortcut descriptor, which the `Keybindings` renderable internally uses, similar to that of old text-based applications to the terminal.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var misc = new KeyShortcut()
@@ -260,13 +288,19 @@ var misc = new KeyShortcut()
 TextWriterRaw.WriteRaw(misc.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Emoji</mark>
 
 You can use this renderer to render an emoji within a rendered container.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var rng = new Random();
@@ -275,6 +309,10 @@ TextWriterWhereColor.WriteWhere(misc.Render(), rng.Next(ConsoleWrapper.WindowWid
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+
+
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -282,19 +320,29 @@ TextWriterWhereColor.WriteWhere(misc.Render(), rng.Next(ConsoleWrapper.WindowWid
 
 You can use this renderer to render a Kaomoji within a rendered container.
 
+<details>
+
+<summary>Example</summary>
+
 ```csharp
 var rng = new Random();
 var misc = new Kaomoji(KaomojiCategory.Positive, KaomojiSubcategory.Joy, 3);
 TextWriterWhereColor.WriteWhere(misc.Render(), rng.Next(ConsoleWrapper.WindowWidth), rng.Next(ConsoleWrapper.WindowHeight));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">`NerdFonts`</mark>
 
 This renderable allows you to render a Nerd Fonts glyph to the console.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var rng = new Random();
@@ -304,6 +352,8 @@ ContainerTools.WriteRenderable(misc, pos);
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -311,8 +361,10 @@ ContainerTools.WriteRenderable(misc, pos);
 
 Terminaux provides two writers: the normal QR code writer and the micro QR code writer.
 
-{% tabs %}
-{% tab title="QR code" %}
+<details>
+
+<summary>QR code</summary>
+
 ```csharp
 var qrCode = new QrCode()
 {
@@ -322,10 +374,32 @@ var qrCode = new QrCode()
 TextWriterRaw.WriteRaw(qrCode.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
+<figure><img src="../../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
-{% tab title="Micro QR code" %}
+</details>
+
+<details>
+
+<summary>QR code - custom size</summary>
+
+```csharp
+var qrCode = new QrCode()
+{
+    Version = 6,
+    ForegroundColor = ConsoleColors.Aqua,
+    Text = "Congrats! You've scanned me!",
+};
+TextWriterRaw.WriteRaw(qrCode.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Micro QR code</summary>
+
 ```csharp
 var qrCode = new MicroQrCode()
 {
@@ -335,8 +409,26 @@ var qrCode = new MicroQrCode()
 TextWriterRaw.WriteRaw(qrCode.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Micro QR code - custom size</summary>
+
+```csharp
+var qrCode = new MicroQrCode()
+{
+    ForegroundColor = ConsoleColors.Aqua,
+    Text = "Congrats!",
+    Version = -4,
+};
+TextWriterRaw.WriteRaw(qrCode.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 {% endstepper %}

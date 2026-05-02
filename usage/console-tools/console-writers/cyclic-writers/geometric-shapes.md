@@ -52,25 +52,31 @@ Here are the shapes that you can use:
 
 The circle writer allows you to write a circle to the console. It also allows you to either draw just an outline or the whole filled circle.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Circle(20, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Circle(20, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -78,8 +84,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This writer allows you to write an arc directly to the console with some parameters, such as custom inner and outer radius, and angle ranges.
 
-{% tabs %}
-{% tab title="Partial Donut" %}
+<details>
+
+<summary>Partial Donut</summary>
+
 ```csharp
 var arc = new Arc(20, 4, 2, ConsoleColors.Red)
 {
@@ -92,9 +100,13 @@ TextWriterRaw.WriteRaw(arc.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (166).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full Donut" %}
+</details>
+
+<details>
+
+<summary>Full Donut</summary>
+
 ```csharp
 var arc = new Arc(20, 4, 2, ConsoleColors.Red)
 {
@@ -123,9 +135,13 @@ TextWriterRaw.WriteRaw(arc3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Partial Pie" %}
+</details>
+
+<details>
+
+<summary>Partial Pie</summary>
+
 ```csharp
 var arc = new Arc(20, 4, 2, ConsoleColors.Red)
 {
@@ -138,9 +154,13 @@ TextWriterRaw.WriteRaw(arc.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full Pie" %}
+</details>
+
+<details>
+
+<summary>Full Pie</summary>
+
 ```csharp
 var arc = new Arc(20, 4, 2, ConsoleColors.Red)
 {
@@ -161,9 +181,13 @@ TextWriterRaw.WriteRaw(arc2.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Elliptical" %}
+</details>
+
+<details>
+
+<summary>Elliptical</summary>
+
 ```csharp
 var arc = new Arc(20, 4, 2, ConsoleColors.Red)
 {
@@ -188,8 +212,8 @@ TextWriterRaw.WriteRaw(arc2.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -197,25 +221,31 @@ TextWriterRaw.WriteRaw(arc2.Render());
 
 This writer allows you to write an ellipsis directly to the console. It also allows you to either draw just an outline or the whole filled ellipsis.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Ellipsis(20, 15, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (171).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Ellipsis(20, 15, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -223,25 +253,31 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This writer allows you to write a parallelogram to the console directly. You can specify whether to draw just the outline or the whole shape.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Parallelogram(20, 10, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Parallelogram(20, 10, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -249,25 +285,31 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This writer allows you to write a rectangle to the console directly. You can specify whether to print the whole shape or just the edges.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Rectangle(20, 10, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Rectangle(20, 10, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -275,25 +317,31 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This shape basically renders a rectangle, but with just the height specified. In the console, the width is multiplied by two due to the space widths taking up only one cell. It basically renders a square.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Square(20, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Square(20, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (114).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -301,25 +349,31 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This renders a trapezoid using a specified height, a top edge width, and a bottom edge width. You can also make it either render just the outline or as a full shape.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Trapezoid(10, 30, 20, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Full" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Trapezoid(10, 30, 20, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -327,25 +381,31 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This renders either an equilateral triangle or an isosceles triangle to the console.
 
-{% tabs %}
-{% tab title="Outline" %}
+<details>
+
+<summary>Outline</summary>
+
 ```csharp
 var shape = new Triangle(30, 20, 2, 1);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Final" %}
+</details>
+
+<details>
+
+<summary>Full</summary>
+
 ```csharp
 var shape = new Triangle(30, 20, 2, 1, true);
 TextWriterRaw.WriteRaw(shape.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -353,8 +413,10 @@ TextWriterRaw.WriteRaw(shape.Render());
 
 This renders either a rough line or a smooth line, and it can either be half-width or full-width.
 
-{% tabs %}
-{% tab title="Rough line" %}
+<details>
+
+<summary>Rough line</summary>
+
 ```csharp
 var line = new Line()
 {
@@ -365,9 +427,13 @@ TextWriterRaw.WriteRaw(line.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Smooth line" %}
+</details>
+
+<details>
+
+<summary>Smooth line</summary>
+
 ```csharp
 var line = new Line()
 {
@@ -379,7 +445,7 @@ TextWriterRaw.WriteRaw(line.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 {% endstepper %}

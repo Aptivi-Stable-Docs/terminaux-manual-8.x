@@ -224,7 +224,7 @@ public void RunFixture()
 ```
 {% endcode %}
 
-Expand the below item to get a definition of the binding class.
+Expand below sections for more information.
 
 <details>
 
@@ -252,6 +252,39 @@ if (CurrentPane != 2)
 ```
 {% endcode %}
 {% endhint %}
+
+</details>
+
+<details>
+
+<summary>Implementing pane-specific keybindings</summary>
+
+To implement keybindings that are only available in one pane in multi-pane interactive selector TUIs, you'll need to call `Add()` on one of the following functions:
+
+* `tui.BindingsFirstPane`: Key bindings that will be only available in the first pane
+* `tui.BindingsSecondPane`: Key bindings that will be only available in the second pane
+
+### <mark style="color:$primary;">Example</mark>
+
+For example, F4, although the key is the same on both panes, is implemented differently in them. When a user presses F4 in the first pane, the info box that shows you a currently selected item appears. In the second pane, however, will return the selected item string length instead.
+
+{% code expandable="true" %}
+```csharp
+tui.Bindings.Add(new InteractiveTuiBinding<string>("Add", ConsoleKey.F1, (_, index, _, index2) => tui.Add(index, index2), true));
+tui.Bindings.Add(new InteractiveTuiBinding<string>("Delete", ConsoleKey.F2, (_, index, _, index2) => tui.Remove(index, index2), true));
+tui.Bindings.Add(new InteractiveTuiBinding<string>("Delete Last", ConsoleKey.F3, (_, _, _, _) => tui.RemoveLast(), true));
+tui.BindingsFirstPane.Add(new InteractiveTuiBinding<string>("Information", ConsoleKey.F4, (str, _, _, _) => InfoBoxModalColor.WriteInfoBoxModal(str ?? ""), true));
+tui.BindingsSecondPane.Add(new InteractiveTuiBinding<string>("Length", ConsoleKey.F4, (_, _, str, _) => InfoBoxModalColor.WriteInfoBoxModal($"len={(str ?? "").Length}"), true));
+```
+{% endcode %}
+
+Therefore, the implementation in the first pane is:
+
+<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+The implementation in the second pane is:
+
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 

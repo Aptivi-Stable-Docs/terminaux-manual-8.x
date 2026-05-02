@@ -19,8 +19,10 @@ Here are the renderers that you can use:
 
 This allows you to render a table that consists of rows and columns to the terminal. You can use the cell options variable to configure various cells, such as colors. Calendars internally use the table renderer to render the core elements of a calendar, and they support non-Gregorian calendars.
 
-{% tabs %}
-{% tab title="Normal tables" %}
+<details>
+
+<summary>Normal tables</summary>
+
 ```csharp
 var Rows = new string[,]
 {
@@ -30,38 +32,37 @@ var Rows = new string[,]
     { "16.04 (Xenial Xerus)", new DateTime(2016, 4, 21).ToString(), new DateTime(2021, 4, 30).ToString(), new DateTime(2026, 4, 30).ToString() },
     { "18.04 (Bionic Beaver)", new DateTime(2018, 4, 26).ToString(), new DateTime(2023, 4, 30).ToString(), new DateTime(2028, 4, 30).ToString() },
     { "20.04 (Focal Fossa)", new DateTime(2020, 4, 23).ToString(), new DateTime(2025, 4, 25).ToString(), new DateTime(2030, 4, 25).ToString() },
-    { "22.04 (Jammy Jellyfish)", new DateTime(2022, 4, 26).ToString(), new DateTime(2027, 4, 25).ToString(), new DateTime(2032, 4, 25).ToString() },
-    { "24.04 (Noble Numbat)", new DateTime(2024, 4, 25).ToString(), new DateTime(2029, 4, 25).ToString(), new DateTime(2034, 4, 25).ToString() },
+    { "22.04 (Jammy Jellyfish)", new DateTime(2022, 4, 26).ToString(), new DateTime(2027, 4, 25).ToString(), new DateTime(2032, 4, 25).ToString() }
 };
-var misc = new Table()
+var table = new Table()
 {
     Rows = Rows,
-    Header = true,
     Left = 4,
     Top = 2,
-    InteriorWidth = ConsoleWrapper.WindowWidth - 7,
-    InteriorHeight = ConsoleWrapper.WindowHeight - 5,
+    Width = ConsoleWrapper.WindowWidth - 7,
+    Height = ConsoleWrapper.WindowHeight - 5,
+    Header = true,
     Settings =
     [
-        new CellOptions(2, 2) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(3, 2) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(4, 2) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(2, 3) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(3, 3) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(4, 3) { CellColor = ConsoleColors.Red, CellBackgroundColor = ConsoleColors.DarkRed, ColoredCell = true },
-        new CellOptions(2, 4) { CellColor = ConsoleColors.Yellow, CellBackgroundColor = ConsoleColors.Olive, ColoredCell = true },
-        new CellOptions(3, 4) { CellColor = ConsoleColors.Yellow, CellBackgroundColor = ConsoleColors.Olive, ColoredCell = true },
-        new CellOptions(2, 5) { CellColor = ConsoleColors.Yellow, CellBackgroundColor = ConsoleColors.Olive, ColoredCell = true },
-        new CellOptions(3, 5) { CellColor = ConsoleColors.Yellow, CellBackgroundColor = ConsoleColors.Olive, ColoredCell = true },
+        new CellOptions(2, 2)
+        {
+            CellColor = ConsoleColors.Red,
+            CellBackgroundColor = ConsoleColors.DarkRed,
+            ColoredCell = true
+        }
     ]
 };
-TextWriterRaw.WriteRaw(misc.Render());
+TextWriterRaw.WriteRaw(table.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-{% tab title="Calendar (Gregorian)" %}
+</details>
+
+<details>
+
+<summary>Calendar (Gregorian)</summary>
+
 ```csharp
 var calendar = new Calendars()
 {
@@ -69,16 +70,20 @@ var calendar = new Calendars()
     Month = DateTime.Now.Month,
     Left = 4,
     Top = 2,
-    InteriorWidth = 40,
-    InteriorHeight = 10,
+    Width = ConsoleWrapper.WindowWidth - 8,
+    Height = ConsoleWrapper.WindowHeight - 4,
 };
 TextWriterRaw.WriteRaw(calendar.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
-{% tab title="Calendar (Hijri)" %}
+</details>
+
+<details>
+
+<summary>Calendar (Hijri)</summary>
+
 ```csharp
 var culture = new CultureInfo("ar");
 culture.DateTimeFormat.Calendar = new HijriCalendar();
@@ -88,16 +93,16 @@ var calendar = new Calendars()
     Month = DateTime.Now.Month,
     Left = 4,
     Top = 2,
-    InteriorWidth = 40,
-    InteriorHeight = 10,
-    Culture = culture
+    Width = ConsoleWrapper.WindowWidth - 8,
+    Height = ConsoleWrapper.WindowHeight - 4,
+    Culture = culture,
 };
 TextWriterRaw.WriteRaw(calendar.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -105,8 +110,10 @@ TextWriterRaw.WriteRaw(calendar.Render());
 
 These renderables help you create a rendered list of items easily. `Listing` accepts any enumerable with optional functions that convert individual items to string representations, while `ListEntry` is used to render a single entry in the key and the value form.
 
-{% tabs %}
-{% tab title="Lists" %}
+<details>
+
+<summary>Lists</summary>
+
 ```csharp
 var misc = new Listing()
 {
@@ -122,9 +129,13 @@ TextWriterRaw.WriteRaw(misc.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Dictionaries" %}
+</details>
+
+<details>
+
+<summary>Dictionaries</summary>
+
 ```csharp
 var misc = new Listing()
 {
@@ -139,9 +150,13 @@ TextWriterRaw.WriteRaw(misc.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Leveled lists" %}
+</details>
+
+<details>
+
+<summary>Leveled lists</summary>
+
 ```csharp
 var misc = new ListEntry()
 {
@@ -200,8 +215,8 @@ TextWriterRaw.WritePlain(misc8.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -209,8 +224,10 @@ TextWriterRaw.WritePlain(misc8.Render());
 
 You can render a list of selection elements using this renderable. This uses a part of the selection style renderer code.
 
-{% tabs %}
-{% tab title="Single" %}
+<details>
+
+<summary>Single</summary>
+
 ```csharp
 var finalSelections = new InputChoiceInfo[]
 {
@@ -235,9 +252,13 @@ TextWriterRaw.WriteRaw(selections.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Multiple" %}
+</details>
+
+<details>
+
+<summary>Multiple</summary>
+
 ```csharp
 var finalSelections = new InputChoiceInfo[]
 {
@@ -263,9 +284,13 @@ TextWriterRaw.WriteRaw(selections.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Radio" %}
+</details>
+
+<details>
+
+<summary>Radio</summary>
+
 ```csharp
 var finalSelections = new InputChoiceInfo[]
 {
@@ -292,8 +317,8 @@ TextWriterRaw.WriteRaw(selections.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -301,8 +326,10 @@ TextWriterRaw.WriteRaw(selections.Render());
 
 You can render a list of selection elements using this renderable. This renders choices one by one, while still maintaining flexibility of the regular selections, making it suitable for CLIs.
 
-{% tabs %}
-{% tab title="No Alt Choices" %}
+<details>
+
+<summary>No Alt Choices</summary>
+
 ```csharp
 var finalSelections = new InputChoiceInfo[]
 {
@@ -320,9 +347,13 @@ TextWriterRaw.WriteRaw(selections.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="With Alt Choices" %}
+</details>
+
+<details>
+
+<summary>With Alt Choices</summary>
+
 ```csharp
 var finalSelections = new InputChoiceInfo[]
 {
@@ -343,7 +374,7 @@ TextWriterRaw.WriteRaw(selections.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 {% endstepper %}

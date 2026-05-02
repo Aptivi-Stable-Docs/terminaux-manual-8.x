@@ -19,8 +19,10 @@ Here are the progress bars that you can use:
 
 This writer allows you to show a progress bar while allowing you to describe what is going on during the process.
 
-{% tabs %}
-{% tab title="Determinate" %}
+<details>
+
+<summary>Determinate</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -34,12 +36,11 @@ var progressBar = new ProgressBar(
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -60,14 +61,69 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Indeterminate" %}
+</details>
+
+<details>
+
+<summary>Determinate - accurate</summary>
+
+```csharp
+var stickScreen = new Screen()
+{
+    CycleFrequency = 50,
+};
+var progressBar = new ProgressBar(
+    "This is the test progress bar that contains a scrolling marquee.", 0, 100)
+{
+    Width = ConsoleWrapper.WindowWidth - 8,
+    Accurate = true,
+};
+try
+{
+    // First, clear the screen
+    ConsoleColoring.LoadBack();
+
+    // Then, show the progress bar
+    var stickScreenPart = new ScreenPart();
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
+    stickScreen.AddBufferedPart("Test", stickScreenPart);
+    ScreenTools.SetCurrent(stickScreen);
+    ScreenTools.SetCurrentCyclic(stickScreen);
+    ScreenTools.StartCyclicScreen();
+
+    // Finally, increment the progress bar until it's full
+    for (int progress = 0; progress < 100; progress++)
+    {
+        progressBar.Position = progress;
+        Thread.Sleep(100);
+    }
+}
+catch (Exception ex)
+{
+    InfoBoxModalColor.WriteInfoBoxModal($"Screen failed to render: {ex.Message}");
+}
+finally
+{
+    ScreenTools.StopCyclicScreen();
+    ScreenTools.UnsetCurrent(stickScreen);
+    ConsoleColoring.LoadBack();
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Indeterminate</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -82,12 +138,11 @@ var progressBar = new ProgressBar(
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -108,13 +163,13 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -122,8 +177,10 @@ finally
 
 This writer allows you to show a progress bar without any text.
 
-{% tabs %}
-{% tab title="Determinate" %}
+<details>
+
+<summary>Determinate</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -136,12 +193,11 @@ var progressBar = new ProgressBarNoText(0, 100)
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -162,14 +218,68 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Indeterminate" %}
+</details>
+
+<details>
+
+<summary>Determinate - accurate</summary>
+
+```csharp
+var stickScreen = new Screen()
+{
+    CycleFrequency = 50,
+};
+var progressBar = new ProgressBarNoText(0, 100)
+{
+    Width = ConsoleWrapper.WindowWidth - 8,
+    Accurate = true,
+};
+try
+{
+    // First, clear the screen
+    ConsoleColoring.LoadBack();
+
+    // Then, show the progress bar
+    var stickScreenPart = new ScreenPart();
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
+    stickScreen.AddBufferedPart("Test", stickScreenPart);
+    ScreenTools.SetCurrent(stickScreen);
+    ScreenTools.SetCurrentCyclic(stickScreen);
+    ScreenTools.StartCyclicScreen();
+
+    // Finally, increment the progress bar until it's full
+    for (int progress = 0; progress < 100; progress++)
+    {
+        progressBar.Position = progress;
+        Thread.Sleep(100);
+    }
+}
+catch (Exception ex)
+{
+    InfoBoxModalColor.WriteInfoBoxModal($"Screen failed to render: {ex.Message}");
+}
+finally
+{
+    ScreenTools.StopCyclicScreen();
+    ScreenTools.UnsetCurrent(stickScreen);
+    ConsoleColoring.LoadBack();
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Indeterminate</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -183,12 +293,11 @@ var progressBar = new ProgressBarNoText(0, 100)
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -209,13 +318,13 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -223,8 +332,10 @@ finally
 
 If you want to just print a progress bar either horizontally or vertically without any extra elements, you can use the `SimpleProgress` renderable.
 
-{% tabs %}
-{% tab title="Determinate, horiz." %}
+<details>
+
+<summary>Determinate - horizontal</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -237,12 +348,11 @@ var progressBar = new SimpleProgress(0, 100)
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -263,14 +373,18 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Indeterminate, horiz." %}
+</details>
+
+<details>
+
+<summary>Determinate - horizontal - accurate</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -279,17 +393,16 @@ var stickScreen = new Screen()
 var progressBar = new SimpleProgress(0, 100)
 {
     Width = ConsoleWrapper.WindowWidth - 8,
-    Indeterminate = true,
+    Accurate = true,
 };
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
-    stickScreenPart.Position(4, ConsoleWrapper.WindowHeight - 1);
-    stickScreenPart.AddDynamicText(progressBar.Render);
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
     stickScreen.AddBufferedPart("Test", stickScreenPart);
     ScreenTools.SetCurrent(stickScreen);
     ScreenTools.SetCurrentCyclic(stickScreen);
@@ -310,14 +423,68 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Indeterminate - horizontal</summary>
+
+```csharp
+var stickScreen = new Screen()
+{
+    CycleFrequency = 50,
+};
+var progressBar = new SimpleProgress(0, 100)
+{
+    Width = ConsoleWrapper.WindowWidth - 8,
+    Indeterminate = true,
+};
+try
+{
+    // First, clear the screen
+    ConsoleColoring.LoadBack();
+
+    // Then, show the progress bar
+    var stickScreenPart = new ScreenPart();
+    stickScreenPart.AddDynamicText(() => RendererTools.RenderRenderable(progressBar, new(4, ConsoleWrapper.WindowHeight - 1)));
+    stickScreen.AddBufferedPart("Test", stickScreenPart);
+    ScreenTools.SetCurrent(stickScreen);
+    ScreenTools.SetCurrentCyclic(stickScreen);
+    ScreenTools.StartCyclicScreen();
+
+    // Finally, increment the progress bar until it's full
+    for (int progress = 0; progress < 100; progress++)
+    {
+        progressBar.Position = progress;
+        Thread.Sleep(100);
+    }
+}
+catch (Exception ex)
+{
+    InfoBoxModalColor.WriteInfoBoxModal($"Screen failed to render: {ex.Message}");
+}
+finally
+{
+    ScreenTools.StopCyclicScreen();
+    ScreenTools.UnsetCurrent(stickScreen);
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Determinate, vert." %}
+</details>
+
+<details>
+
+<summary>Determinate - vertical</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -336,7 +503,7 @@ container.SetRenderablePosition("Progress bar 1", new(4, 2));
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
@@ -361,14 +528,74 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Indeterminate, vert." %}
+</details>
+
+<details>
+
+<summary>Determinate - vertical - accurate</summary>
+
+```csharp
+var stickScreen = new Screen()
+{
+    CycleFrequency = 50,
+};
+var container = new Container();
+var progressBar1 = new SimpleProgress(0, 100)
+{
+    Height = 20,
+    Vertical = true,
+    Accurate = true,
+};
+container.AddRenderable("Progress bar 1", progressBar1);
+container.SetRenderablePosition("Progress bar 1", new(4, 2));
+
+// Render them all
+try
+{
+    // First, clear the screen
+    ConsoleColoring.LoadBack();
+
+    // Then, show the progress bar
+    var stickScreenPart = new ScreenPart();
+    stickScreenPart.AddDynamicText(() => ContainerTools.RenderContainer(container));
+    stickScreen.AddBufferedPart("Test", stickScreenPart);
+    ScreenTools.SetCurrent(stickScreen);
+    ScreenTools.SetCurrentCyclic(stickScreen);
+    ScreenTools.StartCyclicScreen();
+
+    // Finally, increment the progress bar until it's full
+    for (int progress = 0; progress < 100; progress++)
+    {
+        progressBar1.Position = progress;
+        Thread.Sleep(100);
+    }
+}
+catch (Exception ex)
+{
+    InfoBoxModalColor.WriteInfoBoxModal($"Screen failed to render: {ex.Message}");
+}
+finally
+{
+    ScreenTools.StopCyclicScreen();
+    ScreenTools.UnsetCurrent(stickScreen);
+    ConsoleColoring.LoadBack();
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Indeterminate - vertical</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -388,7 +615,7 @@ container.SetRenderablePosition("Progress bar 1", new(4, 2));
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the progress bar
     var stickScreenPart = new ScreenPart();
@@ -413,13 +640,13 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -427,8 +654,10 @@ finally
 
 This writer allows you to write a slider that moves according to the minimum position, the current position, and the maximum position. This is useful for slider bars.
 
-{% tabs %}
-{% tab title="Horizontal" %}
+<details>
+
+<summary>Horizontal</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -458,7 +687,7 @@ container.SetRenderablePosition("Slider bar 3", new(4, ConsoleWrapper.WindowHeig
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the slider bar
     var stickScreenPart = new ScreenPart();
@@ -490,14 +719,18 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Vertical" %}
+</details>
+
+<details>
+
+<summary>Vertical</summary>
+
 ```csharp
 var stickScreen = new Screen()
 {
@@ -530,7 +763,7 @@ container.SetRenderablePosition("Slider bar 6", new(8, 2));
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the slider bar
     var stickScreenPart = new ScreenPart();
@@ -562,19 +795,23 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Spinner</mark>
 
 This writer allows you to write a spinner that moves according to the number of times that the spinner has rendered. This is useful for progress bars and others.
+
+<details>
+
+<summary>Built-in spinner</summary>
 
 ```csharp
 var stickScreen = new Screen()
@@ -585,7 +822,7 @@ var marquee = BuiltinSpinners.BouncingBar;
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the counter
     var stickScreenPart = new ScreenPart();
@@ -605,7 +842,7 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
@@ -614,5 +851,7 @@ finally
 {% hint style="info" %}
 Built-in spinners are available in the `BuiltinSpinners` class.
 {% endhint %}
+
+</details>
 {% endstep %}
 {% endstepper %}

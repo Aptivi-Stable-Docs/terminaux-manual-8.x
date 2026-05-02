@@ -19,8 +19,10 @@ Here are the text renderers that you can use:
 
 This allows you to write an aligned Figlet text to the console.
 
-{% tabs %}
-{% tab title="Normal" %}
+<details>
+
+<summary>Normal</summary>
+
 ```csharp
 var text = new AlignedFigletText(FigletFonts.GetByName("small"), "Left")
 {
@@ -49,9 +51,13 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Colored" %}
+</details>
+
+<details>
+
+<summary>Colored</summary>
+
 ```csharp
 var text = new AlignedFigletText(FigletFonts.GetByName("small"), "Left")
 {
@@ -83,9 +89,13 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Rainbow" %}
+</details>
+
+<details>
+
+<summary>Rainbow</summary>
+
 ```csharp
 var text = new AlignedFigletText(FigletFonts.GetByName("small"), "Left")
 {
@@ -117,8 +127,8 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -126,8 +136,10 @@ TextWriterRaw.WriteRaw(text3.Render());
 
 This allows you to write an aligned text to the console.
 
-{% tabs %}
-{% tab title="Normal" %}
+<details>
+
+<summary>Normal</summary>
+
 ```csharp
 var text = new AlignedText("Left")
 {
@@ -156,9 +168,13 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Colored" %}
+</details>
+
+<details>
+
+<summary>Colored</summary>
+
 ```csharp
 var text = new AlignedText("Left")
 {
@@ -190,9 +206,13 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Rainbow" %}
+</details>
+
+<details>
+
+<summary>Rainbow</summary>
+
 ```csharp
 var text = new AlignedText("Left")
 {
@@ -224,14 +244,18 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Animated text</mark>
 
 This allows you to write text with animations using frames to define how the text is going to move.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var animatedText = new AnimatedText()
@@ -287,6 +311,8 @@ for (int i = 0; i < animatedText.TextFrames.Length; i++)
 ```
 
 <figure><img src="../../../../.gitbook/assets/animated-text.gif" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -294,8 +320,10 @@ for (int i = 0; i < animatedText.TextFrames.Length; i++)
 
 This allows you to write text with boundaries to the console to allow enough information to fit in a specified width and height. This works either according to lines, or according to column and row of the invisible caret.
 
-{% tabs %}
-{% tab title="Line-wise" %}
+<details>
+
+<summary>Line-wise</summary>
+
 ```csharp
 var text = new BoundedText("This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps.")
 {
@@ -323,9 +351,13 @@ TextWriterRaw.WriteRaw(text2.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Position-wise" %}
+</details>
+
+<details>
+
+<summary>Position-wise</summary>
+
 ```csharp
 var text = new BoundedText("This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps. This is a bounded text that wraps.")
 {
@@ -357,8 +389,8 @@ TextWriterRaw.WriteRaw(text2.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -366,18 +398,28 @@ TextWriterRaw.WriteRaw(text2.Render());
 
 This allows you to write unaligned Figlet text to the console.
 
+<details>
+
+<summary>Example</summary>
+
 ```csharp
 var text = new FigletText(FigletFonts.GetByName("small"), "Figlet text");
 TextWriterRaw.WriteRaw(text.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Text marquee</mark>
 
 This allows you to write an animated text marquee to the console.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var stickScreen = new Screen()
@@ -394,7 +436,7 @@ var marquee = new TextMarquee(
 try
 {
     // First, clear the screen
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 
     // Then, show the counter
     var stickScreenPart = new ScreenPart();
@@ -414,17 +456,23 @@ finally
 {
     ScreenTools.StopCyclicScreen();
     ScreenTools.UnsetCurrent(stickScreen);
-    ColorTools.LoadBack();
+    ConsoleColoring.LoadBack();
 }
 ```
 
 <figure><img src="../../../../.gitbook/assets/1000022817.gif" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Decoration</mark>
 
 This allows you to create decorative renders for your text, but in a standalone form. You can also use this instance with aligned text instances to decorate your text with prefixes and suffixes.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var decoration1 = new Decoration()
@@ -453,14 +501,14 @@ var alignedTextUndecorated = new AlignedText("Aligned text")
 {
     ForegroundColor = ConsoleColors.Yellow,
     Top = 6,
-    LeftMargin = "Aligned text without decoration: ".Length,
+    Left = "Aligned text without decoration: ".Length,
 };
 var alignedTextDecorated = new AlignedText("Aligned text")
 {
     ForegroundColor = ConsoleColors.Yellow,
     UseColors = true,
     Top = 7,
-    LeftMargin = "Aligned text without decoration: ".Length,
+    Left = "Aligned text without decoration: ".Length,
     Decoration = decoration2,
 };
 TextWriterRaw.WritePlain("Aligned text without decoration: " + alignedTextUndecorated.Render());
@@ -468,6 +516,8 @@ TextWriterRaw.WritePlain("Aligned text with decoration:    " + alignedTextDecora
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -475,14 +525,22 @@ TextWriterRaw.WritePlain("Aligned text with decoration:    " + alignedTextDecora
 
 You can render a syntax highlighted snippet of code using this renderable.
 
+{% hint style="info" %}
+Please note that you must have the [`highlight`](http://andre-simon.de/zip/download.php) app installed.
+{% endhint %}
+
+<details>
+
+<summary>Example</summary>
+
 ```csharp
 var chart = new SyntaxText()
 {
-	Top = 4,
-	LeftMargin = 4,
-	Syntax = "rust",
-	Text =
-		"""
+    Top = 4,
+    LeftMargin = 4,
+    Syntax = "rust",
+    Text =
+        """
         fn main() {
             // Comment
             println!("Hello World!");
@@ -494,15 +552,17 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 <figure><img src="../../../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
 
-{% hint style="info" %}
-Please note that you must have the [`highlight`](http://andre-simon.de/zip/download.php) app installed.
-{% endhint %}
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Text path</mark>
 
 You can render the decorated text path with this renderable so that the paths appear more elegant and simplified.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var path1 = new TextPath()
@@ -558,5 +618,7 @@ TextWriterRaw.WriteRaw(path4.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 {% endstepper %}

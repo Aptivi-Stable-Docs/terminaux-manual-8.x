@@ -35,14 +35,16 @@ Here are the charts that you can use:
 
 This gives you either a horizontal stick or a vertical stick that describes what part of the whole stick has taken per each item. This describes a breakdown of several items that you want to present.
 
-{% tabs %}
-{% tab title="Horizontal with showcase" %}
+<details>
+
+<summary>Horizontal with showcase</summary>
+
 ```csharp
 var chart = new BreakdownChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
+    Width = 60,
     Showcase = true,
     Elements =
     [
@@ -72,15 +74,19 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Horizontal with no showcase" %}
+</details>
+
+<details>
+
+<summary>Horizontal with no showcase</summary>
+
 ```csharp
 var chart = new BreakdownChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
+    Width = 60,
     Elements =
     [
         new()
@@ -109,14 +115,18 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Vertical with showcase" %}
+</details>
+
+<details>
+
+<summary>Vertical with showcase</summary>
+
 ```csharp
 var chart = new BreakdownChart()
 {
-    InteriorWidth = ConsoleWrapper.WindowWidth - 4,
-    InteriorHeight = ConsoleWrapper.WindowHeight - 8,
+    Width = ConsoleWrapper.WindowWidth - 4,
+    Height = ConsoleWrapper.WindowHeight - 8,
     Left = 2,
     Top = 4,
     Showcase = true,
@@ -149,14 +159,18 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Vertical with no showcase" %}
+</details>
+
+<details>
+
+<summary>Vertical with no showcase</summary>
+
 ```csharp
 var chart = new BreakdownChart()
 {
-    InteriorWidth = ConsoleWrapper.WindowWidth - 4,
-    InteriorHeight = ConsoleWrapper.WindowHeight - 8,
+    Width = ConsoleWrapper.WindowWidth - 4,
+    Height = ConsoleWrapper.WindowHeight - 8,
     Left = 2,
     Top = 4,
     Vertical = true,
@@ -188,8 +202,8 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -197,14 +211,16 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 This gives you a horizontal bar chart that allows you to present various numbers in an amazing way for comparison.
 
-{% tabs %}
-{% tab title="Showcase" %}
+<details>
+
+<summary>Showcase</summary>
+
 ```csharp
 var chart = new BarChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
+    Width = 60,
     Showcase = true,
     Elements =
     [
@@ -234,15 +250,19 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (122).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="No showcase" %}
+</details>
+
+<details>
+
+<summary>No showcase</summary>
+
 ```csharp
 var chart = new BarChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
+    Width = 60,
     Elements =
     [
         new()
@@ -271,8 +291,8 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -280,15 +300,17 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 This gives you a vertical bar chart that allows you to present various numbers in an amazing way for comparison.
 
-{% tabs %}
-{% tab title="Showcase" %}
+<details>
+
+<summary>Showcase</summary>
+
 ```csharp
 var chart = new StickChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
-    InteriorHeight = 20,
+    Width = 60,
+    Height = 20,
     Showcase = true,
     Elements =
     [
@@ -318,16 +340,20 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (123).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="No showcase" %}
+</details>
+
+<details>
+
+<summary>No showcase</summary>
+
 ```csharp
 var chart = new StickChart()
 {
     Left = 1,
     Top = 2,
-    InteriorWidth = 60,
-    InteriorHeight = 20,
+    Width = 60,
+    Height = 20,
     Elements =
     [
         new()
@@ -356,8 +382,8 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -367,6 +393,10 @@ This shows you a stem and leaf chart that describes the breakdown of the numbers
 
 * The stem either represents the digit of tens and greater (if the number is not a decimal) or the numeric part (if the number is a decimal)
 * The leaf either represents the digit of ones (if the number is not a decimal) or the decimal part with the precision of two decimal digits (if the number is a decimal)
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var chart = new StemLeafChart()
@@ -391,6 +421,8 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -398,11 +430,15 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 This allows you to render a line chart that shows you rises and falls of a specific data to the console.
 
+<details>
+
+<summary>Example</summary>
+
 ```csharp
 var chart = new LineChart()
 {
-    InteriorWidth = ConsoleWrapper.WindowWidth - 4,
-    InteriorHeight = ConsoleWrapper.WindowHeight - 8,
+    Width = ConsoleWrapper.WindowWidth - 4,
+    Height = ConsoleWrapper.WindowHeight - 8,
     Left = 2,
     Top = 4,
     Showcase = true,
@@ -478,7 +514,9 @@ var chart = new LineChart()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
@@ -486,11 +524,15 @@ TextWriterRaw.WriteRaw(chart.Render());
 
 This chart allows you to visualize wins and losses for a company or for other things in your console.
 
+<details>
+
+<summary>Example</summary>
+
 ```csharp
 var chart = new WinsLosses()
 {
-    InteriorWidth = ConsoleWrapper.WindowWidth - 4,
-    InteriorHeight = ConsoleWrapper.WindowHeight - 8,
+    Width = ConsoleWrapper.WindowWidth - 4,
+    Height = ConsoleWrapper.WindowHeight - 8,
     Left = 2,
     Top = 4,
     Showcase = true,
@@ -507,13 +549,19 @@ var chart = new WinsLosses()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Pie charts</mark>
 
 Pie charts visualize data, like all other data charts, but in a pie instead of the usual bars. It uses the values to calculate the arc angles of all elements to then display the whole pie to the console.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var chart = new PieChart()
@@ -596,12 +644,18 @@ TextWriterRaw.WriteRaw(chart.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 
 {% step %}
 ### <mark style="color:$primary;">Chart of Lines</mark>
 
 This kind of chart demonstrates how an item has increased or decreased over either time periods or, more generally, iterations. It uses lines for such demonstration.
+
+<details>
+
+<summary>Example</summary>
 
 ```csharp
 var chart = new LinesChart()
@@ -636,6 +690,8 @@ var chart = new LinesChart()
 TextWriterRaw.WriteRaw(chart.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
 {% endstep %}
 {% endstepper %}

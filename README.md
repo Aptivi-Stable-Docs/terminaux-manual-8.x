@@ -14,6 +14,106 @@ Terminaux is a library that contains all the common and the extra console tools 
 Below is the release history of the library:
 
 {% updates format="full" %}
+{% update date="2026-05-01" %}
+## <mark style="color:$primary;">v8.3.0.1</mark>
+
+<mark style="color:yellow;">Fixed accurate progress bar being too wide when it reaches 100%</mark>
+{% endupdate %}
+
+{% update date="2026-04-30" %}
+## <mark style="color:$primary;">v8.3.0</mark>
+
+<mark style="color:green;">Added accurate progress bar design</mark>
+
+<mark style="color:green;">Added pane-specific keybindings</mark>
+
+<mark style="color:green;">Added link markup</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+
+<mark style="color:yellow;">General improvements and bug fixes</mark>
+{% endupdate %}
+
+{% update date="2026-04-25" %}
+## <mark style="color:$primary;">v7.0.23</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-04-25" %}
+## <mark style="color:$primary;">v6.1.40</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-04-01" %}
+## <mark style="color:$primary;">v8.2.1</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-04-01" %}
+## <mark style="color:$primary;">v7.0.22</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-04-01" %}
+## <mark style="color:$primary;">v6.1.39</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-03-18" %}
+## <mark style="color:$primary;">v8.2.0</mark>
+
+<mark style="color:green;">Added QR code generator</mark>
+
+<mark style="color:yellow;">Moved color tools to Colorimetry</mark>
+{% endupdate %}
+
+{% update date="2026-03-13" %}
+## <mark style="color:$primary;">v8.1.1.5</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-03-13" %}
+## <mark style="color:$primary;">v7.0.21</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-03-13" %}
+## <mark style="color:$primary;">v6.1.38</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-02-27" %}
+## <mark style="color:$primary;">v8.1.1.4</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-02-27" %}
+## <mark style="color:$primary;">v7.0.20</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-02-27" %}
+## <mark style="color:$primary;">v6.1.37</mark>
+
+<mark style="color:yellow;">Updated ImageMagick and other dependencies</mark>
+{% endupdate %}
+
+{% update date="2026-02-15" %}
+## <mark style="color:$primary;">v8.1.1.3</mark>
+
+<mark style="color:yellow;">Updated BassBoom</mark>
+{% endupdate %}
+
 {% update date="2026-02-15" %}
 ## <mark style="color:$primary;">v8.1.1.2</mark>
 

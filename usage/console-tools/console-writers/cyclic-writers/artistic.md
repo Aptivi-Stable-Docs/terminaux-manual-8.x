@@ -2077,7 +2077,7 @@ TextWriterRaw.WritePlain(ruler3.Render());
 TextWriterRaw.WritePlain(ruler4.Render());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 

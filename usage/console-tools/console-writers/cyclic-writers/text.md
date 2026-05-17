@@ -15,7 +15,7 @@ Here are the text renderers that you can use:
 
 {% stepper %}
 {% step %}
-### <mark style="color:$primary;">Aligned figlet text</mark>
+### <mark style="color:$primary;">Aligned Figlet text</mark>
 
 This allows you to write an aligned Figlet text to the console.
 
@@ -127,6 +127,123 @@ TextWriterRaw.WriteRaw(text3.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+{% endstep %}
+
+{% step %}
+### <mark style="color:$primary;">Aligned Cowsay text</mark>
+
+This allows you to write an aligned Cowsay text to the console.
+
+<details>
+
+<summary>Normal</summary>
+
+```csharp
+var cowsay = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Settings = new()
+    {
+        Alignment = TextAlignment.Left
+    }
+};
+var cowsay2 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Settings = new()
+    {
+        Alignment = TextAlignment.Middle
+    }
+};
+var cowsay3 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Settings = new()
+    {
+        Alignment = TextAlignment.Right
+    }
+};
+TextWriterRaw.WriteRaw(cowsay.Render());
+TextWriterRaw.WriteRaw(cowsay2.Render());
+TextWriterRaw.WriteRaw(cowsay3.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Colored</summary>
+
+```csharp
+var cowsay = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    ForegroundColor = ConsoleColors.Red,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Left
+    }
+};
+var cowsay2 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    ForegroundColor = ConsoleColors.Lime,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Middle
+    }
+};
+var cowsay3 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    ForegroundColor = ConsoleColors.Blue,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Right
+    }
+};
+TextWriterRaw.WriteRaw(cowsay.Render());
+TextWriterRaw.WriteRaw(cowsay2.Render());
+TextWriterRaw.WriteRaw(cowsay3.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Rainbow</summary>
+
+```csharp
+var cowsay = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Rainbow = true,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Left
+    }
+};
+var cowsay2 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Rainbow = true,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Middle
+    }
+};
+var cowsay3 = new AlignedCowsayText(CowName.Default, "Hello world!")
+{
+    Rainbow = true,
+    Settings = new()
+    {
+        Alignment = TextAlignment.Right
+    }
+};
+TextWriterRaw.WriteRaw(cowsay.Render());
+TextWriterRaw.WriteRaw(cowsay2.Render());
+TextWriterRaw.WriteRaw(cowsay3.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 {% endstep %}
@@ -389,6 +506,25 @@ TextWriterRaw.WriteRaw(text2.Render());
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
+
+</details>
+{% endstep %}
+
+{% step %}
+### <mark style="color:$primary;">Cowsay text</mark>
+
+This allows you to write unaligned Cowsay text to the console.
+
+<details>
+
+<summary>Example</summary>
+
+```csharp
+var cowsay = new CowsayText(CowName.Default, "Hello world!");
+TextWriterRaw.WriteRaw(cowsay.Render());
+```
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 {% endstep %}

@@ -63,18 +63,7 @@ Terminaux's mouse feature provides you with a wide assortment of helper function
 
 The following functions and properties are available:
 
-| Function/property           |                                                   |
-| --------------------------- | ------------------------------------------------- |
-| `InvertScrollYAxis`         | Inverts the Y axis for vertical scrolling         |
-| `SwapLeftRightButtons`      | Swaps the left/right mouse buttons                |
-| `DoubleClickTimeout`        | Specifies the double clock timeout in a time span |
-| `EnableMovementEvents`      | Enables or disables the mouse movement events     |
-| `PointerEncoding`           | Specifies the pointer encoding to use             |
-| `ReadPointerOrKey()`        | Reads the next input event synchronously          |
-| `ReadPointerOrKeyNoBlock()` | Reads the next input event asynchronously         |
-| `ReadKey()`                 | Reads a single key synchronously                  |
-| `ReadKeyTimeout()`          | Reads a single key synchronously with timeout     |
-| `InvalidateInput()`         | Invalidates all input events                      |
+<table><thead><tr><th width="245">Function/property</th><th></th></tr></thead><tbody><tr><td><code>InvertScrollYAxis</code></td><td>Inverts the Y axis for vertical scrolling</td></tr><tr><td><code>SwapLeftRightButtons</code></td><td>Swaps the left/right mouse buttons</td></tr><tr><td><code>DoubleClickTimeout</code></td><td>Specifies the double clock timeout in a time span</td></tr><tr><td><code>EnableMovementEvents</code></td><td>Enables or disables the mouse movement events</td></tr><tr><td><code>PointerEncoding</code></td><td>Specifies the pointer encoding to use</td></tr><tr><td><code>ReadPointerOrKey()</code></td><td>Reads the next input event synchronously</td></tr><tr><td><code>ReadPointerOrKeyUntil()</code></td><td>Reads the next input event until either timeout has reached or input has been received</td></tr><tr><td><code>ReadPointerOrKeyNoBlock()</code></td><td>Reads the next input event asynchronously</td></tr><tr><td><code>ReadKey()</code></td><td>Reads a single key synchronously</td></tr><tr><td><code>ReadKeyTimeout()</code></td><td>Reads a single key synchronously with timeout</td></tr><tr><td><code>InvalidateInput()</code></td><td>Invalidates all input events</td></tr></tbody></table>
 
 </details>
 

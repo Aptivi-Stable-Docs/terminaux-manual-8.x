@@ -7,8 +7,8 @@ icon: pen
 
 Terminaux not only provides the normal input reader with its custom bindings and its customizability, but you can also use its other input functions, such as informational boxes. Terminaux provides a different set of input styles.
 
-{% content-ref url="figlet-font-selector.md" %}
-[figlet-font-selector.md](figlet-font-selector.md)
+{% content-ref url="font-selectors.md" %}
+[font-selectors.md](font-selectors.md)
 {% endcontent-ref %}
 
 {% content-ref url="color-wheel.md" %}

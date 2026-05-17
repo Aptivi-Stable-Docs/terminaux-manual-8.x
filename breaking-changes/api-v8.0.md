@@ -193,3 +193,42 @@ In order to continue using color tools and classes, you'll need to use the Color
 {% endhint %}
 
 </details>
+
+***
+
+## <mark style="color:$primary;">From 8.2.x to 8.4.x</mark>
+
+Between the 8.2.x and 8.4.x version range, we've made the following breaking changes:
+
+<details>
+
+<summary><code>TableCellOptions</code> implemented for simpler implementation of cell options</summary>
+
+For table cell options, we've made necessary changes to ensure that cell options remain consistent with the other cell properties by changing the list of cells, `Rows`, in the table cyclic writer.
+
+We wanted a way to store the cell value and its properties together in one place. This caused us to perform the following changes:
+
+* We've changed the return type of the `Rows` property to utilize `TableCellOptions`.
+* We've removed the `Settings` property to reduce confusion and to simplify the implementation of the rows.
+
+For this, you'll need to make new instances of `TableCellOptions` for each element in both rows and columns. Then, you'll need to change the settings of each cell, just like this:
+
+{% code expandable="true" %}
+```csharp
+var Rows = new TableCellOptions[,]
+{
+    { new("Ubuntu Version"), new("Release Date"), new("Support End"), new("ESM Support End") },
+    { new("12.04 (Precise Pangolin)"), new(new DateTime(2012, 4, 26).ToString()), new(new DateTime(2017, 4, 28).ToString()), new(new DateTime(2019, 4, 28).ToString()) },
+    { new("14.04 (Trusty Tahr)"), new(new DateTime(2014, 4, 17).ToString()), new(new DateTime(2019, 4, 25).ToString()), new(new DateTime(2024, 4, 25).ToString()) },
+    { new("16.04 (Xenial Xerus)"), new(new DateTime(2016, 4, 21).ToString()), new(new DateTime(2021, 4, 30).ToString()), new(new DateTime(2026, 4, 30).ToString()) },
+    { new("18.04 (Bionic Beaver)"), new(new DateTime(2018, 4, 26).ToString()), new(new DateTime(2023, 4, 30).ToString()), new(new DateTime(2028, 4, 30).ToString()) },
+    { new("20.04 (Focal Fossa)"), new(new DateTime(2020, 4, 23).ToString()), new(new DateTime(2025, 4, 25).ToString()), new(new DateTime(2030, 4, 25).ToString()) },
+    { new("22.04 (Jammy Jellyfish)"), new(new DateTime(2022, 4, 26).ToString()), new(new DateTime(2027, 4, 25).ToString()), new(new DateTime(2032, 4, 25).ToString()) }
+};
+Rows[1, 1].CellColor = ConsoleColors.Red;
+Rows[1, 1].CellBackgroundColor = ConsoleColors.DarkRed;
+Rows[1, 1].ColoredCell = true;
+```
+{% endcode %}
+
+</details>

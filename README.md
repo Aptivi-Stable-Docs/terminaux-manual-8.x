@@ -14,6 +14,34 @@ Terminaux is a library that contains all the common and the extra console tools 
 Below is the release history of the library:
 
 {% updates format="full" %}
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v8.4.0</mark>
+
+<mark style="color:green;">Added timed input</mark>
+
+<mark style="color:green;">Added cowsay renderer</mark>
+
+<mark style="color:green;">Added FreeBSD support</mark>
+
+<mark style="color:yellow;">General improvements and bug fixes</mark>
+{% endupdate %}
+
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v7.0.24</mark>
+
+<mark style="color:green;">Added FreeBSD support</mark>
+
+<mark style="color:yellow;">General improvements and bug fixes</mark>
+{% endupdate %}
+
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v6.1.41</mark>
+
+<mark style="color:green;">Added FreeBSD support</mark>
+
+<mark style="color:yellow;">General improvements and bug fixes</mark>
+{% endupdate %}
+
 {% update date="2026-05-01" %}
 ## <mark style="color:$primary;">v8.3.0.1</mark>
 

@@ -62,7 +62,7 @@
     * [Keybindings](usage/input-reader/other-input/keybindings.md)
     * [Choice-based inputs](usage/input-reader/other-input/choice-based-inputs.md)
     * [Editors and Viewers](usage/input-reader/other-input/editors-and-viewers.md)
-    * [Figlet Font Selector](usage/input-reader/other-input/figlet-font-selector.md)
+    * [Font Selectors](usage/input-reader/other-input/font-selectors.md)
     * [Color Wheel](usage/input-reader/other-input/color-wheel.md)
     * [Spinner Selector](usage/input-reader/other-input/spinner-selector.md)
     * [Input Modules](usage/input-reader/other-input/input-modules.md)

@@ -5,7 +5,7 @@ icon: palette
 
 # Color Wheel
 
-<figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
 
 The new color wheel, `ColorSelector`, is now available. You can use this brand new color selector, which is powered by the [textual UI](../../console-tools/textual-ui/) feature, to get information about your selected color visually.
 
@@ -22,9 +22,21 @@ The color selector allows you to change the color in the following modes:
 
 This function returns a `Color` instance containing necessary information.
 
-***
+<details>
 
-## <mark style="color:$primary;">Controls</mark>
+<summary>Color wheel mode</summary>
+
+<figure><img src="../../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
+
+When you press `C`, you'll see a single color wheel in the middle of the console with a white blip that points to the chosen color. The color wheel changes its saturation and lighting density as per the conversion results from RGB to HSL.
+
+Once you're in the color wheel mode, you can press `ESC` to go back to the main screen.
+
+</details>
+
+<details>
+
+<summary>Controls</summary>
 
 The following controls are available:
 
@@ -51,3 +63,6 @@ The following controls are available:
 | `CTRL` + `M`                                    | Decrease transformation frequenc                                               |
 | `W`                                             | Select web color                                                               |
 | `L`                                             | Shows color list                                                               |
+| `C`                                             | Opens the color wheel                                                          |
+
+</details>

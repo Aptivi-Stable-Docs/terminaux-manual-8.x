@@ -52,6 +52,14 @@ Here are the shapes that you can use:
 
 The circle writer allows you to write a circle to the console. It also allows you to either draw just an outline or the whole filled circle.
 
+{% hint style="info" %}
+You can use the following properties to render this shape with rainbow colors:
+
+* `RainbowMode`: Whether to render this shape in a rainbow gradient or not
+* `RainbowSaturation`: Saturation of this gradient (0 to 100, default is 100)
+* `RainbowLighting`: Lighting of this gradient (0 to 100, default is 50)
+{% endhint %}
+
 <details>
 
 <summary>Outline</summary>
@@ -83,6 +91,14 @@ TextWriterRaw.WriteRaw(shape.Render());
 ### <mark style="color:$primary;">Arc</mark>
 
 This writer allows you to write an arc directly to the console with some parameters, such as custom inner and outer radius, and angle ranges.
+
+{% hint style="info" %}
+You can use the following properties to render this shape with rainbow colors:
+
+* `RainbowMode`: Whether to render this shape in a rainbow gradient or not
+* `RainbowSaturation`: Saturation of this gradient (0 to 100, default is 100)
+* `RainbowLighting`: Lighting of this gradient (0 to 100, default is 50)
+{% endhint %}
 
 <details>
 
@@ -220,6 +236,14 @@ TextWriterRaw.WriteRaw(arc2.Render());
 ### <mark style="color:$primary;">Ellipsis</mark>
 
 This writer allows you to write an ellipsis directly to the console. It also allows you to either draw just an outline or the whole filled ellipsis.
+
+{% hint style="info" %}
+You can use the following properties to render this shape with rainbow colors:
+
+* `RainbowMode`: Whether to render this shape in a rainbow gradient or not
+* `RainbowSaturation`: Saturation of this gradient (0 to 100, default is 100)
+* `RainbowLighting`: Lighting of this gradient (0 to 100, default is 50)
+{% endhint %}
 
 <details>
 

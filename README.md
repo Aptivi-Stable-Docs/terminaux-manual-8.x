@@ -14,6 +14,54 @@ Terminaux is a library that contains all the common and the extra console tools 
 Below is the release history of the library:
 
 {% updates format="full" %}
+{% update date="2026-06-09" %}
+## <mark style="color:$primary;">v8.5.0</mark>
+
+<mark style="color:green;">Added new color models (Colorimetry v1.1.0)</mark>
+
+<mark style="color:green;">Added ESC to exit input info box</mark>
+
+<mark style="color:green;">Added color wheel</mark>
+
+<mark style="color:yellow;">General improvements and bug fixes</mark>
+{% endupdate %}
+
+{% update date="2026-05-19" %}
+## <mark style="color:$primary;">v8.4.0.2</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-05-19" %}
+## <mark style="color:$primary;">v7.0.24.2</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-05-19" %}
+## <mark style="color:$primary;">v6.1.41.2</mark>
+
+<mark style="color:yellow;">Fixed ImageMagick security bugs</mark>
+{% endupdate %}
+
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v8.4.0.1</mark>
+
+<mark style="color:yellow;">Fixed input issues on FreeBSD systems</mark>
+{% endupdate %}
+
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v7.0.24.1</mark>
+
+<mark style="color:yellow;">Fixed input issues on FreeBSD systems</mark>
+{% endupdate %}
+
+{% update date="2026-05-17" %}
+## <mark style="color:$primary;">v6.1.41.1</mark>
+
+<mark style="color:yellow;">Fixed input issues on FreeBSD systems</mark>
+{% endupdate %}
+
 {% update date="2026-05-17" %}
 ## <mark style="color:$primary;">v8.4.0</mark>
 
